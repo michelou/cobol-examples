@@ -1,0 +1,11 @@
+*.exe
+
+*.log
+*.obj
+
+.vscode/
+target/
+
+*_LOCAL/
+*_LOCAL.md
+*_LOCAL.txt

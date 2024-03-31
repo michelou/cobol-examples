@@ -1,0 +1,26 @@
+# This is the data file for timeline comparison program
+#
+# 0 records define the columns (relative age points)
+#  -  3-10 birth date yyyymmdd
+#  - 12-46 name of individual
+#  - 48-55 death date yyyymmdd 
+# 1 records define the rows (events)
+#  - 3-10 event date
+#  - 12-55 event description
+#...5...10...15...20...25...30...35...40...45...50...55
+0 19170529 John F. Kennedy                     19631122
+0 19290728 Jacqueline Lee Bouvier              19940519
+1 19170529 John F. Kennedy birth
+1 19290728 Jacqueline L. Bouvier birth
+1 19410924 John joined Naval Reserve
+1 19411026 John commissioned an ensign
+1 19421207 John first PT command (PT-101)
+1 19530912 John Married Jacqueline Bouvier
+1 19571127 Caroline Bouvier Kennedy birth
+1 19600102 John began campaign to become president
+1 19601125 John F. Kennedy Jr. birth
+1 19610120 John sworn in as president
+1 19610417 Bay of Pigs invasion
+1 19621028 Cuban missile crisis ends
+1 19631122 John F. Kennedy assassination
+1 19940519 Jacqueline Kennedy Onassis death
