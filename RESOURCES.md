@@ -10,6 +10,7 @@
 
 ## <span id="articles">Articles</span>
 
+- [What Is COBOL Programming Language? Definition, Examples, Uses, and Challenges][article_kanade] by Vijay Kanade, August 2022.
 - [Learning COBOL: A Journey for the Modern Programmer](https://monadical.com/posts/cobol.html#) by Juan Diego Caballero, April 2021.
 - [A journey into the past: Programming with GNU COBOL][article_harris] by Mike Harris, 2017.
 - [Don't hate COBOL until you've tried it][article_mankowski] by Walt Mankowski, August 2017.
@@ -43,10 +44,12 @@
 
 ## <span id="tools">Tools</span> [**&#x25B4;**](#top)
 
+- COBOL commercial products :
+  - [isCOBOL](https://www.veryant.com/products/iscobol/iscobolcompiler.html) by [Veryant](https://www.veryant.com/) &ndash; ANSI compliant COBOL compiler written in Java (commercial).
+  - [NetCOBOL](https://www.fujitsu.com/global/products/infrastructure-management/developer-tool/netcobol/features/) by FUJITSU.
+  - [P3/COBOL](https://easirun.de/produkte/p3-cobol/) by [EasiRun](https://easirun.de/).
 - [Cobol OneCompiler](https://onecompiler.com/cobol) &ndash; Write, Run & Share Cobol code.
 - [Cobrix](https://github.com/AbsaOSS/cobrix) &ndash; pain free Spark/Cobol files integration.
-- [ISCOBOL](https://www.veryant.com/products/iscobol/) &ndash; a commercial COBOL compiler.
-online.
 - [Visual Studio Code Extensions](https://marketplace.visualstudio.com/search?target=VSCode) :
   - [Broadcom Code4z](https://marketplace.visualstudio.com/items?itemName=broadcomMFD.code4z-extension-pack) &ndash; syntax highlighting and content assist for COBOL programs.
   - [Cobol Check Extension][tool_cobol_check] &ndash; fine-grained unit testing/checking for COBOL.
@@ -74,6 +77,7 @@ online.
 <!-- link refs -->
 
 [article_harris]: https://mbharris.co.uk/articles/cobol/
+[article_kanade]: https://www.spiceworks.com/tech/artificial-intelligence/articles/what-is-cobol/
 [article_mankowski]: https://opensource.com/article/17/8/what-about-cobol
 [blog_martin]: https://stackoverflow.blog/2020/04/20/brush-up-your-cobol-why-is-a-60-year-old-language-suddenly-in-demand/
 [blog_theman]: https://bigdanzblog.wordpress.com/2020/05/05/installing-gnucobol-on-windows/
