@@ -3,11 +3,11 @@
 <table style="font-family:Helvetica,Arial;line-height:1.6;">
   <tr>
   <td style="border:0;padding:0 4px 0 0;min-width:60px;max-width:100px;">
-    <a href="https://dart.dev/" rel="external"><img style="border:0;" src="docs/images/cobol.png" alt="COBOL project"/></a>
+    <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external"><img style="border:0;" src="docs/images/cobol.png" alt="COBOL language"/></a>
   </td>
   <td style="border:0;padding:0;vertical-align:text-top;">
-    This repository gathers <a href="https://dart.dev/" rel="external">COBOL</a> code examples coming from various websites - mostly from the <a href="https://dart.dev" rel="external">COBOL</a> project - or written by myself.<br/>
-    In particular it includes several build scripts (<a href="https://www.gnu.org/software/bash/manual/bash.html" rel="external">Bash scripts</a>, <a href="https://en.wikibooks.org/wiki/Windows_Batch_Scripting" rel="external">batch files</a>, <a href="https://makefiletutorial.com/" rel="external">Make scripts</a>) for experimenting with the <a href="https://dart.dev/guides/language/spec" rel="external">COBOL</a> language on a Windows machine.
+    This repository gathers <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external">COBOL</a> code examples coming from various websites - mostly from the <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external">Mainframestechhelp</a> website - or written by myself.<br/>
+    In particular it includes several build scripts (<a href="https://www.gnu.org/software/bash/manual/bash.html" rel="external">Bash scripts</a>, <a href="https://en.wikibooks.org/wiki/Windows_Batch_Scripting" rel="external">batch files</a>, <a href="https://makefiletutorial.com/" rel="external">Make scripts</a>) for experimenting with the <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external">COBOL</a> language on a Windows machine.
   </td>
   </tr>
 </table>
@@ -18,8 +18,9 @@
 
 This project depends on the following external software for the **Microsoft Windows** platform:
 
-- [GnuCOBOL 3.3][gnucobol_binaries] ([*release notes*][gnucobol_relnotes], [*news file*][gnucobol_news])
+- [GnuCOBOL 3.2][gnucobol_binaries] ([*release notes*][gnucobol_relnotes], [*news file*][gnucobol_news])
 - [Git 2.44][git_releases] ([*release notes*][git_relnotes])
+- [MSYS2 2024][msys2_downloads] <sup id="anchor_03">[3](#footnote_03)</sup> ([*changelog*][msys2_changelog])
 
 Optionally one may also install the following software:
 
@@ -33,6 +34,7 @@ For instance our development environment looks as follows (*April 2024*) <sup id
 <pre style="font-size:80%;">
 C:\opt\Git\       <i>(367 MB)</i>
 C:\opt\GnuCOBOL\  <i>(548 MB)</i>
+C:\opt\msys64\    <i>(2.8 GB)</i>
 C:\opt\VSCode\    <i>(341 MB)</i>
 </pre>
 
@@ -119,8 +121,13 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 </p>
 <pre style="font-size:80%;">
 <a href="https://get-superbol.com/software/gnucobol-windows-installer/aio-release/">gnucobol-3.2-aio-20240306-user.msi</a>  <i>(92 MB)</i>
+<a href="https://repo.msys2.org/distrib/x86_64/">msys2-x86_64-20240113.exe</a>          <i> (83 MB)</i>
 <a href="https://git-scm.com/download/win">PortableGit-2.44.0-64-bit.7z.exe</a>    <i>(41 MB)</i>
 </pre>
+<p style="background-color:#eeeeee;">
+<b>&#9755; <i>GnuCOBOL distribution</i></b><br/>
+ We prefer the <a href="https://get-superbol.com/software/gnucobol-windows-installer/aio-release/">All-in-One distribution</a> from <a href="https://get-superbol.com/" rel="external">SuperBOL</a> over the <a href="https://www.arnoldtrembley.com/GnuCOBOL.htm">GnuCOBOL distribution</a> from Arnold Trembley.
+</p>
 </dd></dl>
 
 <span id="footnote_02">[2]</span> **`setenv.bat` *usage*** [↩](#anchor_02)
@@ -144,6 +151,12 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\vsde
 Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="https://github.com/michelou/cpp-examples"><code>michelou/cpp-examples</code></a>), <a href="./setenv.bat"><code><b>setenv.bat</b></code></a> does invoke <code><b>VsDevCmd.bat</b></code> (resp. <code><b>vcvarall.bat</b></code> for older Visual Studio versions) to setup the Visual Studio tools on the command prompt. 
 </dd></dl>
 
+<span id="footnote_03">[3]</span> ***MSYS2 libraries*** [↩](#anchor_03)
+
+<dl><dd>
+Some COBOL examples depend on the <a href="https://packages.msys2.org/package/gmp" rel="external">gmp</a> library &ndash; A free library for arbitrary precision arithmetic &ndash; which is part of our local MSYS2 installation.
+</dd></dl>
+
 ***
 
 *[mics](https://lampwww.epfl.ch/~michelou/)/April 2024* [**&#9650;**](#top)
@@ -162,7 +175,7 @@ Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="
 [git_releases]: https://git-scm.com/download/win
 [git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.44.0.txt
 [github_markdown]: https://github.github.com/gfm/
-[gnucobol_binaries]: https://www.arnoldtrembley.com/GnuCOBOL.htm
+[gnucobol_binaries]: https://get-superbol.com/software/gnucobol-windows-installer/aio-release/
 [gnucobol_news]: https://sourceforge.net/p/gnucobol/code/HEAD/tree/tags/gnucobol-3.2/NEWS
 [gnucobol_relnotes]: https://gnucobol.sourceforge.io/index.html#Releases
 [golang_examples]: https://github.com/michelou/golang-examples
@@ -183,6 +196,8 @@ Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="
 [man1_rmdir]: https://www.linux.org/docs/man1/rmdir.html
 [man1_sed]: https://www.linux.org/docs/man1/sed.html
 [man1_wc]: https://www.linux.org/docs/man1/wc.html
+[msys2_changelog]: https://github.com/msys2/setup-msys2/blob/main/CHANGELOG.md
+[msys2_downloads]: http://repo.msys2.org/distrib/x86_64/
 [nodejs_examples]: https://github.com/michelou/nodejs-examples
 [rust_examples]: https://github.com/michelou/rust-examples
 [scala3_examples]: https://github.com/michelou/dotty-examples

@@ -3,10 +3,10 @@
 <table style="font-family:Helvetica;line-height:1.6;">
   <tr>
   <td style="border:0;padding:0 10px 0 0;min-width:100px;">
-    <a href="https://dart.dev/" rel="external"><img style="border:0;width:100px;" src="../docs/images/cobol.png" width="100" alt="COBOL project"/></a>
+    <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external"><img style="border:0;width:100px;" src="../docs/images/cobol.png" width="100" alt="COBOL language"/></a>
   </td>
   <td style="border:0;padding:0;vertical-align:text-top;">
-    Directory <strong><code>csis-examples\</code></strong> contains <a href="https://dart.dev/" rel="external" title="COBOL">COBOL</a> code examples coming from the <a href="https://www.csis.ul.ie/cobol/examples/">CSIS</a> department of the <a href="https://www.ul.ie/">University of Limerick</a>.
+    Directory <strong><code>csis-examples\</code></strong> contains <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external" title="COBOL">COBOL</a> code examples coming from the <a href="https://www.csis.ul.ie/cobol/examples/">CSIS</a> department of the <a href="https://www.ul.ie/">University of Limerick</a>.
   </td>
   </tr>
 </table>

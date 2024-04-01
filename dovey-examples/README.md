@@ -3,10 +3,10 @@
 <table style="font-family:Helvetica;line-height:1.6;">
   <tr>
   <td style="border:0;padding:0 10px 0 0;min-width:100px;">
-    <a href="https://dart.dev/" rel="external"><img style="border:0;width:100px;" src="../docs/images/cobol.png" width="100" alt="COBOL project"/></a>
+    <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external"><img style="border:0;width:100px;" src="../docs/images/cobol.png" width="100" alt="COBOL language"/></a>
   </td>
   <td style="border:0;padding:0;vertical-align:text-top;">
-    Directory <strong><code>dovey-examples\</code></strong> contains <a href="" rel="external" title="COBOL">COBOL</a> code examples coming from John Dovey's GitHub repository <a href="https://github.com/JohnDovey/GNUCobol-Samples">GNUCobol-Samples</a>.
+    Directory <strong><code>dovey-examples\</code></strong> contains <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external" title="COBOL">COBOL</a> code examples coming from John Dovey's GitHub repository <a href="https://github.com/JohnDovey/GNUCobol-Samples">GNUCobol-Samples</a>.
   </td>
   </tr>
 </table>

@@ -2,14 +2,15 @@
 
 <table style="font-family:Helvetica,Arial;line-height:1.6;">
   <tr>
-  <td style="border:0;padding:0 4px 0 0;min-width:100px;"><a href="https://" rel="external"><img style="border:0;" src="docs/images/cobol.png" width="100" alt="COBOL project"/></a></td>
-  <td style="border:0;padding:0;vertical-align:text-top;">This document gathers <a href="https://" rel="external">COBOL</a> related resources that caught our attention.
+  <td style="border:0;padding:0 4px 0 0;min-width:100px;"><a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external"><img style="border:0;" src="docs/images/cobol.png" width="100" alt="COBOL language"/></a></td>
+  <td style="border:0;padding:0;vertical-align:text-top;">This document gathers <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external">COBOL</a> related resources that caught our attention.
   </td>
   </tr>
 </table>
 
 ## <span id="articles">Articles</span>
 
+- [Learning COBOL: A Journey for the Modern Programmer](https://monadical.com/posts/cobol.html#) by Juan Diego Caballero, April 2021.
 - [A journey into the past: Programming with GNU COBOL][article_harris] by Mike Harris, 2017.
 - [Don't hate COBOL until you've tried it][article_mankowski] by Walt Mankowski, August 2017.
 
@@ -42,8 +43,10 @@
 
 ## <span id="tools">Tools</span> [**&#x25B4;**](#top)
 
+- [Cobol OneCompiler](https://onecompiler.com/cobol) &ndash; Write, Run & Share Cobol code.
+- [Cobrix](https://github.com/AbsaOSS/cobrix) &ndash; pain free Spark/Cobol files integration.
 - [ISCOBOL](https://www.veryant.com/products/iscobol/) &ndash; a commercial COBOL compiler.
-- [Cobol OneCompiler](https://onecompiler.com/cobol) &ndash; Write, Run & Share Cobol code online.
+online.
 - [Visual Studio Code Extensions](https://marketplace.visualstudio.com/search?target=VSCode) :
   - [Broadcom Code4z](https://marketplace.visualstudio.com/items?itemName=broadcomMFD.code4z-extension-pack) &ndash; syntax highlighting and content assist for COBOL programs.
   - [Cobol Check Extension][tool_cobol_check] &ndash; fine-grained unit testing/checking for COBOL.

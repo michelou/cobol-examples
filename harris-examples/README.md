@@ -2,7 +2,7 @@
 
 <table style="font-family:Helvetica,Arial;line-height:1.6;">
   <tr>
-  <td style="border:0;padding:0 10px 0 0;min-width:100px;"><a href="" rel="external"><img style="border:0;" src="../docs/images/cobol.png" width="100" alt="COBOL project"/></a></td>
+  <td style="border:0;padding:0 10px 0 0;min-width:100px;"><a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external"><img style="border:0;" src="../docs/images/cobol.png" width="100" alt="COBOL language"/></a></td>
   <td style="border:0;padding:0;vertical-align:text-top;">Directory <strong><code>harris-examples\</code></strong> contains <a href="https://github.com/mikebharris/COBOL-katas" alt="COBOL katas">COBOL</a> code examples coming from Mike Harris GitHub repository <a href="https://github.com/mikebharris/COBOL-katas" rel="external">COBOL-katas</a>.
   </td>
   </tr>
