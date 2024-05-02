@@ -18,6 +18,7 @@
 ## <span id="blogs">Blogs</span> [**&#x25B4;**](#top)
 
 - [PERFORM in COBOL and Types of PERFORM in COBOL][blog_topictrick] by Topictrick.com, January 2021.
+- [Integrating Cobol with JavaScript](https://medium.com/graalvm/integrating-cobol-with-javascript-c2d1ffe00678) by Christoph Schobesberger, October 2020.
 - [Installing gnuCOBOL on Windows][blog_theman] by Dan TheMan, May 2020.
 - [Brush up your COBOL: Why is a 60 year old language suddenly in demand?][blog_martin] by Charles Martin, April 2020.
 
@@ -71,7 +72,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/April 2024* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/May 2024* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

@@ -19,17 +19,17 @@
 This project depends on the following external software for the **Microsoft Windows** platform:
 
 - [GnuCOBOL 3.2][gnucobol_binaries] ([*release notes*][gnucobol_relnotes], [*news file*][gnucobol_news])
-- [Git 2.44][git_releases] ([*release notes*][git_relnotes])
+- [Git 2.45][git_releases] ([*release notes*][git_relnotes])
 - [MSYS2 2024][msys2_downloads] <sup id="anchor_03">[3](#footnote_03)</sup> ([*changelog*][msys2_changelog])
 
 Optionally one may also install the following software:
 
-- [Visual Studio Code 1.87][vscode_downloads] ([*release notes*][vscode_relnotes])
+- [Visual Studio Code 1.88][vscode_downloads] ([*release notes*][vscode_relnotes])
 
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [**`/opt/`**][unix_opt] directory on Unix).
 
-For instance our development environment looks as follows (*April 2024*) <sup id="anchor_01">[1](#footnote_01)</sup>:
+For instance our development environment looks as follows (*May 2024*) <sup id="anchor_01">[1](#footnote_01)</sup>:
 
 <pre style="font-size:80%;">
 C:\opt\Git\       <i>(367 MB)</i>
@@ -87,7 +87,7 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
    <b>&gt; <a href="./setenv.bat">setenv</a></b>
    Tool versions:
    cobc 3.3.0, make 4.4.1,
-   git 2.44.0.windows.1, diff 3.10, bash 5.2.26(1)-release
+   git 2.45.0.windows.1, diff 3.10, bash 5.2.26(1)-release
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git make sh</b>
    C:\opt\Git\bin\git.exe
@@ -122,7 +122,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <pre style="font-size:80%;">
 <a href="https://get-superbol.com/software/gnucobol-windows-installer/aio-release/">gnucobol-3.2-aio-20240306-user.msi</a>  <i>(92 MB)</i>
 <a href="https://repo.msys2.org/distrib/x86_64/">msys2-x86_64-20240113.exe</a>          <i> (83 MB)</i>
-<a href="https://git-scm.com/download/win">PortableGit-2.44.0-64-bit.7z.exe</a>    <i>(41 MB)</i>
+<a href="https://git-scm.com/download/win">PortableGit-2.45.0-64-bit.7z.exe</a>    <i>(41 MB)</i>
 </pre>
 <p style="background-color:#eeeeee;">
 <b>&#9755; <i>GnuCOBOL distribution</i></b><br/>
@@ -159,7 +159,7 @@ Some COBOL examples depend on the <a href="https://packages.msys2.org/package/gm
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/April 2024* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/May 2024* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
@@ -173,7 +173,7 @@ Some COBOL examples depend on the <a href="https://packages.msys2.org/package/gm
 [flix_examples]: https://github.com/michelou/flix-examples
 [git_cli]: https://git-scm.com/docs/git
 [git_releases]: https://git-scm.com/download/win
-[git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.44.0.txt
+[git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.45.0.txt
 [github_markdown]: https://github.github.com/gfm/
 [gnucobol_binaries]: https://get-superbol.com/software/gnucobol-windows-installer/aio-release/
 [gnucobol_news]: https://sourceforge.net/p/gnucobol/code/HEAD/tree/tags/gnucobol-3.2/NEWS
