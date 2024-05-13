@@ -6,24 +6,25 @@
     <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external"><img style="border:0;" src="docs/images/cobol.png" alt="COBOL language"/></a>
   </td>
   <td style="border:0;padding:0;vertical-align:text-top;">
-    This repository gathers <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external">COBOL</a> code examples coming from various websites - mostly from the <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external">Mainframestechhelp</a> website - or written by myself.<br/>
+    This repository gathers <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external">COBOL</a> code examples coming from various websites - mostly from the <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external">Mainframestechhelp</a> website - or written by ourself.<br/>
     In particular it includes several build scripts (<a href="https://www.gnu.org/software/bash/manual/bash.html" rel="external">Bash scripts</a>, <a href="https://en.wikibooks.org/wiki/Windows_Batch_Scripting" rel="external">batch files</a>, <a href="https://makefiletutorial.com/" rel="external">Make scripts</a>) for experimenting with the <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external">COBOL</a> language on a Windows machine.
   </td>
   </tr>
 </table>
 
-[Ada][ada_examples], [Akka][akka_examples], [C++][cpp_examples], [Deno][deno_examples], [Docker][docker_examples], [Flix][flix_examples], [Golang][golang_examples], [GraalVM][graalvm_examples], [Haskell][haskell_examples], [Kafka][kafka_examples], [Kotlin][kotlin_examples], [LLVM][llvm_examples], [Modula-2][m2_examples], [Node.js][nodejs_examples], [Rust][rust_examples], [Scala 3][scala3_examples], [Spark][spark_examples], [Spring][spring_examples], [TruffleSqueak][trufflesqueak_examples] and [WiX Toolset][wix_examples] are other topics we are continuously monitoring.
+[Ada][ada_examples], [Akka][akka_examples], [C++][cpp_examples], [Deno][deno_examples], [Docker][docker_examples], [Erlang][erlang_examples], [Flix][flix_examples], [Golang][golang_examples], [GraalVM][graalvm_examples], [Haskell][haskell_examples], [Kafka][kafka_examples], [Kotlin][kotlin_examples], [LLVM][llvm_examples], [Modula-2][m2_examples], [Node.js][nodejs_examples], [Rust][rust_examples], [Scala 3][scala3_examples], [Spark][spark_examples], [Spring][spring_examples], [TruffleSqueak][trufflesqueak_examples] and [WiX Toolset][wix_examples] are other topics we are continuously monitoring.
 
 ## <span id="proj_deps">Project dependencies</span>
 
 This project depends on the following external software for the **Microsoft Windows** platform:
 
-- [GnuCOBOL 3.2][gnucobol_binaries] ([*release notes*][gnucobol_relnotes], [*news file*][gnucobol_news])
 - [Git 2.45][git_releases] ([*release notes*][git_relnotes])
+- [GnuCOBOL 3.2][gnucobol_binaries] ([*release notes*][gnucobol_relnotes], [*news file*][gnucobol_news])
 - [MSYS2 2024][msys2_downloads] <sup id="anchor_03">[3](#footnote_03)</sup> ([*changelog*][msys2_changelog])
 
 Optionally one may also install the following software:
 
+- [ConEmu][conemu_downloads] ([*release notes*][conemu_relnotes])
 - [Visual Studio Code 1.89][vscode_downloads] ([*release notes*][vscode_relnotes])
 
 > **&#9755;** ***Installation policy***<br/>
@@ -32,6 +33,7 @@ Optionally one may also install the following software:
 For instance our development environment looks as follows (*May 2024*) <sup id="anchor_01">[1](#footnote_01)</sup>:
 
 <pre style="font-size:80%;">
+C:\opt\ConEmu\    <i>( 26 MB)</i>
 C:\opt\Git\       <i>(367 MB)</i>
 C:\opt\GnuCOBOL\  <i>(548 MB)</i>
 C:\opt\msys64\    <i>(2.8 GB)</i>
@@ -87,7 +89,7 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
    <b>&gt; <a href="./setenv.bat">setenv</a></b>
    Tool versions:
    cobc 3.3.0, make 4.4.1,
-   git 2.45.0.windows.1, diff 3.10, bash 5.2.26(1)-release
+   git 2.45.0, diff 3.10, bash 5.2.26(1)-release
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git make sh</b>
    C:\opt\Git\bin\git.exe
@@ -120,9 +122,11 @@ Usage: setenv { &lt;option> | &lt;subcommand> }
 In our case we downloaded the following installation files (<a href="#proj_deps">see section 1</a>):
 </p>
 <pre style="font-size:80%;">
-<a href="https://get-superbol.com/software/gnucobol-windows-installer/aio-release/">gnucobol-3.2-aio-20240306-user.msi</a>  <i>(92 MB)</i>
-<a href="https://repo.msys2.org/distrib/x86_64/">msys2-x86_64-20240113.exe</a>          <i> (83 MB)</i>
-<a href="https://git-scm.com/download/win">PortableGit-2.45.0-64-bit.7z.exe</a>    <i>(41 MB)</i>
+<a href="https://github.com/Maximus5/ConEmu/releases/tag/v23.07.24" rel="external">ConEmuPack.230724.7z</a>                <i>(  5 MB)</i>
+<a href="https://get-superbol.com/software/gnucobol-windows-installer/aio-release/">gnucobol-3.2-aio-20240306-user.msi</a>  <i>( 92 MB)</i>
+<a href="https://repo.msys2.org/distrib/x86_64/">msys2-x86_64-20240113.exe</a>          <i> ( 83 MB)</i>
+<a href="https://git-scm.com/download/win">PortableGit-2.45.0-64-bit.7z.exe</a>    <i>( 41 MB)</i>
+<a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.89.1.zip</a>         <i>(131 MB)</i>
 </pre>
 <p style="background-color:#eeeeee;">
 <b>&#9755; <i>GnuCOBOL distribution</i></b><br/>
@@ -164,13 +168,16 @@ Some COBOL examples depend on the <a href="https://packages.msys2.org/package/gm
 
 <!-- link refs -->
 
-[ada_examples]: https://github.com/michelou/ada-examples?tab=readme-ov-file#playing-with-ada-on-windows
-[akka_examples]: https://github.com/michelou/akka-examples?tab=readme-ov-file#project-dependencies
-[cobol]: https://www.microfocus.com/documentation/object-cobol/ocu42/lrintr.htm
-[cpp_examples]: https://github.com/michelou/cpp-examples
-[deno_examples]: https://github.com/michelou/deno-examples
-[docker_examples]: https://github.com/michelou/docker-examples
-[flix_examples]: https://github.com/michelou/flix-examples
+[ada_examples]: https://github.com/michelou/ada-examples#top
+[akka_examples]: https://github.com/michelou/akka-examples#top
+[cobol]: https://
+[cpp_examples]: https://github.com/michelou/cpp-examples#top
+[conemu_downloads]: https://github.com/Maximus5/ConEmu/releases
+[conemu_relnotes]: https://conemu.github.io/blog/2023/07/24/Build-230724.html
+[deno_examples]: https://github.com/michelou/deno-examples#top
+[docker_examples]: https://github.com/michelou/docker-examples#top
+[erlang_examples]: https://github.com/michelou/erlang-examples#top
+[flix_examples]: https://github.com/michelou/flix-examples#top
 [git_cli]: https://git-scm.com/docs/git
 [git_releases]: https://git-scm.com/download/win
 [git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.45.0.txt
@@ -178,13 +185,13 @@ Some COBOL examples depend on the <a href="https://packages.msys2.org/package/gm
 [gnucobol_binaries]: https://get-superbol.com/software/gnucobol-windows-installer/aio-release/
 [gnucobol_news]: https://sourceforge.net/p/gnucobol/code/HEAD/tree/tags/gnucobol-3.2/NEWS
 [gnucobol_relnotes]: https://gnucobol.sourceforge.io/index.html#Releases
-[golang_examples]: https://github.com/michelou/golang-examples
-[graalvm_examples]: https://github.com/michelou/graalvm-examples
-[haskell_examples]: https://github.com/michelou/haskell-examples
+[golang_examples]: https://github.com/michelou/golang-examples#top
+[graalvm_examples]: https://github.com/michelou/graalvm-examples#top
+[haskell_examples]: https://github.com/michelou/haskell-examples#top
 [jmh]: https://openjdk.java.net/projects/code-tools/jmh/
-[kafka_examples]: https://github.com/michelou/kafka-examples
-[kotlin_examples]: https://github.com/michelou/kotlin-examples
-[llvm_examples]: https://github.com/michelou/llvm-examples
+[kafka_examples]: https://github.com/michelou/kafka-examples#top
+[kotlin_examples]: https://github.com/michelou/kotlin-examples#top
+[llvm_examples]: https://github.com/michelou/llvm-examples#top
 [m2_examples]: https://github.com/michelou/m2-examples
 [make_cli]: https://www.gnu.org/software/make/manual/html_node/Running.html
 [man1_awk]: https://www.linux.org/docs/man1/awk.html
@@ -198,14 +205,14 @@ Some COBOL examples depend on the <a href="https://packages.msys2.org/package/gm
 [man1_wc]: https://www.linux.org/docs/man1/wc.html
 [msys2_changelog]: https://github.com/msys2/setup-msys2/blob/main/CHANGELOG.md
 [msys2_downloads]: http://repo.msys2.org/distrib/x86_64/
-[nodejs_examples]: https://github.com/michelou/nodejs-examples
-[rust_examples]: https://github.com/michelou/rust-examples
-[scala3_examples]: https://github.com/michelou/dotty-examples
+[nodejs_examples]: https://github.com/michelou/nodejs-examples#top
+[rust_examples]: https://github.com/michelou/rust-examples#top
+[scala3_examples]: https://github.com/michelou/dotty-examples#top
 [scala3_metaprogramming]: https://dotty.epfl.ch/docs/reference/metaprogramming/toc.html
 [sh_cli]: https://man7.org/linux/man-pages/man1/sh.1p.html
-[spark_examples]: https://github.com/michelou/spark-examples
-[spring_examples]: https://github.com/michelou/spring-examples
-[trufflesqueak_examples]: https://github.com/michelou/trufflesqueak-examples
+[spark_examples]: https://github.com/michelou/spark-examples#top
+[spring_examples]: https://github.com/michelou/spring-examples#top
+[trufflesqueak_examples]: https://github.com/michelou/trufflesqueak-examples#top
 [unix_opt]: https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/opt.html
 [vscode_downloads]: https://code.visualstudio.com/#alt-downloads
 [vscode_relnotes]: https://code.visualstudio.com/updates/
@@ -213,5 +220,5 @@ Some COBOL examples depend on the <a href="https://packages.msys2.org/package/gm
 [windows_installer]: https://docs.microsoft.com/en-us/windows/win32/msi/windows-installer-portal
 [windows_limitation]: https://support.microsoft.com/en-gb/help/830473/command-prompt-cmd-exe-command-line-string-limitation
 [windows_subst]: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/subst
-[wix_examples]: https://github.com/michelou/wix-examples
+[wix_examples]: https://github.com/michelou/wix-examples#top
 [zip_archive]: https://www.howtogeek.com/178146/htg-explains-everything-you-need-to-know-about-zipped-files/
