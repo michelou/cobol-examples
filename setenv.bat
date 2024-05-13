@@ -30,6 +30,12 @@ set _VSCODE_PATH=
 call :gnucobol
 if not %_EXITCODE%==0 goto end
 
+call :mfcobol
+if not %_EXITCODE%==0 (
+    @rem optional
+    set _EXITCODE=0
+)
+
 call :msys
 if not %_EXITCODE%==0 goto end
 
@@ -269,6 +275,36 @@ if not exist "%_COB_HOME%\bin\cobc.exe" (
 )
 goto :eof
 
+:mfcobol
+@rem https://www.microfocus.com/documentation/visual-cobol/vc50all/VS2019/HRENRHENVV01.html
+set _COBDIR=
+
+set __CCBL_CMD=
+for /f "delims=" %%f in ('where ccbl.exe 2^>NUL') do set "__CCBL_CMD=%%f"
+if defined __CCBL_CMD (
+    for /f "delims=" %%i in ("%__CCBL_CMD%") do set "__CCBL_BIN_DIR=%%~dpi"
+    for /f "delims=" %%f in ("!__CCBL_BIN_DIR!.") do set "_COBDIR=%%~dpf"
+    if "!_COBDIR:~-1,1!"=="\" set "_COBDIR=!_COBDIR:~0,-1!"
+    if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of Visual COBOL executable found in PATH 1>&2
+) else if defined COBDIR (
+    set "_COBDIR=%COBDIR%"
+    if %_DEBUG%==1 echo %_DEBUG_LABEL% Using environment variable COBDIR 1>&2
+) else (
+    set "__PATH=%ProgramFiles(x86)%"
+    if exist "!__PATH!\Micro Focus\Visual COBOL" ( set "_COBDIR=!__PATH!\Micro Focus\Visual COBOL"
+    )
+    if defined _COBDIR (
+        if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Visual COBOL installation directory "!_COBDIR!" 1>&2
+    )
+)
+if not exist "%_COBDIR%\bin\ccbl.exe" (
+    echo %_ERROR_LABEL% Visual COBOL compiler executable not found ^("%_COBDIR%"^) 1>&2
+    set _COBDIR=
+    set _EXITCODE=1
+    goto :eof
+)
+goto :eof
+
 @rem output parameters: _MSYS_HOME, _MSYS_PATH
 :msys
 set _MSYS_HOME=
@@ -291,7 +327,7 @@ if defined __MAKE_CMD (
     for /f "delims=" %%f in ('dir /ad /b "!__PATH!\msys*" 2^>NUL') do set "_MSYS_HOME=!__PATH!\%%f"
     if not defined _MSYS_HOME (
         set __PATH=C:\opt
-        for /f %%f in ('dir /ad /b "!__PATH!\msys*" 2^>NUL') do set "_MSYS_HOME=!__PATH!\%%f"
+        for /f "delims=" %%f in ('dir /ad /b "!__PATH!\msys*" 2^>NUL') do set "_MSYS_HOME=!__PATH!\%%f"
     )
 )
 if not exist "%_MSYS_HOME%\usr\bin\make.exe" (
@@ -384,8 +420,8 @@ goto :eof
 
 :print_env
 set __VERBOSE=%1
-set "__VERSIONS_LINE1=  "
-set "__VERSIONS_LINE2=  "
+set __VERSIONS_LINE1=
+set __VERSIONS_LINE2=
 set __WHERE_ARGS=
 where /q "%COB_HOME%\bin:cobc.exe"
 if %ERRORLEVEL%==0 (
@@ -399,7 +435,9 @@ if %ERRORLEVEL%==0 (
 )
 where /q "%GIT_HOME%\bin:git.exe"
 if %ERRORLEVEL%==0 (
-    for /f "usebackq tokens=1,2,*" %%i in (`"%GIT_HOME%\bin\git.exe" --version`) do set "__VERSIONS_LINE2=%__VERSIONS_LINE2% git %%k,"
+    for /f "tokens=1,2,*" %%i in ('"%GIT_HOME%\bin\git.exe" --version') do (
+        for /f "delims=. tokens=1,2,3,*" %%a in ("%%k") do set "__VERSIONS_LINE2=%__VERSIONS_LINE2% git %%a.%%b.%%c,"
+    )
     set __WHERE_ARGS=%__WHERE_ARGS% "%GIT_HOME%\bin:git.exe"
 )
 where /q "%GIT_HOME%\usr\bin:diff.exe"
@@ -413,14 +451,19 @@ if %ERRORLEVEL%==0 (
     set __WHERE_ARGS=%__WHERE_ARGS% "%GIT_HOME%\bin:bash.exe"
 )
 echo Tool versions:
-echo %__VERSIONS_LINE1%
-echo %__VERSIONS_LINE2%
+echo   %__VERSIONS_LINE1%
+echo   %__VERSIONS_LINE2%
 if %__VERBOSE%==1 if defined __WHERE_ARGS (
     @rem if %_DEBUG%==1 echo %_DEBUG_LABEL% where %__WHERE_ARGS%
     echo Tool paths: 1>&2
-    for /f "tokens=*" %%p in ('where %__WHERE_ARGS%') do echo    %%p 1>&2
+    for /f "tokens=*" %%p in ('where %__WHERE_ARGS%') do (
+        set "__LINE=%%p"
+        setlocal enabledelayedexpansion
+        echo    !__LINE:%USERPROFILE%=%%USERPROFILE%%! 1>&2
+    )
     echo Environment variables: 1>&2
     if defined COB_HOME echo    "COB_HOME=%COB_HOME%" 1>&2
+    if defined COBDIR echo    "COBDIR=%COBDIR%" 1>&2
     if defined GIT_HOME echo    "GIT_HOME=%GIT_HOME%" 1>&2
     if defined MSYS_HOME echo    "MSYS_HOME=%MSYS_HOME%" 1>&2
     if defined VSCODE_HOME echo    "VSCODE_HOME=%VSCODE_HOME%" 1>&2
@@ -440,6 +483,7 @@ goto :eof
 endlocal & (
     if %_EXITCODE%==0 (
         if not defined COB_HOME set "COB_HOME=%_COB_HOME%"
+        if not defined COBDIR set "COBDIR=%_COBDIR%"
         if not defined GIT_HOME set "GIT_HOME=%_GIT_HOME%"
         if not defined MSYS_HOME set "MSYS_HOME=%_MSYS_HOME%"
         if not defined VSCODE_HOME set "VSCODE_HOME=%_VSCODE_HOME%"

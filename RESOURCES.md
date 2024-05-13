@@ -1,4 +1,4 @@
-# <span id="top">COBOL Resources</span> <span style="size:25%;"><a href="README.md">↩</a></span>
+# <span id="top">COBOL Resources</span> <span style="font-size:90%;">[↩](./README.md#top)</span>
 
 <table style="font-family:Helvetica,Arial;line-height:1.6;">
   <tr>
@@ -14,6 +14,7 @@
 - [Learning COBOL: A Journey for the Modern Programmer](https://monadical.com/posts/cobol.html#) by Juan Diego Caballero, April 2021.
 - [A journey into the past: Programming with GNU COBOL][article_harris] by Mike Harris, 2017.
 - [Don't hate COBOL until you've tried it][article_mankowski] by Walt Mankowski, August 2017.
+- [Creating Native Java Classes in COBOL](https://www.gennard.net/NativeJava/), April 1997.
 
 ## <span id="blogs">Blogs</span> [**&#x25B4;**](#top)
 
@@ -37,11 +38,13 @@
 
 ## <span id="manuals">Manuals</span> [**&#x25B4;**](#top)
 
+- [Setting up the Micro Focus COBOL environment](https://www.ibm.com/docs/en/txseries/9.1?topic=compilers-setting-up-micro-focus-cobol-environment) by IBM, February 2024.
 - [Technical Standard COBOL Language](https://pubs.opengroup.org/onlinepubs/009680799/) by [THE Open GROUP](https://www.opengroup.org/about-us/who-we-are).
 - [COBOL ANSI-85 Programming Reference Manual - Volume 2][manual_unisys_vol2] by UNISYS, April 2017.
 - [COBOL ANSI-85 Programming Reference Manual - Volume 1][manual_unisys_vol1] by UNISYS, April 2017.
 - [COBOL85 User Guide](https://bs2manuals.ts.fujitsu.com/psCOBOL85V23en) by FUJITSU, July 2014.
 - [IBM COBOL for Linux on x86 documentation][manual_ibm_cobol] by IBM, 2023.
+- [The COBOL Connection](http://www.simotime.com/indexcbl.htm) by SimTime Technologies.
 
 ## <span id="tools">Tools</span> [**&#x25B4;**](#top)
 
