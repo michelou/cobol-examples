@@ -20,22 +20,22 @@ This project depends on the following external software for the **Microsoft Wind
 
 - [Git 2.45][git_releases] ([*release notes*][git_relnotes])
 - [GnuCOBOL 3.2][gnucobol_binaries] ([*release notes*][gnucobol_relnotes], [*news file*][gnucobol_news])
-- [MSYS2 2024][msys2_downloads] <sup id="anchor_03">[3](#footnote_03)</sup> ([*changelog*][msys2_changelog])
+- [MSYS2 2024][msys2_downloads] <sup id="anchor_01">[1](#footnote_01)</sup> ([*changelog*][msys2_changelog])
 
 Optionally one may also install the following software:
 
 - [ConEmu][conemu_downloads] ([*release notes*][conemu_relnotes])
 - [opensource COBOL 4J][cobj_downloads] ([*release notes*][cobj_relnotes])
-- [Temurin OpenJDK 17 LTS][temurin_openjdk17] <sup id="anchor_02">[2](#footnote_02)</sup> ([*release notes*][temurin_openjdk17_relnotes])
+- [Temurin OpenJDK 17 LTS][temurin_openjdk17] ([*release notes*][temurin_openjdk17_relnotes])
 - [Visual Studio Code 1.89][vscode_downloads] ([*release notes*][vscode_relnotes])
 
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [**`/opt/`**][unix_opt] directory on Unix).
 
-For instance our development environment looks as follows (*May 2024*) <sup id="anchor_01">[1](#footnote_01)</sup>:
+For instance our development environment looks as follows (*May 2024*) <sup id="anchor_02">[2](#footnote_02)</sup>:
 
 <pre style="font-size:80%;">
-C:\opt\cobj\                   <i>( 10 MB)</i>
+C:\opt\cobj\<sup id="anchor_03"><a href="#footnote_03">3</a></sup>                  <i>( 10 MB)</i>
 C:\opt\ConEmu\                 <i>( 26 MB)</i>
 C:\opt\Git\                    <i>(367 MB)</i>
 C:\opt\GnuCOBOL\               <i>(548 MB)</i>
@@ -85,14 +85,14 @@ In the next section we give a brief description of the batch files present in th
 
 ## <span id="commands">Batch/Bash commands</span>
 
-### **`setenv.bat`** <sup id="anchor_02">[2](#footnote_02)</sup>
+### **`setenv.bat`** <sup id="anchor_04">[4](#footnote_04)</sup>
 
 We execute command [**`setenv.bat`**](setenv.bat) once to setup our development environment; it makes external tools such as [**`git.exe`**][git_cli], [**`make.exe`**][make_cli] and [**`sh.exe`**][sh_cli] directly available from the command prompt.
 
    <pre style="font-size:80%;">
    <b>&gt; <a href="./setenv.bat">setenv</a></b>
    Tool versions:
-   cobc 3.3.0, cobj 1.0.22, make 4.4.1,
+   cobc 3.3.0, cobj 1.0.22, java 17.0.11, make 4.4.1,
    git 2.45.1, diff 3.10, bash 5.2.26(1)-release
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git make sh</b>
@@ -118,9 +118,17 @@ Usage: setenv { &lt;option> | &lt;subcommand> }
     help        print this help message
 </pre>
 
+<!--=======================================================================-->
+
 ## <span id="footnotes">Footnotes</span> [**&#x25B4;**](#top)
 
-<span id="footnote_01">[1]</span> ***Downloads*** [↩](#anchor_01)
+<span id="footnote_01">[1]</span> ***MSYS2 libraries*** [↩](#anchor_01)
+
+<dl><dd>
+Some COBOL examples depend on the <a href="https://packages.msys2.org/package/gmp" rel="external">gmp</a> library &ndash; A free library for arbitrary precision arithmetic &ndash; which is part of our local MSYS2 installation.
+</dd></dl>
+
+<span id="footnote_02">[2]</span> ***Downloads*** [↩](#anchor_02)
 
 <dl><dd>
 In our case we downloaded the following installation files (<a href="#proj_deps">see section 1</a>):
@@ -140,7 +148,46 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 </p>
 </dd></dl>
 
-<span id="footnote_02">[2]</span> **`setenv.bat` *usage*** [↩](#anchor_02)
+<span id="footnote_03">[3]</span> ***COBOL 4J*** [↩](#anchor_03)
+
+<dl><dd>
+We built the COBOL 4J distribution from the source <code><a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.0.22.zip</a></code> and installed it into directory <code>C:\opt\cobj\</code>. Concretely we followed the 3 steps described in the <a href="https://github.com/opensourcecobol/opensourcecobol4j#install-opensource-cobol-4j">COBOL 4J online documentation</a>:
+<pre style="font-size:80%;">
+<b>&gt; <a href="https://">sh</a> ./configure --prefix=/c/opt/cobj</b>
+<b>&gt; <a href="https://">sh</a> make</b>
+<b>&gt; <a href="https://">sh</a> make install</b>
+</pre> 
+Directory <code>C:\opt\cobj\</code> looks as follows after the installation step :
+<pre style="font-size:80%;">
+<b>&gt; <a href="">tree</a> /a /f c:\opt\cobj | <a href="">findstr</a> /v /b [A-Z]</b>
++---bin
+|       cob-config
+|       cobj-api
+|       cobj-idx
+|       cobj.exe
+|       cobjrun.exe
++---include
+|       libcobj.h
++---lib
+|   \---opensourcecobol4j
+|           libcobj.jar
+\---share
+    \---opensource-cobol-4j-1.0.22
+        +---config
+        |       bs2000.conf
+        |       cobol2002.conf
+        |       cobol85.conf
+        |       default.conf
+        |       ibm.conf
+        |       mf.conf
+        |       mvs.conf
+        |
+        \---copy
+                screenio.cpy
+</pre>
+</dd></dl>
+
+<span id="footnote_04">[4]</span> **`setenv.bat` *usage*** [↩](#anchor_04)
 
 <dl><dd>
 Batch file <a href=./setenv.bat><code><b>setenv.bat</b></code></a> has specific environment variables set that enable us to use command-line developer tools more easily.
@@ -159,12 +206,6 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\vsde
 </dd>
 <dd>
 Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="https://github.com/michelou/cpp-examples"><code>michelou/cpp-examples</code></a>), <a href="./setenv.bat"><code><b>setenv.bat</b></code></a> does invoke <code><b>VsDevCmd.bat</b></code> (resp. <code><b>vcvarall.bat</b></code> for older Visual Studio versions) to setup the Visual Studio tools on the command prompt. 
-</dd></dl>
-
-<span id="footnote_03">[3]</span> ***MSYS2 libraries*** [↩](#anchor_03)
-
-<dl><dd>
-Some COBOL examples depend on the <a href="https://packages.msys2.org/package/gmp" rel="external">gmp</a> library &ndash; A free library for arbitrary precision arithmetic &ndash; which is part of our local MSYS2 installation.
 </dd></dl>
 
 ***
@@ -228,8 +269,7 @@ Some COBOL examples depend on the <a href="https://packages.msys2.org/package/gm
 17.0.11 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-April/032197.html
 -->
 [temurin_openjdk17]: https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot
-[temurin_openjdk17_bugfixes]: https://www.oracle.com/java/technologies/javase/17-0-2-bugfixes.html
-[temurin_openjdk17_relnotes]: https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-October/026352.html
+[temurin_openjdk17_relnotes]: https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-April/032197.html
 [trufflesqueak_examples]: https://github.com/michelou/trufflesqueak-examples#top
 [unix_opt]: https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/opt.html
 [vscode_downloads]: https://code.visualstudio.com/#alt-downloads

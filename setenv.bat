@@ -544,6 +544,11 @@ if %ERRORLEVEL%==0 (
     for /f "tokens=1-4,*" %%i in ('"%COBJ_HOME%\bin\cobj.exe" --version ^| findstr /b cobj') do set "__VERSIONS_LINE1=%__VERSIONS_LINE1% cobj %%m,"
     set __WHERE_ARGS=%__WHERE_ARGS% "%COBJ_HOME%\bin:cobj.exe"
 )
+where /q "%JAVA_HOME%\bin:java.exe"
+if %ERRORLEVEL%==0 (
+    for /f "tokens=1,2,3,*" %%i in ('call "%JAVA_HOME%\bin\java.exe" -version 2^>^&1 ^| findstr version') do set "__VERSIONS_LINE1=%__VERSIONS_LINE1% java %%~k,"
+    set __WHERE_ARGS=%__WHERE_ARGS% "%JAVA_HOME%\bin:java.exe"
+)
 where /q "%MSYS_HOME%\usr\bin:make.exe"
 if %ERRORLEVEL%==0 (
     for /f "tokens=1,2,3,*" %%i in ('"%MSYS_HOME%\usr\bin\make.exe" --version 2^>^&1 ^| findstr Make') do set "__VERSIONS_LINE1=%__VERSIONS_LINE1% make %%k,"
@@ -582,6 +587,7 @@ if %__VERBOSE%==1 if defined __WHERE_ARGS (
     if defined COBDIR echo    "COBDIR=%COBDIR%" 1>&2
     if defined COBJ_HOME echo    "COBJ_HOME=%COBJ_HOME%" 1>&2
     if defined GIT_HOME echo    "GIT_HOME=%GIT_HOME%" 1>&2
+    if defined JAVA_HOME echo    "JAVA_HOME=%JAVA_HOME%" 1>&2
     if defined MSYS_HOME echo    "MSYS_HOME=%MSYS_HOME%" 1>&2
     if defined VSCODE_HOME echo    "VSCODE_HOME=%VSCODE_HOME%" 1>&2
     echo Path associations: 1>&2
@@ -603,6 +609,7 @@ endlocal & (
         if not defined COBDIR set "COBDIR=%_COBDIR%"
         if not defined COBJ_HOME set "COBJ_HOME=%_COBJ_HOME%"
         if not defined GIT_HOME set "GIT_HOME=%_GIT_HOME%"
+        if not defined JAVA_HOME set "JAVA_HOME=%_JAVA_HOME%"
         if not defined MSYS_HOME set "MSYS_HOME=%_MSYS_HOME%"
         if not defined VSCODE_HOME set "VSCODE_HOME=%_VSCODE_HOME%"
         @rem We prepend %_GIT_HOME%\bin to hide C:\Windows\System32\bash.exe
