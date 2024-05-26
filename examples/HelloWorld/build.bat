@@ -55,12 +55,33 @@ set "_TARGET_DIR=%_ROOT_DIR%target"
 for %%i in ("%~dp0\.") do set "_MAIN_NAME=%%~ni"
 set "_EXE_FILE=%_TARGET_DIR%\%_MAIN_NAME%.exe"
 
+@rem https://conemu.github.io/en/NewConsole.html
+if defined ConEmuDir ( set _PS_CMD=powershell -cur_console:i
+) else ( set _PS_CMD=powershell
+)
 if not exist "%COB_HOME%\bin\cobc.exe" (
     echo %_ERROR_LABEL% COBOL installation not found 1>&2
     set _EXITCODE=1
     goto :eof
 )
 set "_COBC_CMD=%COB_HOME%\bin\cobc.exe"
+
+@rem Visual COBOL
+if %PROCESSOR_ARCHITECTURE%==AMD64 ( set "_COB_BIN_DIR=%COBDIR%\bin64"
+) else ( set "_COB_BIN_DIR=%COBDIR%\bin"
+)
+set _CCBL_CMD=
+if exist "%_COB_BIN_DIR%\ccbl.exe" (
+    set "_CCBL_CMD=%_COB_BIN_DIR%\ccbl.exe"
+)
+
+@rem COBOL 4J
+if exist "%COBJ_HOME%\bin\cobj.exe" (
+    set "_COBJ_CMD=%COBJ_HOME%\bin\cobj.exe"
+)
+if exist "%JAVA_HOME%\bin\java.exe" (
+    set "_JAVA_CMD=%JAVA_HOME%\bin\java.exe"
+)
 goto :eof
 
 :env_colors
@@ -121,8 +142,10 @@ set _FORMAT=free
 set _HELP=0
 set _LINT=0
 set _RUN=0
-@rem option -std:<name>, name=default, cobol2014
+@rem option -std:<name>, name=default, cobol2014, cobol2002, cobol85, xopen, ibm-strict,
+@rem                            ibm, mvs-strict, mvs, mf-strict, mf, bs2000-strict, bs2000,
 set _STANDARD=cobol2014
+set _TOOLSET=gnu
 set _VERBOSE=0
 set __N=0
 :args_loop
@@ -133,10 +156,13 @@ if not defined __ARG (
 )
 if "%__ARG:~0,1%"=="-" (
     @rem option
-    if "%__ARG%"=="-debug" ( set _DEBUG=1
+    if "%__ARG%"=="-cobj" ( set _TOOLSET=cobj
+    ) else if "%__ARG%"=="-debug" ( set _DEBUG=1
     ) else if "%__ARG%"=="-fixed" ( set _FORMAT=fixed
     ) else if "%__ARG%"=="-free" ( set _FORMAT=free
+    ) else if "%__ARG%"=="-gnu" ( set _TOOLSET=gnu
     ) else if "%__ARG%"=="-help" ( set _HELP=1
+    ) else if "%__ARG%"=="-mf" ( set _TOOLSET=mf
     ) else if "%__ARG%"=="-verbose" ( set _VERBOSE=1
     ) else (
         echo %_ERROR_LABEL% Unknown option "%__ARG%" 1>&2
@@ -162,15 +188,25 @@ goto args_loop
 set _STDOUT_REDIRECT=1^>NUL
 if %_DEBUG%==1 set _STDOUT_REDIRECT=
 
+if %_TOOLSET%==mf if not defined _CCBL_CMD (
+    echo %_WARNING_LABEL% Visual COBOL command not found 1>&2
+    set _TOOLSET=gnu
+)
+if %_TOOLSET%==cobj if not defined _COBJ_CMD (
+    echo %_WARNING_LABEL% COBOL 4J command not found 1>&2
+    set _TOOLSET=gnu
+)
 if %_FORMAT%==fixed (
     if exist "%_SOURCE_MAIN_DIR%-fixed" ( set "_SOURCE_MAIN_DIR=%_SOURCE_MAIN_DIR%-fixed"
     ) else ( set _FORMAT=fixed2
     )
 )
 if %_DEBUG%==1 (
-    echo %_DEBUG_LABEL% Options    : _FORMAT=%_FORMAT% _STANDARD=%_STANDARD% _TARGET=%_TARGET% _VERBOSE=%_VERBOSE% 1>&2
+    echo %_DEBUG_LABEL% Options    : _FORMAT=%_FORMAT% _STANDARD=%_STANDARD% _TOOLSET=%_TOOLSET% _VERBOSE=%_VERBOSE% 1>&2
     echo %_DEBUG_LABEL% Subcommands: _CLEAN=%_CLEAN% _COMPILE=%_COMPILE% _RUN=%_RUN% 1>&2
     echo %_DEBUG_LABEL% Variables  : "COB_HOME=%COB_HOME%" 1>&2
+    if defined _CCBL_CMD echo %_DEBUG_LABEL% Variables  : "COBDIR=%COBDIR%" 1>&2
+    if defined _COBJ_CMD echo %_DEBUG_LABEL% Variables  : "COBJ_HOME=%COBJ_HOME%" 1>&2
     echo %_DEBUG_LABEL% Variables  : "GIT_HOME=%GIT_HOME%" 1>&2
 )
 goto :eof
@@ -190,9 +226,12 @@ if %_VERBOSE%==1 (
 echo Usage: %__BEG_O%%_BASENAME% { ^<option^> ^| ^<subcommand^> }%__END%
 echo.
 echo   %__BEG_P%Options:%__END%
+echo     %__BEG_O%-cobj%__END%       select COBOL 4J tools
 echo     %__BEG_O%-debug%__END%      print commands executed by this script
 echo     %__BEG_O%-fixed%__END%      enable fixed-format code
 echo     %__BEG_O%-free%__END%       enable free-format code ^(default^)
+echo     %__BEG_O%-gnu%__END%        select GNU COBOL tools
+echo     %__BEG_O%-mf%__END%         select Visual COBOL tools
 echo     %__BEG_O%-verbose%__END%    print progress messages
 echo.
 echo   %__BEG_P%Subcommands:%__END%
@@ -227,6 +266,60 @@ if not exist "%_TARGET_DIR%" mkdir "%_TARGET_DIR%"
 call :action_required "%_EXE_FILE%" "%_SOURCE_MAIN_DIR%\*.cbl"
 if %_ACTION_REQUIRED%==0 goto :eof
 
+call :compile_%_TOOLSET%
+goto :eof
+
+:compile_cobj
+if not exist "%_TARGET_DIR%\classes" mkdir "%_TARGET_DIR%\classes"
+if not exist "%_TARGET_DIR%\src" mkdir "%_TARGET_DIR%\src"
+
+set __SOURCE_FILES=
+set __N=0
+for /f "delims=" %%f in ('dir /s /b "%_SOURCE_MAIN_DIR%\*.cbl" "%_SOURCE_MAIN_DIR%\*.cob" 2^>NUL') do (
+    set __SOURCE_FILES=!__SOURCE_FILES! "%%f"
+    set /a __N+=1
+)
+if %__N%==0 (
+    echo %_WARNING_LABEL% No COBOL source file found 1>&2
+    goto :eof
+) else if %__N%==1 ( set __N_FILES=%__N% COBOL source file
+) else ( set __N_FILES=%__N% COBOL source files
+)
+for /f "delims=" %%f in ("%_ROOT_DIR%.") do set "_CONFIG_FILE=%%~dpfdefault.conf"
+if not exist "%_CONFIG_FILE%" (
+    echo %_ERROR_LABEL% Configuration file "default.conf" not found 1>&2
+    set _EXITCODE=1
+    goto :eof
+)
+set "__PATH=%PATH%"
+set "PATH=%PATH%;%JAVA_HOME%\bin"
+set "__CLASSPATH=%CLASSPATH%"
+if defined CLASSPATH ( set "CLASSPATH=%CLASSPATH%;%COBJ_HOME%\lib\opensourcecobol4j\libcobj.jar"
+) else ( set "CLASSPATH=%COBJ_HOME%\lib\opensourcecobol4j\libcobj.jar"
+)
+if %_DEBUG%==1 (
+    for /f "delims=" %%i in ('where javac') do echo %_DEBUG_LABEL% %%i 1>&2
+    echo %_DEBUG_LABEL% CLASSPATH=%CLASSPATH% 1>&2
+)
+set __COBJ_OPTS="-conf=%_CONFIG_FILE%" -o "%_TARGET_DIR:\=/%/classes" -j "%_TARGET_DIR:\=/%/src"
+if %_FORMAT%==free set __COBJ_OPTS=-free %__COBJ_OPTS%
+
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_COBJ_CMD%" %__COBJ_OPTS% %__SOURCE_FILES:\=/%
+) else if %_VERBOSE%==1 echo Compile %__N_FILES% into directory "!_TARGET_DIR:%_ROOT_DIR%=!" 1>&2
+)
+call "%_COBJ_CMD%" %__COBJ_OPTS% %__SOURCE_FILES:\=/%
+if not %ERRORLEVEL%==0 (
+    set "PATH=%__PATH%"
+    set "CLASSPATH=%__CLASSPATH%"
+    echo %_ERROR_LABEL% Failed to compile %__N_FILES% into directory "!_TARGET_DIR:%_ROOT_DIR%=!" 1>&2
+    set _EXITCODE=1
+    goto :eof
+)
+set "PATH=%__PATH%"
+set "CLASSPATH=%__CLASSPATH%"
+goto :eof
+
+:compile_gnu
 @rem create fixed-format code from COBOL source file
 if %_FORMAT%==fixed2 (
     if not exist "%GIT_HOME%\usr\bin\awk.exe" (
@@ -285,6 +378,39 @@ if not %ERRORLEVEL%==0 (
 endlocal
 goto :eof
 
+@rem Micro Focus Visual COBOL
+:compile_mf
+set __SOURCE_FILES=
+set __N=0
+for /f "delims=" %%f in ('dir /s /b "%_SOURCE_MAIN_DIR%\*.cbl" "%_SOURCE_MAIN_DIR%\*.cob" 2^>NUL') do (
+    set __SOURCE_FILES=!__SOURCE_FILES! "%%f"
+    set /a __N+=1
+)
+if %__N%==0 (
+    echo %_WARNING_LABEL% No COBOL source file found 1>&2
+    goto :eof
+) else if %__N%==1 ( set __N_FILES=%__N% COBOL source file
+) else ( set __N_FILES=%__N% COBOL source files
+)
+@rem https://web.cse.ohio-state.edu/~reeves.92/CSE314/COBOLmanpage.htm
+@rem Option -a causes all warning messages to be displayed
+set __CCBL_OPTS=-Sa -a -o "%_TARGET_DIR%\%_MAIN_NAME%.exe"
+
+set "__PATH=%PATH%"
+set "PATH=%_COB_BIN_DIR%;%PATH%"
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_CCBL_CMD%" %__CCBL_OPTS% %__SOURCE_FILES%
+) else if %_VERBOSE%==1 ( echo Compile %__N_FILES% into directory "!_TARGET_DIR:%_ROOT_DIR%=!" 1>&2
+)
+call "%_CCBL_CMD%" %__CCBL_OPTS% %__SOURCE_FILES%
+if not %ERRORLEVEL%==0 (
+    set "PATH=%__PATH%"
+    echo %_ERROR_LABEL% Failed to compile %__N_FILES% into directory "!_TARGET_DIR:%_ROOT_DIR%=!" 1>&2
+    set _EXITCODE=1
+    goto :eof
+)
+set "PATH=%__PATH%"
+goto :eof
+
 @rem input parameter: 1=target file 2=path (wildcards accepted)
 @rem output parameter: _ACTION_REQUIRED
 :action_required
@@ -292,11 +418,11 @@ set __TARGET_FILE=%~1
 set __PATH=%~2
 
 set __TARGET_TIMESTAMP=00000000000000
-for /f "usebackq" %%i in (`powershell -c "gci -path '%__TARGET_FILE%' -ea Stop | select -last 1 -expandProperty LastWriteTime | Get-Date -uformat %%Y%%m%%d%%H%%M%%S" 2^>NUL`) do (
+for /f "usebackq" %%i in (`%_PS_CMD% -c "gci -path '%__TARGET_FILE%' -ea Stop | select -last 1 -expandProperty LastWriteTime | Get-Date -uformat %%Y%%m%%d%%H%%M%%S" 2^>NUL`) do (
      set __TARGET_TIMESTAMP=%%i
 )
 set __SOURCE_TIMESTAMP=00000000000000
-for /f "usebackq" %%i in (`powershell -c "gci -recurse -path '%__PATH%' -ea Stop | sort LastWriteTime | select -last 1 -expandProperty LastWriteTime | Get-Date -uformat %%Y%%m%%d%%H%%M%%S" 2^>NUL`) do (
+for /f "usebackq" %%i in (`%_PS_CMD% -c "gci -recurse -path '%__PATH%' -ea Stop | sort LastWriteTime | select -last 1 -expandProperty LastWriteTime | Get-Date -uformat %%Y%%m%%d%%H%%M%%S" 2^>NUL`) do (
     set __SOURCE_TIMESTAMP=%%i
 )
 call :newer %__SOURCE_TIMESTAMP% %__TARGET_TIMESTAMP%
@@ -329,6 +455,27 @@ if %__DATE1% gtr %__DATE2% ( set _NEWER=1
 goto :eof
 
 :run
+if %_TOOLSET%==cobj ( call :run_java
+) else ( call :run_native
+)
+goto :eof
+
+:run_java
+set __JAVA_OPTS=-cp "%COBJ_HOME%\lib\opensourcecobol4j\libcobj.jar;%_TARGET_DIR%\classes"
+set __MAIN_CLASS=HelloWorld
+
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_JAVA_CMD%" %__JAVA_OPTS% "%__MAIN_CLASS%" 1>&2
+) else if %_VERBOSE%==1 ( echo Execute Java program "%__MAIN_CLASS%" 1>&2
+)
+call "%_JAVA_CMD%" %__JAVA_OPTS% "%__MAIN_CLASS%"
+if not %ERRORLEVEL%==0 (
+    echo %_ERROR_LABEL% Failed to execute Java program "%__MAIN_CLASS%" 1>&2
+    set _EXITCODE=1
+    goto :eof
+)
+goto :eof
+
+:run_native
 if not exist "%_EXE_FILE%" (
     echo %_DEBUG_LABEL% Main program "!_EXE_FILE:%_ROOT_DIR%=!" not found 1>&2
     set _EXITCODE=1

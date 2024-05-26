@@ -26,7 +26,7 @@ Example `Circles` has the following directory structure :
 We run command [`build.bat run`](./Circles/build.bat) <sup id="anchor_01">[1](#footnote_01)</sup> to generate and execute the program `target\Circles.exe` (use option `-debug` <sup id="anchor_02">[2](#footnote_02)</sup> to print details of the build process) :
 
 <pre style="font-size:80%;">
-$ build -verbose clean run
+<b> <a href="./Circles/build.bat">build</a> -verbose clean run</b>
 Delete directory "target"
 Compile 1 COBOL source file into directory "target"
 Execute program "target\Circles.exe"
@@ -44,13 +44,13 @@ Example `HelloWorld` has the following directory structure :
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" rel="external">tree</a> /a /f . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /b /v [A-Z]</b>
-|   <a href="./helloworld/build.bat">build.bat</a>
+|   <a href="./HelloWorld/build.bat">build.bat</a>
 \---src
     \---main
         +---cobol
-        |       <a href="./helloworld/src/main/cobol/HelloWorld.cbl">HelloWorld.cbl</a>
+        |       <a href="./HelloWorld/src/main/cobol/HelloWorld.cbl">HelloWorld.cbl</a>
         \--cobol-fixed
-                <a href="./helloworld/src/main/cobol/HelloWorld.cbl">HelloWorld.cbl</a>
+                <a href="./HelloWorld/src/main/cobol/HelloWorld.cbl">HelloWorld.cbl</a>
 </pre>
 
 <!--
@@ -64,7 +64,7 @@ We run command [`build.bat run`](./HelloWorld/build.bat) <sup id="anchor_01">[1]
 Delete directory "target"
 Compile 1 COBOL source file into directory "target"
 Execute program "target\HelloWorld.exe"
-HELLO WORLD
+Hello World!
 </pre>
 
 > **Note**: With option `-fixed` we select the COBOL source files from directory `src\main\cobol-fixed\` :

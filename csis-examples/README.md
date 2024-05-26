@@ -1,4 +1,4 @@
-# <span id="top">COBOL examples from UL CSIS</span> <span style="size:30%;"><a href="../README.md">⬆</a></span>
+# <span id="top">COBOL examples from UL CSIS</span> <span style="font-size:90%;">[⬆](../README.md#top)</span>
 
 <table style="font-family:Helvetica;line-height:1.6;">
   <tr>
@@ -76,7 +76,7 @@ Example `RefMod` has the following directory structure :
 Command [`build -verbose clean run`](./RefMod/build.bat) generates and executes the [COBOL] program `target\RefMod.exe` :
 
 <pre style="font-size:80%;">
-<b>&gt; <a href="./RefMod/build.bat">build</a> -verbose clean </b>
+<b>&gt; <a href="./RefMod/build.bat">build</a> -verbose clean clean</b>
 Delete directory "target"
 Compile 1 COBOL source file into directory "target"
 Execute program "target\RefMod.exe"
@@ -92,6 +92,32 @@ Task7 First occurrence is in char position 14
 The character is e
 </pre>
 
+
+## <span id="seq_write">`SeqWrite` Example</span> [**&#x25B4;**](#top)
+
+Example `SeqWrite` has the following directory structure :
+
+<pre style="font-size:80%;">
+<b>&gt; <a href="">tree</a> /a /f .| <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /v /b [A-Z]</b>
+|   <a href="./SeqWrite/build.bat">build.bat</a>
+|   <a href="./SeqWrite/build.sh">build.sh</a>
+\---src
+    \---main
+        \---cobol
+                <a href="./SeqWrite/src/main/cobol/SEQWRITE.CBL">SEQWRITE.CBL</a>
+</pre>
+
+Command [`build -verbose clean run`](./SeqWrite/build.bat) generates and executes the [COBOL] program `target\SeqWrite.exe` :
+
+<pre style="font-size:80%;">
+<b>&gt; <a href="./SeqWrite/build.bat">build</a> -verbose clean run</b>
+Compile 1 COBOL source file into directory "target"
+Execute program "target\SeqWrite.exe"
+Enter student details using template below.  Enter no data to end.
+Enter - StudId, Surname, Initials, YOB, MOB, DOB, Course, Gender
+NNNNNNNSSSSSSSSIIYYYYMMDDCCCCG
+</pre>
+
 ***
 
 *[mics](https://lampwww.epfl.ch/~michelou/)/May 2024* [**&#9650;**](#top)
@@ -99,4 +125,4 @@ The character is e
 
 <!-- link refs -->
 
-[cobol]: https://
+[cobol]: https://en.wikipedia.org/wiki/COBOL

@@ -27,7 +27,14 @@ set _GIT_PATH=
 set _MSYS_PATH=
 set _VSCODE_PATH=
 
+call :cobj
+if not %_EXITCODE%==0 goto end
+
 call :gnucobol
+if not %_EXITCODE%==0 goto end
+
+@rem last call to :java defines variable JAVA_HOME
+call :java 17 "temurin"
 if not %_EXITCODE%==0 goto end
 
 call :mfcobol
@@ -239,6 +246,42 @@ echo   %__BEG_P%Subcommands:%__END%
 echo     %__BEG_O%help%__END%        print this help message
 goto :eof
 
+@rem output parameter: _COBJ_HOME
+:cobj
+set _COBJ_HOME=
+
+set __COBJ_CMD=
+for /f "delims=" %%f in ('where cobj.exe 2^>NUL') do set "__COBJ_CMD=%%f"
+if defined __COBJ_CMD (
+    for /f "delims=" %%i in ("%__COBJ_CMD%") do set "__COBJ_BIN_DIR=%%~dpi"
+    for /f "delims=" %%f in ("!__COBJ_BIN_DIR!.") do set "_COBJ_HOME=%%~dpf"
+    if "!_COBJ_HOME:~-1,1!"=="\" set "_COBJ_HOME=!_COBJ_HOME:~0,-1!"
+    if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of COBOL 4J executable found in PATH 1>&2
+) else if defined COBJ_HOME (
+    set "_COBJ_HOME=%COBJ_HOME%"
+    if %_DEBUG%==1 echo %_DEBUG_LABEL% Using environment variable COBJ_HOME 1>&2
+) else (
+    set __PATH=C:\opt
+    if exist "!__PATH!\cobj\" ( set "_COBJ_HOME=!__PATH!\cobj"
+    ) else (
+        for /f "delims=" %%f in ('dir /ad /b "!__PATH!\cobj-*"') do set "_COBJ_HOME=!__PATH!\%%f"
+        if not defined _COBJ_HOME (
+            set "__PATH=%ProgramFiles%"
+            for /f "delims=" %%f in ('dir /ad /b "!__PATH!\cobj-*" 2^>NUL') do set "_COBJ_HOME=!__PATH!\%%f"
+        )
+    )
+    if defined _COBJ_HOME (
+        if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default COBOL 4J installation directory "!_COBJ_HOME!" 1>&2
+    )
+)
+if not exist "%_COBJ_HOME%\bin\cobj.exe" (
+    echo %_ERROR_LABEL% COBOL 4J compiler executable not found ^("%_COBJ_HOME%"^) 1>&2
+    set _COB_HOME=
+    set _EXITCODE=1
+    goto :eof
+)
+goto :eof
+
 @rem output parameter: _COB_HOME
 :gnucobol
 set _COB_HOME=
@@ -272,6 +315,74 @@ if not exist "%_COB_HOME%\bin\cobc.exe" (
     set _COB_HOME=
     set _EXITCODE=1
     goto :eof
+)
+goto :eof
+
+@rem input parameters:%1=required version %2=vendor 
+@rem output parameter: _JAVA_HOME (resp. JAVA11_HOME)
+:java
+set _JAVA_HOME=
+
+set __VERSION=%~1
+set __VENDOR=%~2
+if not defined __VENDOR ( set __JDK_NAME=jdk-%__VERSION%
+) else ( set __JDK_NAME=jdk-%__VENDOR%-%__VERSION%
+)
+set __JAVAC_CMD=
+for /f "delims=" %%f in ('where javac.exe 2^>NUL') do (
+    set "__JAVAC_CMD=%%f"
+    @rem we ignore Scoop managed Java installation
+    if not "!__JAVAC_CMD:scoop=!"=="!__JAVAC_CMD!" set __JAVAC_CMD=
+)
+if defined __JAVAC_CMD (
+    call :jdk_version "%__JAVAC_CMD%"
+    if !_JDK_VERSION!==%__VERSION% (
+        for /f "delims=" %%i in ("%__JAVAC_CMD%") do set "__BIN_DIR=%%~dpi"
+        for /f "delims=" %%f in ("%__BIN_DIR%") do set "_JAVA_HOME=%%~dpf"
+    ) else (
+        echo %_ERROR_LABEL% Required JDK installation not found ^("%__JDK_NAME%"^) 1>&2
+        set _EXITCODE=1
+        goto :eof
+    )
+)
+if defined JAVA_HOME (
+    set "_JAVA_HOME=%JAVA_HOME%"
+    if %_DEBUG%==1 echo %_DEBUG_LABEL% Using environment variable JAVA_HOME 1>&2
+) else (
+    set __PATH=C:\opt
+    for /f "delims=" %%f in ('dir /ad /b "!__PATH!\%__JDK_NAME%*" 2^>NUL') do set "_JAVA_HOME=!__PATH!\%%f"
+    if not defined _JAVA_HOME (
+        set "__PATH=%ProgramFiles%\Java"
+        for /f "delims=" %%f in ('dir /ad /b "!__PATH!\%__JDK_NAME%*" 2^>NUL') do set "_JAVA_HOME=!__PATH!\%%f"
+    )
+    if defined _JAVA_HOME (
+        if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Java SDK installation directory "!_JAVA_HOME!" 1>&2
+    )
+)
+if not exist "%_JAVA_HOME%\bin\javac.exe" (
+    echo %_ERROR_LABEL% Executable javac.exe not found ^("%_JAVA_HOME%"^) 1>&2
+    set _EXITCODE=1
+    goto :eof
+)
+call :jdk_version "%_JAVA_HOME%\bin\javac.exe"
+set "_JAVA!_JDK_VERSION!_HOME=%_JAVA_HOME%"
+goto :eof
+
+@rem input parameter: %1=javac file path
+@rem output parameter: _JDK_VERSION
+:jdk_version
+set "__JAVAC_CMD=%~1"
+if not exist "%__JAVAC_CMD%" (
+    echo %_ERROR_LABEL% Command javac.exe not found ^("%__JAVAC_CMD%"^) 1>&2
+    set _EXITCODE=1
+    goto :eof
+)
+set __JAVAC_VERSION=
+for /f "usebackq tokens=1,*" %%i in (`"%__JAVAC_CMD%" -version 2^>^&1`) do set __JAVAC_VERSION=%%j
+set "__PREFIX=%__JAVAC_VERSION:~0,2%"
+@rem either 1.7, 1.8 or 11..18
+if "%__PREFIX%"=="1." ( set _JDK_VERSION=%__JAVAC_VERSION:~2,1%
+) else ( set _JDK_VERSION=%__PREFIX%
 )
 goto :eof
 
@@ -428,6 +539,11 @@ if %ERRORLEVEL%==0 (
     for /f "tokens=1,2,3,*" %%i in ('"%COB_HOME%\bin\cobc.exe" --version ^|findstr /b cobc 2^>^&1') do set "__VERSIONS_LINE1=%__VERSIONS_LINE1% cobc %%k,"
     set __WHERE_ARGS=%__WHERE_ARGS% "%COB_HOME%\bin:cobc.exe"
 )
+where /q "%COBJ_HOME%\bin:cobj.exe"
+if %ERRORLEVEL%==0 (
+    for /f "tokens=1-4,*" %%i in ('"%COBJ_HOME%\bin\cobj.exe" --version ^| findstr /b cobj') do set "__VERSIONS_LINE1=%__VERSIONS_LINE1% cobj %%m,"
+    set __WHERE_ARGS=%__WHERE_ARGS% "%COBJ_HOME%\bin:cobj.exe"
+)
 where /q "%MSYS_HOME%\usr\bin:make.exe"
 if %ERRORLEVEL%==0 (
     for /f "tokens=1,2,3,*" %%i in ('"%MSYS_HOME%\usr\bin\make.exe" --version 2^>^&1 ^| findstr Make') do set "__VERSIONS_LINE1=%__VERSIONS_LINE1% make %%k,"
@@ -464,6 +580,7 @@ if %__VERBOSE%==1 if defined __WHERE_ARGS (
     echo Environment variables: 1>&2
     if defined COB_HOME echo    "COB_HOME=%COB_HOME%" 1>&2
     if defined COBDIR echo    "COBDIR=%COBDIR%" 1>&2
+    if defined COBJ_HOME echo    "COBJ_HOME=%COBJ_HOME%" 1>&2
     if defined GIT_HOME echo    "GIT_HOME=%GIT_HOME%" 1>&2
     if defined MSYS_HOME echo    "MSYS_HOME=%MSYS_HOME%" 1>&2
     if defined VSCODE_HOME echo    "VSCODE_HOME=%VSCODE_HOME%" 1>&2
@@ -484,6 +601,7 @@ endlocal & (
     if %_EXITCODE%==0 (
         if not defined COB_HOME set "COB_HOME=%_COB_HOME%"
         if not defined COBDIR set "COBDIR=%_COBDIR%"
+        if not defined COBJ_HOME set "COBJ_HOME=%_COBJ_HOME%"
         if not defined GIT_HOME set "GIT_HOME=%_GIT_HOME%"
         if not defined MSYS_HOME set "MSYS_HOME=%_MSYS_HOME%"
         if not defined VSCODE_HOME set "VSCODE_HOME=%_VSCODE_HOME%"

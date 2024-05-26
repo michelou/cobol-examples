@@ -25,6 +25,8 @@ This project depends on the following external software for the **Microsoft Wind
 Optionally one may also install the following software:
 
 - [ConEmu][conemu_downloads] ([*release notes*][conemu_relnotes])
+- [opensource COBOL 4J][cobj_downloads] ([*release notes*][cobj_relnotes])
+- [Temurin OpenJDK 17 LTS][temurin_openjdk17] <sup id="anchor_02">[2](#footnote_02)</sup> ([*release notes*][temurin_openjdk17_relnotes])
 - [Visual Studio Code 1.89][vscode_downloads] ([*release notes*][vscode_relnotes])
 
 > **&#9755;** ***Installation policy***<br/>
@@ -33,11 +35,13 @@ Optionally one may also install the following software:
 For instance our development environment looks as follows (*May 2024*) <sup id="anchor_01">[1](#footnote_01)</sup>:
 
 <pre style="font-size:80%;">
-C:\opt\ConEmu\    <i>( 26 MB)</i>
-C:\opt\Git\       <i>(367 MB)</i>
-C:\opt\GnuCOBOL\  <i>(548 MB)</i>
-C:\opt\msys64\    <i>(2.8 GB)</i>
-C:\opt\VSCode\    <i>(341 MB)</i>
+C:\opt\cobj\                   <i>( 10 MB)</i>
+C:\opt\ConEmu\                 <i>( 26 MB)</i>
+C:\opt\Git\                    <i>(367 MB)</i>
+C:\opt\GnuCOBOL\               <i>(548 MB)</i>
+C:\opt\jdk-temurin-17.0.11_9\  <i>(301 MB)</i>
+C:\opt\msys64\                 <i>(2.8 GB)</i>
+C:\opt\VSCode\                 <i>(341 MB)</i>
 </pre>
 
 > **:mag_right:** [Git for Windows][git_releases] provides a Bash emulation used to run [**`git.exe`**][git_cli] from the command line (as well as over 250 Unix commands like [**`awk`**][man1_awk], [**`diff`**][man1_diff], [**`file`**][man1_file], [**`grep`**][man1_grep], [**`more`**][man1_more], [**`mv`**][man1_mv], [**`rmdir`**][man1_rmdir], [**`sed`**][man1_sed] and [**`wc`**][man1_wc]).
@@ -88,8 +92,8 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
    <pre style="font-size:80%;">
    <b>&gt; <a href="./setenv.bat">setenv</a></b>
    Tool versions:
-   cobc 3.3.0, make 4.4.1,
-   git 2.45.0, diff 3.10, bash 5.2.26(1)-release
+   cobc 3.3.0, cobj 1.0.22, make 4.4.1,
+   git 2.45.1, diff 3.10, bash 5.2.26(1)-release
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git make sh</b>
    C:\opt\Git\bin\git.exe
@@ -122,11 +126,13 @@ Usage: setenv { &lt;option> | &lt;subcommand> }
 In our case we downloaded the following installation files (<a href="#proj_deps">see section 1</a>):
 </p>
 <pre style="font-size:80%;">
-<a href="https://github.com/Maximus5/ConEmu/releases/tag/v23.07.24" rel="external">ConEmuPack.230724.7z</a>                <i>(  5 MB)</i>
-<a href="https://get-superbol.com/software/gnucobol-windows-installer/aio-release/">gnucobol-3.2-aio-20240306-user.msi</a>  <i>( 92 MB)</i>
-<a href="https://repo.msys2.org/distrib/x86_64/">msys2-x86_64-20240113.exe</a>          <i> ( 83 MB)</i>
-<a href="https://git-scm.com/download/win">PortableGit-2.45.0-64-bit.7z.exe</a>    <i>( 41 MB)</i>
-<a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.89.1.zip</a>         <i>(131 MB)</i>
+<a href="https://github.com/Maximus5/ConEmu/releases/tag/v23.07.24" rel="external">ConEmuPack.230724.7z</a>                               <i>(  5 MB)</i>
+<a href="https://get-superbol.com/software/gnucobol-windows-installer/aio-release/">gnucobol-3.2-aio-20240306-user.msi</a>                 <i>( 92 MB)</i>
+<a href="https://repo.msys2.org/distrib/x86_64/">msys2-x86_64-20240113.exe</a>                         <i> ( 83 MB)</i>
+<a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.11_9.zip</a>   <i>(188 MB)</i>
+<a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.0.22.zip</a>                       <i>(  8 MB)</i>
+<a href="https://git-scm.com/download/win">PortableGit-2.45.1-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
+<a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.89.1.zip</a>                        <i>(131 MB)</i>
 </pre>
 <p style="background-color:#eeeeee;">
 <b>&#9755; <i>GnuCOBOL distribution</i></b><br/>
@@ -170,17 +176,19 @@ Some COBOL examples depend on the <a href="https://packages.msys2.org/package/gm
 
 [ada_examples]: https://github.com/michelou/ada-examples#top
 [akka_examples]: https://github.com/michelou/akka-examples#top
-[cobol]: https://
-[cpp_examples]: https://github.com/michelou/cpp-examples#top
+[cobj_downloads]: https://github.com/opensourcecobol/opensourcecobol4j
+[cobj_relnotes]: https://github.com/opensourcecobol/opensourcecobol4j/releases/tag/v1.0.22
+[cobol]: https://en.wikipedia.org/wiki/COBOL
 [conemu_downloads]: https://github.com/Maximus5/ConEmu/releases
 [conemu_relnotes]: https://conemu.github.io/blog/2023/07/24/Build-230724.html
+[cpp_examples]: https://github.com/michelou/cpp-examples#top
 [deno_examples]: https://github.com/michelou/deno-examples#top
 [docker_examples]: https://github.com/michelou/docker-examples#top
 [erlang_examples]: https://github.com/michelou/erlang-examples#top
 [flix_examples]: https://github.com/michelou/flix-examples#top
 [git_cli]: https://git-scm.com/docs/git
 [git_releases]: https://git-scm.com/download/win
-[git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.45.0.txt
+[git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.45.1.txt
 [github_markdown]: https://github.github.com/gfm/
 [gnucobol_binaries]: https://get-superbol.com/software/gnucobol-windows-installer/aio-release/
 [gnucobol_news]: https://sourceforge.net/p/gnucobol/code/HEAD/tree/tags/gnucobol-3.2/NEWS
@@ -212,6 +220,16 @@ Some COBOL examples depend on the <a href="https://packages.msys2.org/package/gm
 [sh_cli]: https://man7.org/linux/man-pages/man1/sh.1p.html
 [spark_examples]: https://github.com/michelou/spark-examples#top
 [spring_examples]: https://github.com/michelou/spring-examples#top
+<!--
+17.0.7  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-April/021899.html
+17.0.8  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-July/024063.html
+17.0.9  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-October/026352.html
+17.0.10 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-January/029089.html
+17.0.11 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-April/032197.html
+-->
+[temurin_openjdk17]: https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot
+[temurin_openjdk17_bugfixes]: https://www.oracle.com/java/technologies/javase/17-0-2-bugfixes.html
+[temurin_openjdk17_relnotes]: https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-October/026352.html
 [trufflesqueak_examples]: https://github.com/michelou/trufflesqueak-examples#top
 [unix_opt]: https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/opt.html
 [vscode_downloads]: https://code.visualstudio.com/#alt-downloads
