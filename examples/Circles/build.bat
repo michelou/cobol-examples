@@ -168,7 +168,7 @@ if "%__ARG:~0,1%"=="-" (
         echo %_ERROR_LABEL% Unknown option "%__ARG%" 1>&2
         set _EXITCODE=1
         goto args_done
-   )
+    )
 ) else (
     @rem subcommand
     if "%__ARG%"=="clean" ( set _CLEAN=1

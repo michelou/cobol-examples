@@ -1,6 +1,9 @@
 ifndef COB_HOME
 $(error Variable COB_HOME is not set)
 endif
+ifndef COBJ_HOME
+$(error Variable COBJ_HOME is not set)
+endif
 ifndef MSYS_HOME
 $(error Variable MSYS_HOME is not set)
 endif
@@ -21,6 +24,7 @@ TOUCH      = /usr/bin/touch.exe
 TARGET_EXT = .exe
 CC         = $(subst \,/,$(COB_HOME))/mingw64/bin/gcc.exe
 COBC       = $(subst \,/,$(COB_HOME))/bin/cobc.exe
+COBJ       = $(subst \,/,$(COBJ_HOME))/bin/cobj.exe
 else ifeq ($(OS),cygwin)
 CP         = cp
 CYGPATH    = cygpath
@@ -32,6 +36,7 @@ TOUCH      = touch
 TARGET_EXT = .exe
 CC         = $(subst \,/,$(COB_HOME))/mingw64/bin/gcc.exe
 COBC       = $(subst \,/,$(COB_HOME))/bin/cobc.exe
+COBJ       = $(subst \,/,$(COBJ_HOME))/bin/cobj.exe
 else
 PSEP       = :
 CP         = cp
@@ -44,5 +49,6 @@ TOUCH      = touch
 TARGET_EXT =
 CC         = gcc
 COBC       = cobc
+COBJ       = cobj
 endif
 

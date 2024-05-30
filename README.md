@@ -32,7 +32,7 @@ Optionally one may also install the following software:
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [**`/opt/`**][unix_opt] directory on Unix).
 
-For instance our development environment looks as follows (*May 2024*) <sup id="anchor_02">[2](#footnote_02)</sup>:
+For instance our development environment looks as follows (*June 2024*) <sup id="anchor_02">[2](#footnote_02)</sup>:
 
 <pre style="font-size:80%;">
 C:\opt\cobj\<sup id="anchor_03"><a href="#footnote_03">3</a></sup>                  <i>( 10 MB)</i>
@@ -151,13 +151,13 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <span id="footnote_03">[3]</span> ***COBOL 4J*** [↩](#anchor_03)
 
 <dl><dd>
-We built the COBOL 4J distribution from the source <code><a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.0.22.zip</a></code> and installed it into directory <code>C:\opt\cobj\</code>. Concretely we followed the 3 steps described in the <a href="https://github.com/opensourcecobol/opensourcecobol4j#install-opensource-cobol-4j">COBOL 4J online documentation</a>:
+We built the COBOL 4J distribution from the source archive <code><a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.0.22.zip</a></code> and installed it into directory <code>C:\opt\cobj\</code>. The 3 build steps are described in the <a href="https://github.com/opensourcecobol/opensourcecobol4j#install-opensource-cobol-4j">COBOL 4J online documentation</a>:
 <pre style="font-size:80%;">
 <b>&gt; <a href="https://">sh</a> ./configure --prefix=/c/opt/cobj</b>
 <b>&gt; <a href="https://">sh</a> make</b>
 <b>&gt; <a href="https://">sh</a> make install</b>
 </pre> 
-Directory <code>C:\opt\cobj\</code> looks as follows after the installation step :
+In our case the installation directory <code>C:\opt\cobj\</code> looks as follows :
 <pre style="font-size:80%;">
 <b>&gt; <a href="">tree</a> /a /f c:\opt\cobj | <a href="">findstr</a> /v /b [A-Z]</b>
 +---bin
@@ -210,7 +210,7 @@ Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/May 2024* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/June 2024* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

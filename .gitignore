@@ -6,6 +6,7 @@
 .vscode/
 target/
 
+opensourcecobol4j*/
 *_LOCAL/
 *_LOCAL.md
 *_LOCAL.txt

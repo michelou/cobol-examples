@@ -3,10 +3,17 @@
 <table style="font-family:Helvetica,Arial;line-height:1.6;">
   <tr>
   <td style="border:0;padding:0 10px 0 0;min-width:100px;"><a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external"><img style="border:0;" src="../docs/images/cobol.png" width="100" alt="COBOL project"/></a></td>
-  <td style="border:0;padding:0;vertical-align:text-top;">Directory <strong><code>examples\</code></strong> contains <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" alt="COBOL">COBOL</a> code examples coming from various websites - mostly from the <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external">COBOL project</a>.
-  </td>
+  <td style="border:0;padding:0;vertical-align:text-top;">Directory <strong><code>examples\</code></strong> contains <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" alt="COBOL">COBOL</a> code examples coming from various websites - mostly from the <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external">COBOL project</a>.</td>
   </tr>
 </table>
+
+Our build scripts provide the following options to specify the COBOL compiler :
+
+| Option  | Compiler    | Version |
+|:--------|:------------|:--------|
+| `-cobj` | [COBOL 4J](../COBOL_4J.md) | 1.0.22 |
+| `-gnu` *(default)*  | GNU COBOL   | 3.3-dev.0 |
+| `-mf`   | [Micro Focus COBOL](../MF_COBOL.md) | 9.0.0.49 |
 
 ## <span id="circles">`Circles` Example</span>
 
@@ -20,7 +27,7 @@ Example `Circles` has the following directory structure :
 \---src
     \---main
         \---cobol
-                <a href="./Circles/src/main/cobol/CIRCLES.cbl">CIRCLES.cbl</a>
+                <a href="./Circles/src/main/cobol/CIRCLES.cbl">Circles.cbl</a>
 </pre>
 
 We run command [`build.bat run`](./Circles/build.bat) <sup id="anchor_01">[1](#footnote_01)</sup> to generate and execute the program `target\Circles.exe` (use option `-debug` <sup id="anchor_02">[2](#footnote_02)</sup> to print details of the build process) :
@@ -157,7 +164,7 @@ return status:  0
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/May 2024* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/June 2024* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
