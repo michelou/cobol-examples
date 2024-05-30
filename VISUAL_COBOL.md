@@ -3,14 +3,19 @@
 <table style="font-family:Helvetica,Arial;line-height:1.6;">
   <tr>
   <td style="border:0;padding:0 4px 0 0;min-width:100px;"><a href=" rel="external"><img style="border:0;" src="docs/images/Micro-Focus.png" width="100" alt="Visual COBOL"/></a></td>
-  <td style="border:0;padding:0;vertical-align:text-top;">.
-  </td>
+  <td style="border:0;padding:0;vertical-align:text-top;">This page presents usage information about <a href="https://www.microfocus.com/en-us/products/visual-cobol/overview">Visual COBOL</a> from Micro Focus on a Windows machine.</td>
   </tr>
 </table>
 
+
+## <span id="install">Installation</span>
+
+<img src="./docs/images/Visual_COBOL_Setup.png" width="80%"/>
+
 ## <span id="env">Environment Setup</span>
 
-Setting up the Micro Focus envrionment :
+
+Setting up the [Visual COBOL][visual_cobol] environment :
 
 <pre style="font-size:80%;">
 <b>&gt; echo %COBDIR%</b>
@@ -98,7 +103,7 @@ Id  Version       Location
 1] 14.29.30133 c:\Program Files (x86)\Microsoft Visual Studio\2019\Community
 </pre>
 
-Displays the versions currently in use by the COBOL environment.
+Displays the versions currently in use by the [Visual COBOL][visual_cobol] environment.
 
 <pre style="font-size:80%;">
 <b>&gt; "C:\Program Files (x86)\Micro Focus\Visual COBOL\bin64\cblms.exe" -Q</b>
@@ -121,3 +126,4 @@ Microsoft Build Tools
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
+[visual_cobol]: https://www.microfocus.com/en-us/products/visual-cobol/overview

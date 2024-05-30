@@ -3,14 +3,13 @@
 <table style="font-family:Helvetica,Arial;line-height:1.6;">
   <tr>
   <td style="border:0;padding:0 4px 0 0;min-width:100px;"><a href=" rel="external"><img style="border:0;" src="docs/images/opensource-cobol.png" width="100" alt="COBOL 4J"/></a></td>
-  <td style="border:0;padding:0;vertical-align:text-top;">.
-  </td>
+  <td style="border:0;padding:0;vertical-align:text-top;">This page presents usage information about <a href="https://github.com/opensourcecobol/opensourcecobol4j">COBOL 4J</a> on a Windows machine.</td>
   </tr>
 </table>
 
 ## <span id="env">Environment Setup</span>
 
-Invocation of the the [COBOL 4J][cobol_4j] compiler requires that :
+Invocation of the [COBOL 4J][cobol_4j] compiler requires that :
 - Environment variable `PATH` contains the path to executable `java.exe`.
 - Environment variable `CLASSPATH` contains the path to library `libcobj.jar`.
 
@@ -29,6 +28,7 @@ For instance we invoke the [COBOL 4J][cobol_4j] compiler as follows in our batch
 [...]
 </pre>
 where the defined variables :
+- `JAVA_HOME` equals `C:\opt\jdk-temurin-17.0.11_9` (for `java.exe` command).
 - `COBJ_HOME` equals `C:\opt\cobj` (our [COBOL 4J][cobol_4j] installation directory).
 - `_COBJ_CMD` equals `%COBJ_HOME%\bin\cobj.exe`.
 
@@ -46,15 +46,19 @@ Version 1.022 of library `libcobj.jar` has the following dependencies (see also 
 |:-------|:--------------------|:--------|
 | [Guava](https://github.com/google/guava#guava-google-core-libraries-for-java) | [com.google.common](https://mvnrepository.com/artifact/com.google.guava/guava) | [31.1-jre](https://mvnrepository.com/artifact/com.google.guava/guava/31.1-jre) |
 | [Guava](https://github.com/google/guava#guava-google-core-libraries-for-java) | [com.google.thirdparty](https://mvnrepository.com/artifact/com.google.guava/guava) | [31.1-jre](https://mvnrepository.com/artifact/com.google.guava/guava/31.1-jre) |
-| [SQLite JDBC](https://github.com/xerial/sqlite-jdbc#sqlite-jdbc-driver) | [org.sqlite](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc) | [3.30.1](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc/3.30.1)C |
+| [SQLite JDBC](https://github.com/xerial/sqlite-jdbc#sqlite-jdbc-driver) | [org.sqlite](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc) | [3.30.1](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc/3.30.1) |
 | [Apache Commons CLI](https://commons.apache.org/proper/commons-cli/) | [commons-cli](https://mvnrepository.com/artifact/commons-cli/commons-cli) | [1.6.0](https://mvnrepository.com/artifact/commons-cli/commons-cli/1.6.0) |
-| [Check Framework](https://checkerframework.org/) | [org.checkerframework](https://mvnrepository.com/artifact/org.checkerframework/checker-qual) | [3.42.0](https://mvnrepository.com/artifact/org.checkerframework/checker-qual/3.42.0) |
-| [J2ObjC Annotations](https://mvnrepository.com/artifact/com.google.j2objc/j2objc-annotations) | [j2obj-annotations](https://mvnrepository.com/artifact/com.google.j2objc/j2objc-annotations) | [3.0.0](https://mvnrepository.com/artifact/com.google.j2objc/j2objc-annotations/3.0.0) |
-| [Error Prone Annotations](https://github.com/google/error-prone#error-prone) | [com.google.errorprone](https://mvnrepository.com/artifact/com.google.errorprone/error_prone_annotations) | [2.26.1](https://mvnrepository.com/artifact/com.google.errorprone/error_prone_annotations/2.26.1) |
+| [Check Framework](https://checkerframework.org/) | [org.checkerframework](https://mvnrepository.com/artifact/org.checkerframework/checker-qual) <sup><b>a)</b></sup> | [3.42.0](https://mvnrepository.com/artifact/org.checkerframework/checker-qual/3.42.0) |
+| [J2ObjC Annotations](https://mvnrepository.com/artifact/com.google.j2objc/j2objc-annotations) | [j2objc-annotations](https://mvnrepository.com/artifact/com.google.j2objc/j2objc-annotations) <sup><b>a)</b></sup> | [3.0.0](https://mvnrepository.com/artifact/com.google.j2objc/j2objc-annotations/3.0.0) |
+| [Error Prone Annotations](https://github.com/google/error-prone#error-prone) | [com.google.errorprone](https://mvnrepository.com/artifact/com.google.errorprone/error_prone_annotations) <sup><b>a)</b></sup> | [2.26.1](https://mvnrepository.com/artifact/com.google.errorprone/error_prone_annotations/2.26.1) |
+
+<span style="font-size:80%;margin:-10px 0 0 10px;">
+<sup><b>a)</b></sup> Compile depenpency of <a href="https://github.com/google/guava#guava-google-core-libraries-for-java" rel="external">Guava</a> 
+</span>
+
 <!--
 javax/annotation/concurrent/
 javax/annotation/meta/
-com/google/errorprone/
 -->
 
 ***

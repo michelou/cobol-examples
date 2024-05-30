@@ -539,6 +539,15 @@ if %ERRORLEVEL%==0 (
     for /f "tokens=1,2,3,*" %%i in ('"%COB_HOME%\bin\cobc.exe" --version ^|findstr /b cobc 2^>^&1') do set "__VERSIONS_LINE1=%__VERSIONS_LINE1% cobc %%k,"
     set __WHERE_ARGS=%__WHERE_ARGS% "%COB_HOME%\bin:cobc.exe"
 )
+where /q "%COBDIR%\bin:ccbl.exe"
+if %ERRORLEVEL%==0 (
+    for /f "tokens=*" %%i in ('"%COBDIR%\bin\ccbl.exe" -v ^|findstr COBOL 2^>^&1') do (
+        setlocal enabledelayedexpansion
+        for %%j in (%%i) do set __VERSION=%%j
+        set "__VERSIONS_LINE1=%__VERSIONS_LINE1% ccbl !__VERSION!,"
+    )
+    set __WHERE_ARGS=%__WHERE_ARGS% "%COBDIR%\bin:ccbl.exe"
+)
 where /q "%COBJ_HOME%\bin:cobj.exe"
 if %ERRORLEVEL%==0 (
     for /f "tokens=1-4,*" %%i in ('"%COBJ_HOME%\bin\cobj.exe" --version ^| findstr /b cobj') do set "__VERSIONS_LINE1=%__VERSIONS_LINE1% cobj %%m,"

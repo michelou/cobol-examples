@@ -27,6 +27,7 @@ Optionally one may also install the following software:
 - [ConEmu][conemu_downloads] ([*release notes*][conemu_relnotes])
 - [opensource COBOL 4J][cobj_downloads] ([*release notes*][cobj_relnotes])
 - [Temurin OpenJDK 17 LTS][temurin_openjdk17] ([*release notes*][temurin_openjdk17_relnotes])
+- [Visual COBOL 9.0][visual_cobol_downloads] ([*release notes*][visual_cobol_relnotes])
 - [Visual Studio Code 1.89][vscode_downloads] ([*release notes*][vscode_relnotes])
 
 > **&#9755;** ***Installation policy***<br/>
@@ -35,13 +36,14 @@ Optionally one may also install the following software:
 For instance our development environment looks as follows (*June 2024*) <sup id="anchor_02">[2](#footnote_02)</sup>:
 
 <pre style="font-size:80%;">
-C:\opt\cobj\<sup id="anchor_03"><a href="#footnote_03">3</a></sup>                  <i>( 10 MB)</i>
-C:\opt\ConEmu\                 <i>( 26 MB)</i>
-C:\opt\Git\                    <i>(367 MB)</i>
-C:\opt\GnuCOBOL\               <i>(548 MB)</i>
-C:\opt\jdk-temurin-17.0.11_9\  <i>(301 MB)</i>
-C:\opt\msys64\                 <i>(2.8 GB)</i>
-C:\opt\VSCode\                 <i>(341 MB)</i>
+C:\opt\cobj\<sup id="anchor_03"><a href="#footnote_03">3</a></sup>                                     <i>(  10 MB)</i>
+C:\opt\ConEmu\                                    <i>(  26 MB)</i>
+C:\opt\Git\                                       <i>( 367 MB)</i>
+C:\opt\GnuCOBOL\                                  <i>( 548 MB)</i>
+C:\opt\jdk-temurin-17.0.11_9\                     <i>( 301 MB)</i>
+C:\opt\msys64\                                    <i>(2.83 GB)</i>
+C:\opt\VSCode\                                    <i>( 341 MB)</i>
+C:\Program Files (x86)\Micro Focus\Visual COBOL\  <i>(1.26 GB)</i>
 </pre>
 
 > **:mag_right:** [Git for Windows][git_releases] provides a Bash emulation used to run [**`git.exe`**][git_cli] from the command line (as well as over 250 Unix commands like [**`awk`**][man1_awk], [**`diff`**][man1_diff], [**`file`**][man1_file], [**`grep`**][man1_grep], [**`more`**][man1_more], [**`mv`**][man1_mv], [**`rmdir`**][man1_rmdir], [**`sed`**][man1_sed] and [**`wc`**][man1_wc]).
@@ -58,6 +60,9 @@ dovey-examples\{<a href="./dovey-examples/README.md">README.md</a>, <a href="./d
 examples\{<a href="./examples/README.md">README.md</a>, <a href="examples/helloworld/">helloworld</a>, etc.}
 harris-examples\{<a href="./harris-examples/README.md">README.md</a>, <a href="./harris-examples/100Doors/">100Doors</a>, <a href="./harris-examples/FizzBuzz/">FizzBuzz</a>, etc.}
 moseley-examples\{<a href="./moseley-examples/README.md">README.md</a>, <a href="./moseley-examples/Elapsed/">Elapsed</a>, etc.}
+<a href="COBOL_4J.md">COBOL_4J.md</a>
+<a href="GNUCOBOL.md">GNUCOBOL.md</a>
+<a href="VISUAL_COBOL.md">VISUAL_COBOL.md</a>
 README.md
 <a href="RESOURCES.md">RESOURCES.md</a>
 <a href="setenv.bat">setenv.bat</a>
@@ -70,11 +75,15 @@ where
 - directory [**`docs\`**](docs/) contains several [COBOL] related papers/articles ([**`docs\README.md`**](docs/README.md)).
 - directory [**`examples\`**](examples/) contains [COBOL] examples grabbed from various websites ([**`examples\README.md`**](examples/README.md)).
 - directory [**`harris-examples`**](./harris-examples/) contains [COBOL] examples from [Mike Harris GitHub repository](https://github.com/mikebharris/COBOL-katas).
+- file [**`COBOL_4J.md`**](COBOL_4J.md) gathers usage information about [COBOL 4J][cobol_4j].
+- file [**`GNUCOBOL.md`**](GNUCOBOL.md) gathers usage information about [GnuCOBOL].
+- file [**`VISUAL_COBOL.md`**](VISUAL_COBOL.md) gathers usage information about [Visual COBOL][visual_cobol].
 - file [**`README.md`**](README.md) is the [Markdown][github_markdown] document for this page.
 - file [**`RESOURCES.md`**](RESOURCES.md) is the [Markdown][github_markdown] document presenting external resources.
 - file [**`setenv.bat`**](setenv.bat) is the batch command for setting up our environment.
 
 We also define a virtual drive &ndash; e.g. drive **`T:`** &ndash; in our working environment in order to reduce/hide the real path of our project directory (see article ["Windows command prompt limitation"][windows_limitation] from Microsoft Support).
+
 > **:mag_right:** We use the Windows external command [**`subst`**][windows_subst] to create virtual drives; for instance:
 >
 > <pre style="font-size:80%;">
@@ -92,7 +101,7 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
    <pre style="font-size:80%;">
    <b>&gt; <a href="./setenv.bat">setenv</a></b>
    Tool versions:
-   cobc 3.3.0, cobj 1.0.22, java 17.0.11, make 4.4.1,
+   cobc 3.3.0, ccbl 9.0.0.49, cobj 1.0.22, java 17.0.11, make 4.4.1,
    git 2.45.1, diff 3.10, bash 5.2.26(1)-release
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git make sh</b>
@@ -103,20 +112,7 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
    C:\opt\Git\usr\bin\sh.exe
    </pre>
 
-Command [**`setenv help`**](./setenv.bat) displays the help messsage :
-
-<pre style="font-size:80%;">
-<b>&gt; <a href="./setenv.bat">setenv help</a></b>
-Usage: setenv { &lt;option> | &lt;subcommand> }
-&nbsp;
-  Options:
-    -bash       start Git bash shell instead of Windows command prompt
-    -debug      print commands executed by this script
-    -verbose    print progress messages
-&nbsp;
-  Subcommands:
-    help        print this help message
-</pre>
+> :mag_right: Command [**`setenv help`**](./setenv.bat) displays the help messsage :
 
 <!--=======================================================================-->
 
@@ -141,6 +137,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.0.22.zip</a>                       <i>(  8 MB)</i>
 <a href="https://git-scm.com/download/win">PortableGit-2.45.1-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
 <a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.89.1.zip</a>                        <i>(131 MB)</i>
+<a href="https://">vcvs2022_90.exe</a> (for Visual Studio 2022)           <i>(820 MB)</i>
 </pre>
 <p style="background-color:#eeeeee;">
 <b>&#9755; <i>GnuCOBOL distribution</i></b><br/>
@@ -220,6 +217,7 @@ Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="
 [cobj_downloads]: https://github.com/opensourcecobol/opensourcecobol4j
 [cobj_relnotes]: https://github.com/opensourcecobol/opensourcecobol4j/releases/tag/v1.0.22
 [cobol]: https://en.wikipedia.org/wiki/COBOL
+[cobol_4j]: https://github.com/opensourcecobol/opensourcecobol4j
 [conemu_downloads]: https://github.com/Maximus5/ConEmu/releases
 [conemu_relnotes]: https://conemu.github.io/blog/2023/07/24/Build-230724.html
 [cpp_examples]: https://github.com/michelou/cpp-examples#top
@@ -231,6 +229,7 @@ Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="
 [git_releases]: https://git-scm.com/download/win
 [git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.45.1.txt
 [github_markdown]: https://github.github.com/gfm/
+[gnucobol]: https://gnucobol.sourceforge.io/
 [gnucobol_binaries]: https://get-superbol.com/software/gnucobol-windows-installer/aio-release/
 [gnucobol_news]: https://sourceforge.net/p/gnucobol/code/HEAD/tree/tags/gnucobol-3.2/NEWS
 [gnucobol_relnotes]: https://gnucobol.sourceforge.io/index.html#Releases
@@ -272,6 +271,9 @@ Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="
 [temurin_openjdk17_relnotes]: https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-April/032197.html
 [trufflesqueak_examples]: https://github.com/michelou/trufflesqueak-examples#top
 [unix_opt]: https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/opt.html
+[visual_cobol]: https://www.microfocus.com/en-us/products/visual-cobol/overview
+[visual_cobol_downloads]: https://www.microfocus.com/en-us/products/visual-cobol/overview
+[visual_cobol_relnotes]: https://portal.microfocus.com/s/article/KM000020023?language=en_US
 [vscode_downloads]: https://code.visualstudio.com/#alt-downloads
 [vscode_relnotes]: https://code.visualstudio.com/updates/
 [windows_batch_file]: https://en.wikibooks.org/wiki/Windows_Batch_Scripting
