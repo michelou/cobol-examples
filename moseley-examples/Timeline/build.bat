@@ -236,7 +236,7 @@ set "COB_COPY_DIR=%COB_HOME%\copy"
 if %_DEBUG%==1 (
     @rem we print the customized environment variables
     echo %_DEBUG_LABEL% "%_COBC_CMD%" --info ^| findstr env: 1>&2
-    call "%_COBC_CMD%" --info | findstr env: 1>&2
+    for /f "delims=" %%i in ('call "%_COBC_CMD%" --info ^| findstr env:') do echo %_DEBUG_LABEL% %%i 1>&2
 )
 @rem -x = build an executable program
 set __COBC_OPTS=-std=%_STANDARD% -x -o "%_EXE_FILE%" -I "%_SOURCE_MAIN_DIR%" -I "%MSYS_HOME%\mingw64\include"

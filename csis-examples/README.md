@@ -18,9 +18,9 @@ The description of example `MonthTable` is presented in document [`docs\MonthTab
 Example `MonthTable` has the following directory structure :
 
 <pre style="font-size:80%;">
-<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree">tree</a> /a /f . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /v /b [A-Z]</b>
+<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" loc="external">tree</a> /a /f . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /v /b [A-Z]</b>
 |   <a href="./MonthTable/build.bat">build.bat</a>
-|   STUDENTS.DAT
+|   <a href="./MonthTable/STUDENTS.DAT">STUDENTS.DAT</a>
 +---docs
 |       <a href="./MonthTable/docs/00download.txt">00download.txt</a>
 |       <a href="./MonthTable/docs/MonthTable.md">MonthTable.md</a>
@@ -31,7 +31,7 @@ Example `MonthTable` has the following directory structure :
                 <a href="./MonthTable/src/main/cobol/MonthTable.cbl">MonthTable.cbl</a>
 </pre>
 
-Command [`build -verbose clean run`](./MonthTable/build.bat) generates and executes the [COBOL] program `target\MonthTable.exe` :
+Command [`build`](./MonthTable/build.bat)`-verbose clean run` generates and executes the [COBOL] program `target\MonthTable.exe` :
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="./MonthTable/build.bat">build</a> -verbose clean run</b>
@@ -73,7 +73,7 @@ Example `RefMod` has the following directory structure :
                 <a href="./RefMod/src/main/cobol/RefMod.cbl">RefMod.cbl</a>
 </pre>
 
-Command [`build -verbose clean run`](./RefMod/build.bat) generates and executes the [COBOL] program `target\RefMod.exe` :
+Command [`build`](./RefMod/build.bat)`-verbose clean run` generates and executes the [COBOL] program `target\RefMod.exe` :
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="./RefMod/build.bat">build</a> -verbose clean clean</b>
@@ -104,10 +104,10 @@ Example `SeqWrite` has the following directory structure :
 \---src
     \---main
         \---cobol
-                <a href="./SeqWrite/src/main/cobol/SEQWRITE.CBL">SEQWRITE.CBL</a>
+                <a href="./SeqWrite/src/main/cobol/SeqWrite.cbl">SeqWrite.cbl</a>
 </pre>
 
-Command [`build -verbose clean run`](./SeqWrite/build.bat) generates and executes the [COBOL] program `target\SeqWrite.exe` :
+Command [`build`](./SeqWrite/build.bat)`-verbose clean run` generates and executes the [COBOL] program `target\SeqWrite.exe` :
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="./SeqWrite/build.bat">build</a> -verbose clean run</b>

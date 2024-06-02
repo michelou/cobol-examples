@@ -25,7 +25,7 @@ Example `Colors` has the following directory structure :
                 <a href="./Colors/src/main/cobol/Colors.cbl">Colors.cbl</a>
 </pre>
 
-Command [`build -verbose clean run`](./Colors/build.bat) generates and executes the [COBOL] program `target\Colors.exe` :
+Command [`build`](./Colors/build.bat)`-verbose clean run` generates and executes the [COBOL] program `target\Colors.exe` :
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="./Colors/build.bat">build</a> -verbose clean run</b>

@@ -102,6 +102,7 @@
       * SYSTEM CURRENT DATE MAY BE USED IF ONLY 1 DATE SUPPLIED.      *
       * ************************************************************* *
            MOVE CURRENT-DATE(1:08) TO WS-CURRENT-DATE.
+           DISPLAY '0000000000000000000000000000000000000000000'.
 
       * ************************************************************* *
       * RETRIEVE ARGUMENT(S), IF INVALID NUMBER OF ARGUMENTS GIVEN,   *
@@ -349,6 +350,7 @@
            DISPLAY WS-S4.
 
        0400-EXIT-PROGRAM.
+           DISPLAY '999999999999999999999999'.
            STOP RUN.
 
        END PROGRAM ELAPSED.

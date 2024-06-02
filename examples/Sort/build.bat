@@ -56,7 +56,7 @@ for %%i in ("%~dp0\.") do set "_MAIN_NAME=%%~ni"
 set "_EXE_FILE=%_TARGET_DIR%\%_MAIN_NAME%.exe"
 
 if not exist "%COB_HOME%\bin\cobc.exe" (
-    echo %_ERROR_LABEL% COBOL installation not found 1>&2
+    echo %_ERROR_LABEL% GnuCOBOL installation not found 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -121,8 +121,10 @@ set _FORMAT=free
 set _HELP=0
 set _LINT=0
 set _RUN=0
-@rem option -std:<name>, name=default, cobol2014
+@rem option -std:<name>, name=default, cobol2014, cobol2002, cobol85, xopen, ibm-strict,
+@rem                          ibm, mvs-strict, mvs, mf-strict, mf, bs2000-strict, bs2000
 set _STANDARD=cobol2014
+set _TOOLSET=gnu
 set _VERBOSE=0
 set __N=0
 :args_loop
@@ -133,10 +135,13 @@ if not defined __ARG (
 )
 if "%__ARG:~0,1%"=="-" (
     @rem option
-    if "%__ARG%"=="-debug" ( set _DEBUG=1
+    if "%__ARG%"=="-cobj" ( set _TOOLSET=cobj
+    ) else if "%__ARG%"=="-debug" ( set _DEBUG=1
     ) else if "%__ARG%"=="-fixed" ( set _FORMAT=fixed
     ) else if "%__ARG%"=="-free" ( set _FORMAT=free
+    ) else if "%__ARG%"=="-gnu" ( set _TOOLSET=gnu
     ) else if "%__ARG%"=="-help" ( set _HELP=1
+    ) else if "%__ARG%"=="-mf" ( set _TOOLSET=mf
     ) else if "%__ARG%"=="-verbose" ( set _VERBOSE=1
     ) else (
         echo %_ERROR_LABEL% Unknown option "%__ARG%" 1>&2
@@ -162,6 +167,14 @@ goto args_loop
 set _STDOUT_REDIRECT=1^>NUL
 if %_DEBUG%==1 set _STDOUT_REDIRECT=
 
+if %_TOOLSET%==mf if not defined _CCBL_CMD (
+    echo %_WARNING_LABEL% Visual COBOL installation not found 1>&2
+    set _TOOLSET=gnu
+)
+if %_TOOLSET%==cobj if not defined _COBJ_CMD (
+    echo %_WARNING_LABEL% COBOL 4J installation not found 1>&2
+    set _TOOLSET=gnu
+)
 if %_FORMAT%==fixed (
     if exist "%_SOURCE_MAIN_DIR%-fixed" ( set "_SOURCE_MAIN_DIR=%_SOURCE_MAIN_DIR%-fixed"
     ) else ( set _FORMAT=fixed2
@@ -171,6 +184,8 @@ if %_DEBUG%==1 (
     echo %_DEBUG_LABEL% Options    : _FORMAT=%_FORMAT% _STANDARD=%_STANDARD% _TARGET=%_TARGET% _VERBOSE=%_VERBOSE% 1>&2
     echo %_DEBUG_LABEL% Subcommands: _CLEAN=%_CLEAN% _COMPILE=%_COMPILE% _RUN=%_RUN% 1>&2
     echo %_DEBUG_LABEL% Variables  : "COB_HOME=%COB_HOME%" 1>&2
+    if defined _CCBL_CMD echo %_DEBUG_LABEL% Variables  : "COBDIR=%COBDIR%" 1>&2
+    if defined _COBJ_CMD echo %_DEBUG_LABEL% Variables  : "COBJ_HOME=%COBJ_HOME%" 1>&2
     echo %_DEBUG_LABEL% Variables  : "GIT_HOME=%GIT_HOME%" 1>&2
 )
 goto :eof
@@ -190,9 +205,12 @@ if %_VERBOSE%==1 (
 echo Usage: %__BEG_O%%_BASENAME% { ^<option^> ^| ^<subcommand^> }%__END%
 echo.
 echo   %__BEG_P%Options:%__END%
+echo     %__BEG_O%-cobj%__END%       select COBOL 4J tools
 echo     %__BEG_O%-debug%__END%      print commands executed by this script
 echo     %__BEG_O%-fixed%__END%      enable fixed-format code
 echo     %__BEG_O%-free%__END%       enable free-format code ^(default^)
+echo     %__BEG_O%-gnu%__END%        select GnuCOBOL tools
+echo     %__BEG_O%-mf%__END%         select Visual COBOL tools
 echo     %__BEG_O%-verbose%__END%    print progress messages
 echo.
 echo   %__BEG_P%Subcommands:%__END%
@@ -265,7 +283,7 @@ set "COB_COPY_DIR=%COB_HOME%\copy"
 if %_DEBUG%==1 (
     @rem we print the customized environment variables
     echo %_DEBUG_LABEL% "%_COBC_CMD%" --info ^| findstr env: 1>&2
-    call "%_COBC_CMD%" --info | findstr env: 1>&2
+    for /f "delims=" %%i in ('call "%_COBC_CMD%" --info ^| findstr env:') do echo %_DEBUG_LABEL% %%i 1>&2
 )
 @rem option -x = build an executable program
 set __COBC_OPTS=-std=%_STANDARD% -x -o "%_EXE_FILE%"

@@ -67,7 +67,7 @@ args() {
             ;;
         esac
     done
-    debug "Options    : FORMAT=$FORMAT STANDARD=$STANDARD VERBOSE=$VERBOSE"
+    debug "Options    : FORMAT=$FORMAT STANDARD=$STANDARD TOOLSET=$TOOLSET VERBOSE=$VERBOSE"
     debug "Subcommands: CLEAN=$CLEAN COMPILE=$COMPILE HELP=$HELP RUN=$RUN"
     debug "Variables  : COB_HOME=$COB_HOME"
     debug "Variables  : GIT_HOME=$GIT_HOME"
@@ -228,6 +228,7 @@ HELP=false
 RUN=false
 ## option -std:<name>, name=default, cobol2014
 STANDARD=cobol2014
+TOOLSET=gnu
 VERBOSE=false
 
 cygwin=false

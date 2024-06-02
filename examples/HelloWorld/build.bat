@@ -60,7 +60,7 @@ if defined ConEmuDir ( set _PS_CMD=powershell -cur_console:i
 ) else ( set _PS_CMD=powershell
 )
 if not exist "%COB_HOME%\bin\cobc.exe" (
-    echo %_ERROR_LABEL% COBOL installation not found 1>&2
+    echo %_ERROR_LABEL% GnuCOBOL installation not found 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -230,7 +230,7 @@ echo     %__BEG_O%-cobj%__END%       select COBOL 4J tools
 echo     %__BEG_O%-debug%__END%      print commands executed by this script
 echo     %__BEG_O%-fixed%__END%      enable fixed-format code
 echo     %__BEG_O%-free%__END%       enable free-format code ^(default^)
-echo     %__BEG_O%-gnu%__END%        select GNU COBOL tools
+echo     %__BEG_O%-gnu%__END%        select GnuCOBOL tools
 echo     %__BEG_O%-mf%__END%         select Visual COBOL tools
 echo     %__BEG_O%-verbose%__END%    print progress messages
 echo.
@@ -358,7 +358,7 @@ set "COB_COPY_DIR=%COB_HOME%\copy"
 if %_DEBUG%==1 (
     @rem we print the customized environment variables
     echo %_DEBUG_LABEL% "%_COBC_CMD%" --info ^| findstr env: 1>&2
-    call "%_COBC_CMD%" --info | findstr env: 1>&2
+    for /f "delims=" %%i in ('call "%_COBC_CMD%" --info ^| findstr env:') do echo %_DEBUG_LABEL% %%i 1>&2
 )
 @rem option -x = build an executable program
 set __COBC_OPTS=-std=%_STANDARD% -x -o "%_EXE_FILE%"

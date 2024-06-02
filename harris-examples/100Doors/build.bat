@@ -56,7 +56,7 @@ for %%i in ("%~dp0\.") do set "_MAIN_NAME=%%~ni"
 set "_EXE_FILE=%_TARGET_DIR%\%_MAIN_NAME%.exe"
 
 if not exist "%COB_HOME%\bin\cobc.exe" (
-    echo %_ERROR_LABEL% COBOL installation not found 1>&2
+    echo %_ERROR_LABEL% GnuCOBOL installation not found 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -171,6 +171,8 @@ if %_DEBUG%==1 (
     echo %_DEBUG_LABEL% Options    : _FORMAT=%_FORMAT% _STANDARD=%_STANDARD% _TARGET=%_TARGET% _VERBOSE=%_VERBOSE% 1>&2
     echo %_DEBUG_LABEL% Subcommands: _CLEAN=%_CLEAN% _COMPILE=%_COMPILE% _RUN=%_RUN% 1>&2
     echo %_DEBUG_LABEL% Variables  : "COB_HOME=%COB_HOME%" 1>&2
+    if defined _CCBL_CMD echo %_DEBUG_LABEL% Variables  : "COBDIR=%COBDIR%" 1>&2
+    if defined _COBJ_CMD echo %_DEBUG_LABEL% Variables  : "COBJ_HOME=%COBJ_HOME%" 1>&2
     echo %_DEBUG_LABEL% Variables  : "GIT_HOME=%GIT_HOME%" 1>&2
 )
 goto :eof
@@ -262,7 +264,7 @@ set "COB_COPY_DIR=%COB_HOME%\copy"
 if %_DEBUG%==1 (
     @rem we print the customized environment variables
     echo %_DEBUG_LABEL% "%_COBC_CMD%" --info ^| findstr env: 1>&2
-    call "%_COBC_CMD%" --info | findstr env: 1>&2
+    for /f "delims=" %%i in ('call "%_COBC_CMD%" --info ^| findstr env:') do echo %_DEBUG_LABEL% %%i 1>&2
 )
 @rem -x = build an executable program
 set __COBC_OPTS=-std=%_STANDARD% -x -o "%_EXE_FILE%"
