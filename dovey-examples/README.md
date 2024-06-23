@@ -13,12 +13,13 @@
 
 ## <span id="colors">`Colors` Example</span>
 
-Example `Colors` has the following directory structure :
+This example has the following directory structure :
 
 <pre style="font-size:80%;">
-<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree">tree</a> /a /f . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr">findstr</a> /v /b [A-Z]</b>
+<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" rel="external">tree</a> /a /f . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /v /b [A-Z]</b>
 |   <a href="./Colors/build.bat">build.bat</a>
 |   <a href="./Colors/build.sh">build.sh</a>
+|   <a href="./Colors/Makefile">Makefile</a>
 \---src
     \---main
         \---cobol
