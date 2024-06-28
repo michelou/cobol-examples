@@ -10,7 +10,7 @@
 
 ## <span id="elapsed">`Elapsed` Example</span>
 
-Example `Elapsed` has the following directory structure :
+This example has the following directory structure :
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" rel="external">tree</a> /a /f . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /b /v [A-Z]</b>
@@ -23,11 +23,20 @@ Example `Elapsed` has the following directory structure :
                 <a href="./Elapsed/src/main/cobol/Y2K.cpy">Y2K.cpy</a>
 </pre>
 
+Command [`build`](./Elapsed/build.bat)`-verbose clean run` generates and executes the COBOL program `target\Elapsed.exe` with parameter `1994` :
+
+<pre style="font-size:80%;">
+<b>&gt; <a href="./Elapsed/build.bat">build</a> -verbose clean run</b>
+Delete directory "target"
+Compile 1 COBOL source file into directory "target"
+Execute program "target\Elapsed.exe" 1994
+</pre>
+
 <!--=======================================================================-->
 
 ## <span id="timeline">`Timeline` Example</span>
 
-Example `Timeline` has the following directory structure :
+This example has the following directory structure :
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" rel="external">tree</a> /a /f . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /b /v [A-Z]</b>
@@ -44,6 +53,15 @@ Example `Timeline` has the following directory structure :
                 <a href="">Y2KDOWN.cbl</a>
                 <a href="">Y2KGTOA.cbl</a>
                 <a href="">Y2KLAGE.cbl</a>
+</pre>
+
+Command [`build`](./Timeline/build.bat)`-verbose clean run` generates and execution the COBOL program `target\Timeline.exe` :
+
+<pre style="font-size:80%;">
+<b>&gt; <a href="./Timeline/build.bat">build</a> -verbose clean run</b>
+Delete directory "target"
+Compile 5 COBOL source files into directory "target"
+Execute program "target\Timeline.exe"
 </pre>
 
 ***

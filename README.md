@@ -50,7 +50,7 @@ C:\Program Files (x86)\Micro Focus\Visual COBOL\  <i>(1.26 GB)</i>
 
 ## <span id="structure">Directory structure</span> [**&#x25B4;**](#top)
 
-This project is organized as follows:
+This project has the following directory structure :
 
 <pre style="font-size:80%;">
 bin\
@@ -87,7 +87,7 @@ We also define a virtual drive &ndash; e.g. drive **`T:`** &ndash; in our workin
 > **:mag_right:** We use the Windows external command [**`subst`**][windows_subst] to create virtual drives; for instance:
 >
 > <pre style="font-size:80%;">
-> <b>&gt; <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/subst">subst</a> T: <a href="https://en.wikipedia.org/wiki/Environment_variable#Default_values">%USERPROFILE%</a>\workspace\dart-examples</b>
+> <b>&gt; <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/subst">subst</a> T: <a href="https://en.wikipedia.org/wiki/Environment_variable#Default_values">%USERPROFILE%</a>\workspace\cobol-examples</b>
 > </pre>
 
 In the next section we give a brief description of the batch files present in this project.
@@ -101,7 +101,7 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
    <pre style="font-size:80%;">
    <b>&gt; <a href="./setenv.bat">setenv</a></b>
    Tool versions:
-   cobc 3.3.0, ccbl 9.0.0.49, cobj 1.0.22, java 17.0.11, make 4.4.1,
+   cobc 3.3.0, ccbl 9.0.0.49, cobj 1.1.1, java 17.0.11, make 4.4.1,
    git 2.45.2, diff 3.10, bash 5.2.26(1)-release
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git make sh</b>
@@ -132,7 +132,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <pre style="font-size:80%;">
 <a href="https://github.com/Maximus5/ConEmu/releases/tag/v23.07.24" rel="external">ConEmuPack.230724.7z</a>                               <i>(  5 MB)</i>
 <a href="https://get-superbol.com/software/gnucobol-windows-installer/aio-release/">gnucobol-3.2-aio-20240306-user.msi</a>                 <i>( 92 MB)</i>
-<a href="https://repo.msys2.org/distrib/x86_64/">msys2-x86_64-20240113.exe</a>                         <i> ( 83 MB)</i>
+<a href="https://repo.msys2.org/distrib/x86_64/">msys2-x86_64-20240507.exe</a>                         <i> ( 83 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.11_9.zip</a>   <i>(188 MB)</i>
 <a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.0.22.zip</a>                       <i>(  8 MB)</i>
 <a href="https://git-scm.com/download/win">PortableGit-2.45.2-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
@@ -141,19 +141,55 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 </pre>
 <p style="background-color:#eeeeee;">
 <b>&#9755; <i>GnuCOBOL distribution</i></b><br/>
- We prefer the <a href="https://get-superbol.com/software/gnucobol-windows-installer/aio-release/">All-in-One distribution</a> from <a href="https://get-superbol.com/" rel="external">SuperBOL</a> over the <a href="https://www.arnoldtrembley.com/GnuCOBOL.htm">GnuCOBOL distribution</a> from Arnold Trembley.
+ We prefer the <a href="https://get-superbol.com/software/gnucobol-windows-installer/aio-release/">All-in-One distribution</a> from <a href="https://get-superbol.com/" rel="external">SuperBOL</a> over the <a href="https://www.arnoldtrembley.com/GnuCOBOL.htm">GnuCOBOL distribution</a> from Arnold Trembley because it works out of the box (i.e. with no extra configuration settings).
 </p>
 </dd></dl>
 
 <span id="footnote_03">[3]</span> ***COBOL 4J*** [↩](#anchor_03)
 
 <dl><dd>
-We built the COBOL 4J distribution from the source archive <code><a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.1.0.zip</a></code> and installed it into directory <code>C:\opt\cobj\</code>. The 3 build steps are described in the <a href="https://github.com/opensourcecobol/opensourcecobol4j#install-opensource-cobol-4j">COBOL 4J online documentation</a>:
+We built the COBOL 4J distribution from the source archive <code><a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.1.1.zip</a></code> and installed it into directory <code>C:\opt\cobj\</code>. The 3 build steps are described in the <a href="https://github.com/opensourcecobol/opensourcecobol4j#install-opensource-cobol-4j">COBOL 4J online documentation</a>:
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/set_1" rel="external">set</a> PATH=%MSYS_HOME%\usr\bin;%PATH%</b>
 <b>&gt; <a href="https://man7.org/linux/man-pages/man1/sh.1p.html" rel="external">sh</a> ./configure --prefix=/c/opt/cobj</b>
+[...]
+OpenCOBOL Configuration:
+
+  CC                   gcc
+  COB_CC               gcc
+  CFLAGS                -O2 -finline-functions -fsigned-char -Wall -Wwrite-strings -Wmissing-prototypes -Wno-format-security
+  COB_CFLAGS           -I/c/opt/cobj/include
+  COB_EXTRA_FLAGS
+  LDFLAGS
+  COB_LDFLAGS
+  COB_LIBS             -L${exec_prefix}/lib -lcob -lm
+  COB_CONFIG_DIR       ${datarootdir}/opensource-cobol-4j-1.1.1/config
+  COB_COPY_DIR         ${datarootdir}/opensource-cobol-4j-1.1.1/copy
+  COB_LIBRARY_PATH     ${exec_prefix}/lib/opensource-cobol-4j-1.1.1
+  COB_MODULE_EXT
+  COB_SHARED_OPT       -shared
+  COB_PIC_FLAGS        -fPIC -DPIC
+  COB_EXPORT_DYN       -Wl,--export-dynamic
+  COB_STRIP_CMD        strip --strip-unneeded
+
+  Use gettext for international messages:      no
+  Use fcntl for file locking:                  yes
+  &nbsp;
 <b>&gt; <a href="https://www.gnu.org/software/make/manual/make.html">make</a></b>
+[...]
+Making all in libcobj
+make[2]: Entering directory '/j/opensourcecobol4j-1.1.1/libcobj'
+./gradlew shadowJar
+Starting a Gradle Daemon (subsequent builds will be faster)
+
+BUILD SUCCESSFUL in 50s
+2 actionable tasks: 2 executed
+make[2]: Leaving directory '/j/opensourcecobol4j-1.1.1/libcobj'
+make[2]: Entering directory '/j/opensourcecobol4j-1.1.1'
+make[2]: Leaving directory '/j/opensourcecobol4j-1.1.1'
+make[1]: Leaving directory '/j/opensourcecobol4j-1.1.1'
+&nbsp;
 <b>&gt; <a href="https://www.gnu.org/software/make/manual/make.html">make</a> install</b>
 </pre>
 
@@ -173,7 +209,7 @@ In our case the installation directory <code>C:\opt\cobj\\</code> looks as follo
 |   \---<b>opensourcecobol4j</b>
 |           libcobj.jar
 \---<b>share</b>
-    \---<b>opensource-cobol-4j-1.1.0</b>
+    \---<b>opensource-cobol-4j-1.1.1</b>
         +---<b>config</b>
         |       bs2000.conf
         |       cobol2002.conf

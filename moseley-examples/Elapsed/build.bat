@@ -171,6 +171,7 @@ if %_DEBUG%==1 (
     echo %_DEBUG_LABEL% Variables  : "COB_HOME=%COB_HOME%" 1>&2
     echo %_DEBUG_LABEL% Variables  : "COBJ_HOME=%COBJ_HOME%" 1>&2
     echo %_DEBUG_LABEL% Variables  : "GIT_HOME=%GIT_HOME%" 1>&2
+    echo %_DEBUG_LABEL% Variables  : "JAVA_HOME=%JAVA_HOME%" 1>&2
 )
 goto :eof
 
@@ -291,7 +292,7 @@ set "PATH=%COB_HOME%\bin;%PATH%"
 set __TARGET_ARGS=1994
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_TARGET_FILE%" %__TARGET_ARGS% 1>&2
-) else if %_VERBOSE%==1 ( echo Execute program "!_TARGET_FILE:%_ROOT_DIR%=!" 1>&2
+) else if %_VERBOSE%==1 ( echo Execute program "!_TARGET_FILE:%_ROOT_DIR%=!" %__TARGET_ARGS% 1>&2
 )
 call "%_TARGET_FILE%" %__TARGET_ARGS%
 if not %ERRORLEVEL%==0 (
