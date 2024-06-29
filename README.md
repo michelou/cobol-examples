@@ -24,7 +24,7 @@ This project depends on the following external software for the **Microsoft Wind
 
 Optionally one may also install the following software:
 
-- [ConEmu][conemu_downloads] ([*release notes*][conemu_relnotes])
+- [ConEmu 2023][conemu_downloads] ([*release notes*][conemu_relnotes])
 - [opensource COBOL 4J 1.1][cobj_downloads] ([*release notes*][cobj_relnotes])
 - [Temurin OpenJDK 17 LTS][temurin_openjdk17] ([*release notes*][temurin_openjdk17_relnotes])
 - [Visual COBOL 9.0][visual_cobol_downloads] ([*release notes*][visual_cobol_relnotes])
@@ -33,7 +33,7 @@ Optionally one may also install the following software:
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [**`/opt/`**][unix_opt] directory on Unix).
 
-For instance our development environment looks as follows (*June 2024*) <sup id="anchor_02">[2](#footnote_02)</sup>:
+For instance our development environment looks as follows (*July 2024*) <sup id="anchor_02">[2](#footnote_02)</sup>:
 
 <pre style="font-size:80%;">
 C:\opt\cobj\<sup id="anchor_03"><a href="#footnote_03">3</a></sup>                                     <i>(  10 MB)</i>
@@ -82,12 +82,12 @@ where
 - file [**`RESOURCES.md`**](RESOURCES.md) is the [Markdown][github_markdown] document presenting external resources.
 - file [**`setenv.bat`**](setenv.bat) is the batch command for setting up our environment.
 
-We also define a virtual drive &ndash; e.g. drive **`T:`** &ndash; in our working environment in order to reduce/hide the real path of our project directory (see article ["Windows command prompt limitation"][windows_limitation] from Microsoft Support).
+We also define a virtual drive &ndash; e.g. drive **`J:`** &ndash; in our working environment in order to reduce/hide the real path of our project directory (see article ["Windows command prompt limitation"][windows_limitation] from Microsoft Support).
 
 > **:mag_right:** We use the Windows external command [**`subst`**][windows_subst] to create virtual drives; for instance:
 >
 > <pre style="font-size:80%;">
-> <b>&gt; <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/subst">subst</a> T: <a href="https://en.wikipedia.org/wiki/Environment_variable#Default_values">%USERPROFILE%</a>\workspace\cobol-examples</b>
+> <b>&gt; <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/subst">subst</a> J: <a href="https://en.wikipedia.org/wiki/Environment_variable#Default_values">%USERPROFILE%</a>\workspace\cobol-examples</b>
 > </pre>
 
 In the next section we give a brief description of the batch files present in this project.
@@ -102,7 +102,7 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
    <b>&gt; <a href="./setenv.bat">setenv</a></b>
    Tool versions:
    cobc 3.3.0, ccbl 9.0.0.49, cobj 1.1.1, java 17.0.11, make 4.4.1,
-   git 2.45.2, diff 3.10, bash 5.2.26(1)-release
+   git 2.45.2, diff 3.10, bash 5.2.26(1)
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git make sh</b>
    C:\opt\Git\bin\git.exe
@@ -134,7 +134,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <a href="https://get-superbol.com/software/gnucobol-windows-installer/aio-release/">gnucobol-3.2-aio-20240306-user.msi</a>                 <i>( 92 MB)</i>
 <a href="https://repo.msys2.org/distrib/x86_64/">msys2-x86_64-20240507.exe</a>                         <i> ( 83 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.11_9.zip</a>   <i>(188 MB)</i>
-<a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.0.22.zip</a>                       <i>(  8 MB)</i>
+<a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.1.1.zip</a>                        <i>(  8 MB)</i>
 <a href="https://git-scm.com/download/win">PortableGit-2.45.2-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
 <a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.90.1.zip</a>                        <i>(131 MB)</i>
 <a href="https://">vcvs2022_90.exe</a> (for Visual Studio 2022)           <i>(820 MB)</i>
@@ -246,7 +246,7 @@ Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/June 2024* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/July 2024* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
@@ -254,7 +254,7 @@ Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="
 [ada_examples]: https://github.com/michelou/ada-examples#top
 [akka_examples]: https://github.com/michelou/akka-examples#top
 [cobj_downloads]: https://github.com/opensourcecobol/opensourcecobol4j
-[cobj_relnotes]: https://github.com/opensourcecobol/opensourcecobol4j/releases/tag/v1.1.0
+[cobj_relnotes]: https://github.com/opensourcecobol/opensourcecobol4j/releases/tag/v1.1.1
 [cobol]: https://en.wikipedia.org/wiki/COBOL
 [cobol_4j]: https://github.com/opensourcecobol/opensourcecobol4j
 [conemu_downloads]: https://github.com/Maximus5/ConEmu/releases
