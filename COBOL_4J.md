@@ -3,7 +3,7 @@
 <table style="font-family:Helvetica,Arial;line-height:1.6;">
   <tr>
   <td style="border:0;padding:0 4px 0 0;min-width:100px;"><a href=" rel="external"><img style="border:0;" src="docs/images/opensource-cobol.png" width="100" alt="COBOL 4J"/></a></td>
-  <td style="border:0;padding:0;vertical-align:text-top;">This page presents usage information about <a href="https://github.com/opensourcecobol/opensourcecobol4j">COBOL 4J</a> on a Windows machine.</td>
+  <td style="border:0;padding:0;vertical-align:text-top;">This page gives usage information about <a href="https://github.com/opensourcecobol/opensourcecobol4j">COBOL 4J</a> on a Windows machine.</td>
   </tr>
 </table>
 
@@ -40,7 +40,7 @@ For instance we invoke the <a href="https://github.com/opensourcecobol/opensourc
 </pre>
 where the defined variables :
 <ul>
-<li><code>JAVA_HOME</code> equals <code>C:\opt\jdk-temurin-17.0.11_9</code> (for `java.exe` command).</li>
+<li><code>JAVA_HOME</code> equals <code>C:\opt\jdk-temurin-17.0.12_7</code> (for `java.exe` command).</li>
 <li><code>COBJ_HOME</code> equals <code>C:\opt\cobj</code> (our <a href="https://github.com/opensourcecobol/opensourcecobol4j">COBOL 4J</a> installation directory).</li>
 <li><code>_COBJ_CMD</code> equals <code>%COBJ_HOME%\bin\cobj.exe</code>.</li>
 </ul>
@@ -56,14 +56,14 @@ where the defined variables :
 <span id="footnote_02">[2]</span> **`libcobj.jar` *dependencies*** [↩](#anchor_02)
 
 <dl><dd>
-Version <b>1.1.1</b> of library <code>libcobj.jar</code> has the following dependencies (see also Gradle build file <a href="https://github.com/opensourcecobol/opensourcecobol4j/blob/develop/libcobj/app/build.gradle.kts#L29"><code>build.gradle.kts</code></a>) :
+Version <b>1.1.2</b> of library <code>libcobj.jar</code> has the following dependencies (see also Gradle build file <a href="https://github.com/opensourcecobol/opensourcecobol4j/blob/develop/libcobj/app/build.gradle.kts#L29"><code>build.gradle.kts</code></a>) :
 
 | Project | MVN&nbsp;repository | Version |
 |:--------|:--------------------|:--------|
 | [Guava](https://github.com/google/guava#guava-google-core-libraries-for-java) | [com.google.common](https://mvnrepository.com/artifact/com.google.guava/guava) | [33.2.1-jre](https://mvnrepository.com/artifact/com.google.guava/guava/33.2.1-jre) |
 | [Guava](https://github.com/google/guava#guava-google-core-libraries-for-java) | [com.google.thirdparty](https://mvnrepository.com/artifact/com.google.guava/guava) | [33.2.1-jre](https://mvnrepository.com/artifact/com.google.guava/guava/33.2.1-jre) |
-| [SQLite JDBC](https://github.com/xerial/sqlite-jdbc#sqlite-jdbc-driver) | [org.sqlite](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc) | [3.46.0.0](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc/3.46.0.0) |
-| [Apache Commons CLI](https://commons.apache.org/proper/commons-cli/) | [commons-cli](https://mvnrepository.com/artifact/commons-cli/commons-cli) | [1.8.0](https://mvnrepository.com/artifact/commons-cli/commons-cli/1.8.0) |
+| [SQLite JDBC](https://github.com/xerial/sqlite-jdbc#sqlite-jdbc-driver) | [org.sqlite](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc) | [3.46.0.1](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc/3.46.0.1) |
+| [Apache Commons CLI](https://commons.apache.org/proper/commons-cli/) | [commons-cli](https://mvnrepository.com/artifact/commons-cli/commons-cli) | [1.9.0](https://mvnrepository.com/artifact/commons-cli/commons-cli/1.9.0) |
 | [Check Framework](https://checkerframework.org/) | [org.checkerframework](https://mvnrepository.com/artifact/org.checkerframework/checker-qual) <sup><b>a)</b></sup> | [3.42.0](https://mvnrepository.com/artifact/org.checkerframework/checker-qual/3.42.0) |
 | [J2ObjC Annotations](https://mvnrepository.com/artifact/com.google.j2objc/j2objc-annotations) | [j2objc-annotations](https://mvnrepository.com/artifact/com.google.j2objc/j2objc-annotations) <sup><b>a)</b></sup> | [3.0.0](https://mvnrepository.com/artifact/com.google.j2objc/j2objc-annotations/3.0.0) |
 | [Error Prone Annotations](https://github.com/google/error-prone#error-prone) | [com.google.errorprone](https://mvnrepository.com/artifact/com.google.errorprone/error_prone_annotations) <sup><b>a)</b></sup> | [2.26.1](https://mvnrepository.com/artifact/com.google.errorprone/error_prone_annotations/2.26.1) |

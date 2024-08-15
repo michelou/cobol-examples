@@ -85,7 +85,7 @@ Usage: $BASENAME { <option> | <subcommand> }
     clean        delete generated files
     compile      compile COBOL source files
     help         print this help message
-    run          execute main class "$MAIN_CLASS"
+    run          execute main program "$PROJECT_NAME$TARGET_EXT"
 EOS
 }
 

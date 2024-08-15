@@ -52,7 +52,7 @@ set "_SOURCE_DIR=%_ROOT_DIR%src"
 set "_SOURCE_MAIN_DIR=%_SOURCE_DIR%\main\cobol"
 set "_TARGET_DIR=%_ROOT_DIR%target"
 
-for %%i in ("%~dp0\.") do set "_MAIN_NAME=%%~ni"
+for /f "delims=" %%i in ("%~dp0\.") do set "_MAIN_NAME=%%~ni"
 set "_EXE_FILE=%_TARGET_DIR%\%_MAIN_NAME%.exe"
 
 @rem https://conemu.github.io/en/NewConsole.html
@@ -81,6 +81,16 @@ if exist "%COBJ_HOME%\bin\cobj.exe" (
 )
 if exist "%JAVA_HOME%\bin\java.exe" (
     set "_JAVA_CMD=%JAVA_HOME%\bin\java.exe"
+)
+
+@rem we use the newer PowerShell version if available
+where /q pwsh.exe
+if %ERRORLEVEL%==0 ( set _PWSH_CMD=pwsh.exe
+) else ( set _PWSH_CMD=powershell.exe
+)
+@rem https://conemu.github.io/en/NewConsole.html
+if defined ConEmuDir ( set _PWSH_OPTS=-cur_console:i
+) else ( set _PWSH_OPTS=
 )
 goto :eof
 
@@ -418,11 +428,11 @@ set __TARGET_FILE=%~1
 set __PATH=%~2
 
 set __TARGET_TIMESTAMP=00000000000000
-for /f "usebackq" %%i in (`powershell %_PS_OPTS% -c "gci -path '%__TARGET_FILE%' -ea Stop | select -last 1 -expandProperty LastWriteTime | Get-Date -uformat %%Y%%m%%d%%H%%M%%S" 2^>NUL`) do (
+for /f "usebackq" %%i in (`call "%PWSH_CMD%" %_PWSH_OPTS% %_PS_OPTS% -c "gci -path '%__TARGET_FILE%' -ea Stop | select -last 1 -expandProperty LastWriteTime | Get-Date -uformat %%Y%%m%%d%%H%%M%%S" 2^>NUL`) do (
      set __TARGET_TIMESTAMP=%%i
 )
 set __SOURCE_TIMESTAMP=00000000000000
-for /f "usebackq" %%i in (`powershell %_PS_OPTS% -c "gci -recurse -path '%__PATH%' -ea Stop | sort LastWriteTime | select -last 1 -expandProperty LastWriteTime | Get-Date -uformat %%Y%%m%%d%%H%%M%%S" 2^>NUL`) do (
+for /f "usebackq" %%i in (`call "%PWSH_CMD%" %_PWSH_OPTS% %_PS_OPTS% -c "gci -recurse -path '%__PATH%' -ea Stop | sort LastWriteTime | select -last 1 -expandProperty LastWriteTime | Get-Date -uformat %%Y%%m%%d%%H%%M%%S" 2^>NUL`) do (
     set __SOURCE_TIMESTAMP=%%i
 )
 call :newer %__SOURCE_TIMESTAMP% %__TARGET_TIMESTAMP%

@@ -28,7 +28,7 @@ Optionally one may also install the following software:
 - [opensource COBOL 4J 1.1][cobj_downloads] ([*release notes*][cobj_relnotes])
 - [Temurin OpenJDK 17 LTS][temurin_openjdk17] ([*release notes*][temurin_openjdk17_relnotes])
 - [Visual COBOL 9.0][visual_cobol_downloads] ([*release notes*][visual_cobol_relnotes])
-- [Visual Studio Code 1.91][vscode_downloads] ([*release notes*][vscode_relnotes])
+- [Visual Studio Code 1.92][vscode_downloads] ([*release notes*][vscode_relnotes])
 
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [**`/opt/`**][unix_opt] directory on Unix).
@@ -101,7 +101,7 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
    <pre style="font-size:80%;">
    <b>&gt; <a href="./setenv.bat">setenv</a></b>
    Tool versions:
-   cobc 3.3.0, ccbl 9.0.0.49, cobj 1.1.1, java 17.0.12, make 4.4.1,
+   cobc 3.3.0, ccbl 9.0.0.49, cobj 1.1.2, java 17.0.12, make 4.4.1,
    git 2.46.0, diff 3.10, bash 5.2.26(1)
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git make sh</b>
@@ -134,9 +134,9 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <a href="https://get-superbol.com/software/gnucobol-windows-installer/aio-release/">gnucobol-3.2-aio-20240306-user.msi</a>                 <i>( 92 MB)</i>
 <a href="https://repo.msys2.org/distrib/x86_64/">msys2-x86_64-20240507.exe</a>                         <i> ( 83 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.12_7.zip</a>   <i>(188 MB)</i>
-<a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.1.1.zip</a>                        <i>(  8 MB)</i>
+<a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.1.2.zip</a>                        <i>(  8 MB)</i>
 <a href="https://git-scm.com/download/win">PortableGit-2.46.0-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
-<a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.91.1.zip</a>                        <i>(131 MB)</i>
+<a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.92.1.zip</a>                        <i>(131 MB)</i>
 <a href="https://">vcvs2022_90.exe</a> (for Visual Studio 2022)           <i>(820 MB)</i>
 </pre>
 <p style="background-color:#eeeeee;">
@@ -148,7 +148,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <span id="footnote_03">[3]</span> ***COBOL 4J*** [↩](#anchor_03)
 
 <dl><dd>
-We built the COBOL 4J distribution from the source archive <code><a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.1.1.zip</a></code> and installed it into directory <code>C:\opt\cobj\</code>. The 3 build steps are described in the <a href="https://github.com/opensourcecobol/opensourcecobol4j#install-opensource-cobol-4j">COBOL 4J online documentation</a>:
+We built the COBOL 4J distribution from the source archive <code><a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.1.2.zip</a></code> and installed it into directory <code>C:\opt\cobj\</code>. The 3 build steps are described in the <a href="https://github.com/opensourcecobol/opensourcecobol4j#install-opensource-cobol-4j">COBOL 4J online documentation</a>:
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/set_1" rel="external">set</a> PATH=%MSYS_HOME%\usr\bin;%PATH%</b>
@@ -164,9 +164,9 @@ OpenCOBOL Configuration:
   LDFLAGS
   COB_LDFLAGS
   COB_LIBS             -L${exec_prefix}/lib -lcob -lm
-  COB_CONFIG_DIR       ${datarootdir}/opensource-cobol-4j-1.1.1/config
-  COB_COPY_DIR         ${datarootdir}/opensource-cobol-4j-1.1.1/copy
-  COB_LIBRARY_PATH     ${exec_prefix}/lib/opensource-cobol-4j-1.1.1
+  COB_CONFIG_DIR       ${datarootdir}/opensource-cobol-4j-1.1.2/config
+  COB_COPY_DIR         ${datarootdir}/opensource-cobol-4j-1.1.2/copy
+  COB_LIBRARY_PATH     ${exec_prefix}/lib/opensource-cobol-4j-1.1.2
   COB_MODULE_EXT
   COB_SHARED_OPT       -shared
   COB_PIC_FLAGS        -fPIC -DPIC
@@ -179,16 +179,16 @@ OpenCOBOL Configuration:
 <b>&gt; <a href="https://www.gnu.org/software/make/manual/make.html">make</a></b>
 [...]
 Making all in libcobj
-make[2]: Entering directory '/j/opensourcecobol4j-1.1.1/libcobj'
+make[2]: Entering directory '/j/opensourcecobol4j-1.1.2/libcobj'
 ./gradlew shadowJar
 Starting a Gradle Daemon (subsequent builds will be faster)
 
 BUILD SUCCESSFUL in 50s
 2 actionable tasks: 2 executed
-make[2]: Leaving directory '/j/opensourcecobol4j-1.1.1/libcobj'
-make[2]: Entering directory '/j/opensourcecobol4j-1.1.1'
-make[2]: Leaving directory '/j/opensourcecobol4j-1.1.1'
-make[1]: Leaving directory '/j/opensourcecobol4j-1.1.1'
+make[2]: Leaving directory '/j/opensourcecobol4j-1.1.2/libcobj'
+make[2]: Entering directory '/j/opensourcecobol4j-1.1.2'
+make[2]: Leaving directory '/j/opensourcecobol4j-1.1.2'
+make[1]: Leaving directory '/j/opensourcecobol4j-1.1.2'
 &nbsp;
 <b>&gt; <a href="https://www.gnu.org/software/make/manual/make.html">make</a> install</b>
 </pre>
@@ -209,7 +209,7 @@ In our case the installation directory <code>C:\opt\cobj\\</code> looks as follo
 |   \---<b>opensourcecobol4j</b>
 |           libcobj.jar
 \---<b>share</b>
-    \---<b>opensource-cobol-4j-1.1.1</b>
+    \---<b>opensource-cobol-4j-1.1.2</b>
         +---<b>config</b>
         |       bs2000.conf
         |       cobol2002.conf
@@ -254,7 +254,7 @@ Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="
 [ada_examples]: https://github.com/michelou/ada-examples#top
 [akka_examples]: https://github.com/michelou/akka-examples#top
 [cobj_downloads]: https://github.com/opensourcecobol/opensourcecobol4j
-[cobj_relnotes]: https://github.com/opensourcecobol/opensourcecobol4j/releases/tag/v1.1.1
+[cobj_relnotes]: https://github.com/opensourcecobol/opensourcecobol4j/releases/tag/v1.1.2
 [cobol]: https://en.wikipedia.org/wiki/COBOL
 [cobol_4j]: https://github.com/opensourcecobol/opensourcecobol4j
 [conemu_downloads]: https://github.com/Maximus5/ConEmu/releases
