@@ -2,7 +2,7 @@
 
 <table style="font-family:Helvetica,Arial;line-height:1.6;">
   <tr>
-  <td style="border:0;padding:0 4px 0 0;min-width:100px;"><a href=" rel="external"><img style="border:0;" src="docs/images/Micro-Focus.png" width="100" alt="Visual COBOL"/></a></td>
+  <td style="border:0;padding:0 4px 0 0;min-width:100px;"><a href=" rel="external"><img style="border:0;" src="./docs/images/Micro-Focus.png" width="100" alt="Visual COBOL"/></a></td>
   <td style="border:0;padding:0;vertical-align:text-top;">This page presents usage information about <a href="https://www.microfocus.com/en-us/products/visual-cobol/overview">Visual COBOL</a> from Micro Focus on a Windows machine.</td>
   </tr>
 </table>
@@ -18,7 +18,7 @@
 Setting up the [Visual COBOL][visual_cobol] environment :
 
 <pre style="font-size:80%;">
-<b>&gt; echo %COBDIR%</b>
+<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/echo" rel="external">echo</a> %COBDIR%</b>
 C:\Program Files (x86)\Micro Focus\Visual COBOL
 &nbsp;
 <b>&gt; "%COBDIR%\bin64\cblpromp.exe"</b>
@@ -119,6 +119,44 @@ Microsoft Build Tools
  location = C:\Program Files (x86)\Micro Focus\Visual COBOL\Microsoft
  version  = 14.34.31933
 </pre>
+
+<!--=======================================================================-->
+
+## <span id="footnotes">Footnotes</span> [**&#x25B4;**](#top)
+
+<!-- <sup id="anchor_01">[1](#footnote_01)</sup> -->
+<span id="footnote_01">[1]</span> ***`cbllink` options*** (Mcro Focus) [↩](#anchor_01)
+
+<dl><dd>
+<pre style="font-size:80%;">
+<b>&gt; "%COBDIR%\bin64\cbllink.exe"</b>
+Micro Focus COBOL - CBLLINK utility
+Version 9.0.0.49 (C) Copyright 1984-2023 Micro Focus or one of its affiliates.
+&nbsp;
+usage: cbllink [-V] [-S] [-D] [-G] [-L] [-K] [-F]
+                [-R[V]] [-Mname] [-Oname] [-Uname] file1 [file2,...]
+&nbsp;
+CBLLINK invokes CBLNAMES and the linker to produce an executable module
+(EXE or DLL) from a list of supplied object files or source files.
+&nbsp;
+options:
+        -V      display Verbose output
+        -D      create a Dynamic link library
+        -G      mark executable as a Graphical application
+        -L      generate Linker .MAP file
+        -K      Do not delete temporary files
+        -M      specify Main entry point name
+        -I      specify symbol name to Include in the executable
+        -X      specify symbol name to Exclude from the DLL exports
+        -O      specify Output file name
+        -U      specify directives for the COBOL compiler to Use
+        -F      Link with imported shared runtime library
+        -R[V]   Link with dynamically bound shared runtime library
+                - V to limit binding to current run-time release only
+        -WCxxx  Pass option xxx to system C compiler
+        -WLxxx  Pass option xxx to system linker
+</pre>
+</dd></dl>
 
 ***
 

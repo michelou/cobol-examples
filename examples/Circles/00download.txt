@@ -1,1 +1,6 @@
 Source: https://stackoverflow.com/questions/56385297/getting-errors-not-quite-sure-why-this-is-my-first-cobol-program
+
+Correction:
+----------
+old: COMPUTE WS-RADIUS = WS-PI * WS-RADIUS * WS-RADIUS.
+new: COMPUTE WS-AREA = WS-PI * WS-RADIUS * WS-RADIUS.

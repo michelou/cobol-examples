@@ -55,10 +55,7 @@ set "_TARGET_DIR=%_ROOT_DIR%target"
 for /f "delims=" %%i in ("%~dp0\.") do set "_MAIN_NAME=%%~ni"
 set "_EXE_FILE=%_TARGET_DIR%\%_MAIN_NAME%.exe"
 
-@rem https://conemu.github.io/en/NewConsole.html
-if defined ConEmuDir ( set _PS_OPS=cur_console:i
-) else ( set _PS_OPTS=
-)
+@rem GnuCOBOL
 if not exist "%COB_HOME%\bin\cobc.exe" (
     echo %_ERROR_LABEL% GnuCOBOL installation not found 1>&2
     set _EXITCODE=1
@@ -66,13 +63,19 @@ if not exist "%COB_HOME%\bin\cobc.exe" (
 )
 set "_COBC_CMD=%COB_HOME%\bin\cobc.exe"
 
-@rem Visual COBOL
-if %PROCESSOR_ARCHITECTURE%==AMD64 ( set "_COB_BIN_DIR=%COBDIR%\bin64"
-) else ( set "_COB_BIN_DIR=%COBDIR%\bin"
+@rem Micro Focus Visual COBOL
+if %PROCESSOR_ARCHITECTURE%==AMD64 (
+    set "_MFCOB_BIN_DIR=%COBDIR%\bin64"
+    set _CCBL_NAME=ccbl64.exe
+) else (
+    set "_MFCOB_BIN_DIR=%COBDIR%\bin"
+    set _CCBL_NAME=ccbl.exe
 )
 set _CCBL_CMD=
-if exist "%_COB_BIN_DIR%\ccbl.exe" (
-    set "_CCBL_CMD=%_COB_BIN_DIR%\ccbl.exe"
+if exist "%_MFCOB_BIN_DIR%\%_CCBL_NAME%" (
+    set "_CCBL_CMD=%_MFCOB_BIN_DIR%\%_CCBL_NAME%"
+    set "_CBLLINK_CMD=%_MFCOB_BIN_DIR%\cbllink.exe"
+    set "_CBLPROMP_CMD=%_MFCOB_BIN_DIR%\cblpromp.exe"
 )
 
 @rem COBOL 4J
@@ -308,20 +311,20 @@ if defined CLASSPATH ( set "CLASSPATH=%CLASSPATH%;%COBJ_HOME%\lib\opensourcecobo
 ) else ( set "CLASSPATH=%COBJ_HOME%\lib\opensourcecobol4j\libcobj.jar"
 )
 if %_DEBUG%==1 (
-    for /f "delims=" %%i in ('where javac') do echo %_DEBUG_LABEL% %%i 1>&2
+    for /f "delims=" %%i in ('where javac') do echo %_DEBUG_LABEL% Java compiler: "%%i" 1>&2
     echo %_DEBUG_LABEL% CLASSPATH=%CLASSPATH% 1>&2
 )
 set __COBJ_OPTS="-conf=%_CONFIG_FILE%" -o "%_TARGET_DIR:\=/%/classes" -j "%_TARGET_DIR:\=/%/src"
 if %_FORMAT%==free set __COBJ_OPTS=-free %__COBJ_OPTS%
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_COBJ_CMD%" %__COBJ_OPTS% %__SOURCE_FILES:\=/%
-) else if %_VERBOSE%==1 echo Compile %__N_FILES% into directory "!_TARGET_DIR:%_ROOT_DIR%=!" 1>&2
+) else if %_VERBOSE%==1 echo Compile %__N_FILES% into directory "!_TARGET_DIR:%_ROOT_DIR%=!" ^(COBOL 4J^) 1>&2
 )
 call "%_COBJ_CMD%" %__COBJ_OPTS% %__SOURCE_FILES:\=/%
 if not %ERRORLEVEL%==0 (
     set "PATH=%__PATH%"
     set "CLASSPATH=%__CLASSPATH%"
-    echo %_ERROR_LABEL% Failed to compile %__N_FILES% into directory "!_TARGET_DIR:%_ROOT_DIR%=!" 1>&2
+    echo %_ERROR_LABEL% Failed to compile %__N_FILES% into directory "!_TARGET_DIR:%_ROOT_DIR%=!" ^(COBOL 4J^) 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -361,6 +364,7 @@ if %__N%==0 (
 )
 setlocal
 set "COB_CC=%COB_HOME%\mingw64\bin\gcc.exe"
+@rem we need to specify -I "%MSYS_HOME%\mingw64\include" in the case we use the GMP library
 set COB_CFLAGS=-I "%MSYS_HOME%\mingw64\include" -I "%COB_HOME%\include" -pipe -Wno-unused -fsigned-char -Wno-pointer-sign
 set COB_LIBS=-L "%COB_HOME%\lib" -lcob
 set "COB_CONFIG_DIR=%COB_HOME%\config"
@@ -376,12 +380,12 @@ if %_FORMAT%==free set __COBC_OPTS=--free %__COBC_OPTS%
 if %_DEBUG%==1 set __COBC_OPTS=--debug --verbose %__COBC_OPTS%
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_COBC_CMD%" %__COBC_OPTS% %__SOURCE_FILES%
-) else if %_VERBOSE%==1 echo Compile %__N_FILES% into directory "!_TARGET_DIR:%_ROOT_DIR%=!" 1>&2
+) else if %_VERBOSE%==1 echo Compile %__N_FILES% into directory "!_TARGET_DIR:%_ROOT_DIR%=!" ^(GnuCOBOL^) 1>&2
 )
 call "%_COBC_CMD%" %__COBC_OPTS% %__SOURCE_FILES% %_STDOUT_REDIRECT%
 if not %ERRORLEVEL%==0 (
     endlocal
-    echo %_ERROR_LABEL% Failed to compile %__N_FILES% into directory "!_TARGET_DIR:%_ROOT_DIR%=!" 1>&2
+    echo %_ERROR_LABEL% Failed to compile %__N_FILES% into directory "!_TARGET_DIR:%_ROOT_DIR%=!" ^(GnuCOBOL^) 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -402,47 +406,93 @@ if %__N%==0 (
 ) else if %__N%==1 ( set __N_FILES=%__N% COBOL source file
 ) else ( set __N_FILES=%__N% COBOL source files
 )
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_CBLPROMP_CMD%" 1>&2
+) else if %_VERBOSE%==1 ( echo Generate Micro Focus environment file 1>&2
+)
+call "%_CBLPROMP_CMD%" -n > "%_TARGET_DIR%\%_MAIN_NAME%_mfsetenv.bat"
+if not %ERRORLEVEL%==0 (
+    echo %_ERROR_LABEL%% Failed to generate Micro Focus environment file 1>&2
+    set _EXITCODE=1
+    goto :eof
+)
+setlocal
+call "%_TARGET_DIR%\%_MAIN_NAME%_mfsetenv.bat"
+
 @rem https://web.cse.ohio-state.edu/~reeves.92/CSE314/COBOLmanpage.htm
 @rem Option -a causes all warning messages to be displayed
 set __CCBL_OPTS=-Sa -a -o "%_TARGET_DIR%\%_MAIN_NAME%.exe"
 
-set "__PATH=%PATH%"
-set "PATH=%_COB_BIN_DIR%;%PATH%"
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_CCBL_CMD%" %__CCBL_OPTS% %__SOURCE_FILES%
-) else if %_VERBOSE%==1 ( echo Compile %__N_FILES% into directory "!_TARGET_DIR:%_ROOT_DIR%=!" 1>&2
+) else if %_VERBOSE%==1 ( echo Compile %__N_FILES% into directory "!_TARGET_DIR:%_ROOT_DIR%=!" ^(Visual COBOL^) 1>&2
 )
 call "%_CCBL_CMD%" %__CCBL_OPTS% %__SOURCE_FILES%
 if not %ERRORLEVEL%==0 (
-    set "PATH=%__PATH%"
-    echo %_ERROR_LABEL% Failed to compile %__N_FILES% into directory "!_TARGET_DIR:%_ROOT_DIR%=!" 1>&2
+    endlocal
+    echo %_ERROR_LABEL% Failed to compile %__N_FILES% into directory "!_TARGET_DIR:%_ROOT_DIR%=!" ^(Visual COBOL^) 1>&2
     set _EXITCODE=1
     goto :eof
 )
-set "PATH=%__PATH%"
+@rem Options: -K = Do not delete temporary files
+set _CBLLINK_OPTS=-F -M%_MAIN_NAME% -O%_EXE_FILE%
+if %_DEBUG%==1 set _CBLLINK_OPTS=-K -V %_CBLLINK_OPTS%
+
+set __OBJECT_FILES=
+set __N=0
+for /f "delims=" %%f in ('dir /s /b "%_TARGET_DIR%\*.exe.int" 2^>NUL') do (
+    set __OBJECT_FILES=!__OBJECT_FILES! "%%f"
+    set /a __N+=1
+)
+if %__N%==1 ( set __N_FILES=%__N% COBOL object file
+) else ( set __N_FILES=%__N% COBOL object files
+)
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_CBLLINK_CMD%" %_CBLLINK_OPTS% %__OBJECT_FILES% 1>&2
+) else if %_VERBOSE%==1 ( echo Link %__N_FILES% into directory "!_TARGET_DIR:%_ROOT_DIR%=!" 1>&2
+)
+pushd "%_TARGET_DIR%"
+call "%_CBLLINK_CMD%" %_CBLLINK_OPTS% %__OBJECT_FILES% %_STDOUT_REDIRECT%
+if not %ERRORLEVEL%==0 (
+    popd
+    endlocal
+    echo %_ERROR_LABEL% Failed to link %__N_FILES% into directory "!_TARGET_DIR:%_ROOT_DIR%=!" 1>&2
+    set _EXITCODE=1
+    goto :eof
+)
+popd
+endlocal
 goto :eof
 
-@rem input parameter: 1=target file 2=path (wildcards accepted)
+@rem input parameter: 1=target file 2,3,..=path (wildcards accepted)
 @rem output parameter: _ACTION_REQUIRED
 :action_required
-set __TARGET_FILE=%~1
-set __PATH=%~2
+set "__TARGET_FILE=%~1"
 
+set __PATH_ARRAY=
+set __PATH_ARRAY1=
+:action_path
+shift
+set __PATH=%~1
+if not defined __PATH goto action_next
+set __PATH_ARRAY=%__PATH_ARRAY%,'%__PATH%'
+set __PATH_ARRAY1=%__PATH_ARRAY1%,'!__PATH:%_ROOT_DIR%=!'
+goto action_path
+
+:action_next
 set __TARGET_TIMESTAMP=00000000000000
-for /f "usebackq" %%i in (`call "%PWSH_CMD%" %_PWSH_OPTS% %_PS_OPTS% -c "gci -path '%__TARGET_FILE%' -ea Stop | select -last 1 -expandProperty LastWriteTime | Get-Date -uformat %%Y%%m%%d%%H%%M%%S" 2^>NUL`) do (
+for /f "usebackq" %%i in (`call "%_PWSH_CMD%" -c "gci -path '%__TARGET_FILE%' -ea Stop | select -last 1 -expandProperty LastWriteTime | Get-Date -uformat %%Y%%m%%d%%H%%M%%S" 2^>NUL`) do (
      set __TARGET_TIMESTAMP=%%i
 )
 set __SOURCE_TIMESTAMP=00000000000000
-for /f "usebackq" %%i in (`call "%PWSH_CMD%" %_PWSH_OPTS% %_PS_OPTS% -c "gci -recurse -path '%__PATH%' -ea Stop | sort LastWriteTime | select -last 1 -expandProperty LastWriteTime | Get-Date -uformat %%Y%%m%%d%%H%%M%%S" 2^>NUL`) do (
+for /f "usebackq" %%i in (`call "%_PWSH_CMD%" -c "gci -recurse -path %__PATH_ARRAY:~1% -ea Stop | sort LastWriteTime | select -last 1 -expandProperty LastWriteTime | Get-Date -uformat %%Y%%m%%d%%H%%M%%S" 2^>NUL`) do (
     set __SOURCE_TIMESTAMP=%%i
 )
 call :newer %__SOURCE_TIMESTAMP% %__TARGET_TIMESTAMP%
 set _ACTION_REQUIRED=%_NEWER%
 if %_DEBUG%==1 (
-    echo %_DEBUG_LABEL% %__TARGET_TIMESTAMP% Target : "%__TARGET_FILE%" 1>&2
-    echo %_DEBUG_LABEL% %__SOURCE_TIMESTAMP% Sources: "%__PATH%" 1>&2
+    echo %_DEBUG_LABEL% %__TARGET_TIMESTAMP% Target : '%__TARGET_FILE%' 1>&2
+    echo %_DEBUG_LABEL% %__SOURCE_TIMESTAMP% Sources: %__PATH_ARRAY:~1% 1>&2
     echo %_DEBUG_LABEL% _ACTION_REQUIRED=%_ACTION_REQUIRED% 1>&2
 ) else if %_VERBOSE%==1 if %_ACTION_REQUIRED%==0 if %__SOURCE_TIMESTAMP% gtr 0 (
-    echo No action required ^("!__PATH:%_ROOT_DIR%=!"^) 1>&2
+    echo No action required ^(%__PATH_ARRAY1:~1%^) 1>&2
 )
 goto :eof
 
@@ -465,12 +515,10 @@ if %__DATE1% gtr %__DATE2% ( set _NEWER=1
 goto :eof
 
 :run
-if %_TOOLSET%==cobj ( call :run_java
-) else ( call :run_native
-)
+call :run_%_TOOLSET%
 goto :eof
 
-:run_java
+:run_cobj
 set __JAVA_OPTS=-cp "%COBJ_HOME%\lib\opensourcecobol4j\libcobj.jar;%_TARGET_DIR%\classes"
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_JAVA_CMD%" %__JAVA_OPTS% "%_MAIN_NAME%" 1>&2
@@ -484,7 +532,7 @@ if not %ERRORLEVEL%==0 (
 )
 goto :eof
 
-:run_native
+:run_gnu
 if not exist "%_EXE_FILE%" (
     echo %_DEBUG_LABEL% Main program "!_EXE_FILE:%_ROOT_DIR%=!" not found 1>&2
     set _EXITCODE=1
@@ -492,6 +540,31 @@ if not exist "%_EXE_FILE%" (
 )
 set "__PATH=%PATH%"
 set "PATH=%COB_HOME%\bin;%PATH%"
+
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% Execute program "!_EXE_FILE:%_ROOT_DIR%=!" 1>&2
+) else if %_VERBOSE%==1 ( echo Execute program "!_EXE_FILE:%_ROOT_DIR%=!" 1>&2
+)
+call "%_EXE_FILE%"
+if not %ERRORLEVEL%==0 (
+    set "PATH=%__PATH%"
+    echo %_DEBUG_LABEL% Failed to execute program "!_EXE_FILE:%_ROOT_DIR%=!" 1>&2
+    set _EXITCODE=1
+    goto :eof
+)
+set "PATH=%__PATH%"
+goto :eof
+
+:run_mf
+if not exist "%_EXE_FILE%" (
+    echo %_DEBUG_LABEL% Main program "!_EXE_FILE:%_ROOT_DIR%=!" not found 1>&2
+    set _EXITCODE=1
+    goto :eof
+)
+@rem we need clear the screen before output start at position 0,0
+cls
+
+set "__PATH=%PATH%"
+set "PATH=%_MFCOB_BIN_DIR%"
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% Execute program "!_EXE_FILE:%_ROOT_DIR%=!" 1>&2
 ) else if %_VERBOSE%==1 ( echo Execute program "!_EXE_FILE:%_ROOT_DIR%=!" 1>&2

@@ -2,7 +2,7 @@
 
 <table style="font-family:Helvetica,Arial;line-height:1.6;">
   <tr>
-  <td style="border:0;padding:0 4px 0 0;min-width:100px;"><a href=" rel="external"><img style="border:0;" src="docs/images/opensource-cobol.png" width="100" alt="COBOL 4J"/></a></td>
+  <td style="border:0;padding:0 4px 0 0;min-width:100px;"><a href=" rel="external"><img style="border:0;" src="./docs/images/opensource-cobol.png" width="100" alt="COBOL 4J"/></a></td>
   <td style="border:0;padding:0;vertical-align:text-top;">This page gives usage information about <a href="https://github.com/opensourcecobol/opensourcecobol4j">COBOL 4J</a> on a Windows machine.</td>
   </tr>
 </table>
