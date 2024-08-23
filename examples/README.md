@@ -1,4 +1,4 @@
-8# <span id="top">COBOL examples</span> <span style="font-size:90%;">[⬆](../README.md#top)</span>
+# <span id="top">COBOL examples</span> <span style="font-size:90%;">[⬆](../README.md#top)</span>
 
 <table style="font-family:Helvetica,Arial;line-height:1.6;">
   <tr>
@@ -144,7 +144,6 @@ Example `SubProgram` has the following directory structure :
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" rel="external">tree</a> /f /a . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /v /b [A-Z]</b>
-<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" rel="external">tree</a> /f /a . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /v /b [A-Z]</b>
 |   <a href="./SubProgram/00download.txt">00download.txt</a>
 |   <a href="./SubProgram/build.bat">build.bat</a>
 |   <a href="./SubProgram/build.sh">build.sh</a>
@@ -181,7 +180,7 @@ Return value from functionABC2 function: +0000000200
 > C:\Program Files (x86)\Micro Focus\Visual COBOL\bin64\ccbl64.exe: error(s) in compilation: J:\examples\SubProgram\src\main\cobol\SubProgram.cbl
 > Error: Failed to compile 1 COBOL source file into directory "target" (Visual COBOL)
 > </pre>
-> We get a different error message with the COBOL 4J compiler :
+> We get a different error message with the COBOL 4J compiler (option `-cobj`) :
 > <pre style="font-size:80%;">
 > <b>&gt; <a href="./SubProgram/build.bat">build</a> -verbose -cobj clean run</b>
 > Compile 1 COBOL source file into directory "target" (COBOL 4J)
@@ -193,7 +192,7 @@ Return value from functionABC2 function: +0000000200
 
 ## <span id="footnotes">Footnotes</span> [**&#x25B4;**](#top)
 
-<span id="footnote_01">[1]</span> ***Option* `-debug`** [↩](#anchor_01)
+<span id="footnote_01">[1]</span> ***Option* `-debug`** (GnuCOBOL) [↩](#anchor_01)
 
 <dl><dd>
 With option <code>-debug</code> we print each build step :
