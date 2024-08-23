@@ -1,4 +1,4 @@
-# <span id="top">COBOL examples</span> <span style="font-size:90%;">[⬆](../README.md#top)</span>
+8# <span id="top">COBOL examples</span> <span style="font-size:90%;">[⬆](../README.md#top)</span>
 
 <table style="font-family:Helvetica,Arial;line-height:1.6;">
   <tr>
@@ -11,7 +11,7 @@ Our build scripts provide the following options to specify the COBOL compiler :
 
 | Option  | Compiler    | Version |
 |:--------|:------------|:--------|
-| `-cobj` | [COBOL 4J](../COBOL_4J.md) | 1.0.22 |
+| `-cobj` | [COBOL 4J](../COBOL_4J.md) | 1.1.2 |
 | `-gnu` *(default)*  | [GnuCOBOL](../GNUCOBOL.md) | 3.3-dev.0 |
 | `-mf`   | [Visual COBOL](../VISUAL_COBOL.md) | 9.0.0.49 |
 
