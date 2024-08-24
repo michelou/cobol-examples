@@ -24,6 +24,7 @@ Example `Circles` has the following directory structure :
 |   <a href="./Circles/00download.txt">00download.txt</a>
 |   <a href="./Circles/build.bat">build.bat</a>
 |   <a href="./Circles/build.sh">build.sh</a>
+|   <a href="./Circles/Makefile">Makefile</a>
 \---src
     \---main
         \---cobol
@@ -39,7 +40,7 @@ Compile 1 COBOL source file into directory "target"
 Execute program "target\Circles.exe"
 Please enter radius of circle:
 3
-Circle Circumfrence is:   18.84
+Circle circumference is:   18.84
 Circle area is:    28.27
 </pre>
 
@@ -117,7 +118,7 @@ Example `Sort` comes from the webpage [Mainframe tips](https://mainframe-tips-an
                 <a href="./Sort/src/main/cobol/Sort.cbl">Sort.cbl</a>
 </pre>
 
-Command [`build.bat`](./Sort/build.bat)`-verbose clean run` generates and executes the COBOL program `target\Sorte.exe` :
+Command [`build.bat`](./Sort/build.bat)`-verbose clean run` generates and executes the COBOL program `target\Sort.exe` :
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="./Sort/build.bat">build</a> -verbose clean run</b>
