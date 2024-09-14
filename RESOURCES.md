@@ -30,6 +30,7 @@
 ## <span id="community">Community</span> [**&#x25B4;**](#top)
 
 - [COBOL technical questions](https://community.openmainframeproject.org/c/cobol-technical-questions/16) &ndash; OPEN MAINFRAME PROJECT.
+- [GnuCOBOL/OpenCOBOL Downloads, Binaries, and Links](https://www.arnoldtrembley.com/GnuCOBOL.htm) by Arnold Trembley.
 
 ## <span id="courses">Courses</span> [**&#x25B4;**](#top)
 
@@ -75,7 +76,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/August 2024* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/September 2024* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

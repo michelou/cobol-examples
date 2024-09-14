@@ -60,7 +60,7 @@ help:
 	@$(ECHO) "    build  compile COBOL source files"
 	@$(ECHO) "    clean  delete generated files"
 	@$(ECHO) "    help   print this help message"
-	@$(ECHO) "    run    execute main program \"$(PROJECT_NAME)\""
+	@$(ECHO) "    run    execute main program \"$(PROJECT_NAME)$(TARGET_EXT)\""
 
 ##############################################################################
 ## test rules

@@ -251,7 +251,7 @@ echo   %__BEG_P%Subcommands:%__END%
 echo     %__BEG_O%clean%__END%       delete generated files
 echo     %__BEG_O%compile%__END%     generate executable files
 echo     %__BEG_O%help%__END%        print this help message
-echo     %__BEG_O%run%__END%         execute the generated program "!_EXE_FILE:%_ROOT_DIR%=!"
+echo     %__BEG_O%run%__END%         execute COBOL program "!_EXE_FILE:%_ROOT_DIR%=!"
 goto :eof
 
 :clean
