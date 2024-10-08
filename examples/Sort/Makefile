@@ -48,9 +48,12 @@ clean:
 	"$(RM)" -rf "$(TARGET_DIR)"
 
 run: build
-	@[ -f "$(TARGET)" ] || $(ECHO) "Target not found" 1>&2
-	PATH=$(COB_BIN_DIR) \
-	"$(TARGET)"
+	@if [ -f "$(TARGET)" ]; then \
+	    PATH="$(COB_BIN_DIR):$(PATH)" && \
+	    "$(TARGET)"; \
+	else \
+	    $(ECHO) "Target not found" 1>&2; \
+	fi
 
 help:
 	@$(ECHO) "Usage: make all|build|clean|help|run"

@@ -75,7 +75,7 @@ Version <b>1.1.2</b> of library <code>libcobj.jar</code> has the following depen
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/September 2024* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/October 2024* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

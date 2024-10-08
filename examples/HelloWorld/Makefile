@@ -44,9 +44,12 @@ clean:
 	"$(RM)" -rf "$(TARGET_DIR)"
 
 run: build
-	@[ -f "$(TARGET)" ] || $(ECHO) "Target not found" 1>&2
-	PATH="$(PREFIX)/bin:$(PATH)" \
-	"$(TARGET)"
+	@if [ -f "$(TARGET)" ]; then \
+	    PATH="$(COB_BIN_DIR):$(PATH)" && \
+	    "$(TARGET)"; \
+	else \
+	    $(ECHO) "Target not found" 1>&2; \
+	fi
 
 help:
 	@$(ECHO) "Usage: make all|build|clean|help|run"
@@ -56,7 +59,7 @@ help:
 	@$(ECHO) "    build  compile COBOL source files"
 	@$(ECHO) "    clean  delete generated files"
 	@$(ECHO) "    help   print this help message"
-	@$(ECHO) "    run    execute main program \"$(PROJECT_NAME)\""
+	@$(ECHO) "    run    execute main program \"$(PROJECT_NAME)$(TARGET_EXT)\""
 
 ##############################################################################
 ## test rules

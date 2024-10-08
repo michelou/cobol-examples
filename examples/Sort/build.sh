@@ -178,7 +178,7 @@ compile_cob() {
 mixed_path() {
     if [[ -x "$CYGPATH_CMD" ]]; then
         $CYGPATH_CMD -am $1
-    elif $mingw || $msys; then
+    elif [[ $(($mingw + $msys)) -gt 0 ]]; then
         echo $1 | sed 's|/|\\\\|g'
     else
         echo $1
