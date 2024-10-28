@@ -89,7 +89,7 @@ Example `MontyHall` has the following directory structure :
                 <a href="./MontyHall/src/main/cobol/MontyHall.cbl">MontyHall.cbl</a>  <span style="font-family:Helvetica,Arial;font-size:9pt;">(from <a href="https://github.com/mikebharris/COBOL-katas/tree/master/COBOL-Monty-Hall">Harris's solution</a>)</span>
 </pre>
 
-Command `sh`[`./build.sh`](./MontyHal/build.sh)`-verbose clean run` generates and executes the COBOL program `target\FizzBuzz.exe` :
+Command `sh`[`./build.sh`](./MontyHall/build.sh)`-verbose clean run` generates and executes the COBOL program `target\MontyHall.exe` :
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="https://man7.org/linux/man-pages/man1/sh.1p.html" rel="external">sh</a> ./<a href="./MontyHall/build.sh">build.sh</a> -verbose clean run</b>
