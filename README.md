@@ -38,11 +38,11 @@ For instance our development environment looks as follows (*November 2024*) <sup
 <pre style="font-size:80%;">
 C:\opt\cobj\<sup id="anchor_03"><a href="#footnote_03">3</a></sup>                                     <i>(  10 MB)</i>
 C:\opt\ConEmu\                                    <i>(  26 MB)</i>
-C:\opt\Git\                                       <i>( 367 MB)</i>
+C:\opt\Git\                                       <i>( 392 MB)</i>
 C:\opt\GnuCOBOL\                                  <i>( 548 MB)</i>
-C:\opt\jdk-temurin-17.0.13_11\                    <i>( 301 MB)</i>
+C:\opt\jdk-temurin-17.0.13_11\                    <i>( 304 MB)</i>
 C:\opt\msys64\                                    <i>(2.83 GB)</i>
-C:\opt\VSCode\                                    <i>( 341 MB)</i>
+C:\opt\VSCode\                                    <i>( 381 MB)</i>
 C:\Program Files (x86)\Micro Focus\Visual COBOL\  <i>(1.26 GB)</i>
 </pre>
 
@@ -273,6 +273,7 @@ Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="
 [conemu_relnotes]: https://conemu.github.io/blog/2023/07/24/Build-230724.html
 [cpp_examples]: https://github.com/michelou/cpp-examples#top
 [dafny_examples]: https://github.com/michelou/dafny-examples#top
+[dart_examples]: https://github.com/michelou/dart-examples#top
 [deno_examples]: https://github.com/michelou/deno-examples#top
 [docker_examples]: https://github.com/michelou/docker-examples#top
 [erlang_examples]: https://github.com/michelou/erlang-examples#top
