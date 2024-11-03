@@ -272,6 +272,7 @@ Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="
 [conemu_downloads]: https://github.com/Maximus5/ConEmu/releases
 [conemu_relnotes]: https://conemu.github.io/blog/2023/07/24/Build-230724.html
 [cpp_examples]: https://github.com/michelou/cpp-examples#top
+[dafny_examples]: https://github.com/michelou/dafny-examples#top
 [deno_examples]: https://github.com/michelou/deno-examples#top
 [docker_examples]: https://github.com/michelou/docker-examples#top
 [erlang_examples]: https://github.com/michelou/erlang-examples#top
@@ -291,7 +292,7 @@ Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="
 [kafka_examples]: https://github.com/michelou/kafka-examples#top
 [kotlin_examples]: https://github.com/michelou/kotlin-examples#top
 [llvm_examples]: https://github.com/michelou/llvm-examples#top
-[m2_examples]: https://github.com/michelou/m2-examples
+[m2_examples]: https://github.com/michelou/m2-examples#top
 [make_cli]: https://www.gnu.org/software/make/manual/html_node/Running.html
 [man1_awk]: https://www.linux.org/docs/man1/awk.html
 [man1_diff]: https://www.linux.org/docs/man1/diff.html
