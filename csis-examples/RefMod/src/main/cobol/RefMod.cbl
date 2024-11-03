@@ -1,6 +1,6 @@
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  RefModification.
-AUTHOR.  Michael Coughlan.
+*> AUTHOR.  Michael Coughlan.
 *> An example program using Reference Modification, Intrinsic Functions
 *> and the INSPECT.
 *> The program solves a number of tasks suggested by Judy Yaeger in her
@@ -63,6 +63,8 @@ Begin.
 *>  is encountered.  Then use reference modification to get the substring.
     PERFORM VARYING CharCount FROM 50 BY -1
         UNTIL xStr(CharCount:1) NOT = SPACE
+        *> See https://sourceforge.net/p/gnucobol/bugs/965/
+        CONTINUE
     END-PERFORM
     DISPLAY "Task4 After = "xStr(1:CharCount) "<<<<<<<".
 

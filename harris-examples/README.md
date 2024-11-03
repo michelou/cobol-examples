@@ -15,9 +15,9 @@ Example `100Doors` has the following directory structure :
 <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" rel="external">tree</a> /a /f . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /b /v [A-Z]</b>
 |   <a href="./100Doors/build.bat">build.bat</a>
 |   <a href="./100Doors/build.sh">build.sh</a>
-\---src
-    \---main
-        \---cobol
+\---<b>src</b>
+    \---<b>main</b>
+        \---<b>cobol</b>
                 <a href="./100Doors/src/main/cobol/100Doors.cbl">100Doors.cbl</a>  <span style="font-family:Helvetica,Arial;font-size:9pt;">(from <a href="https://github.com/mikebharris/COBOL-katas/tree/master/COBOL-100-Doors">Harris's solution</a>)</span>
 </pre>
 
@@ -51,9 +51,9 @@ Example `FizzBuzz` has the following directory structure :
 <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" rel="external">tree</a> /a /f . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /b /v [A-Z]</b>
 |   <a href="./FizzBuzz/build.bat">build.bat</a>
 |   <a href="./FizzBuzz/build.sh">build.sh</a>
-\---src
-    \---main
-        \---cobol
+\---<b>src</b>
+    \---<b>main</b>
+        \---<b>cobol</b>
                 <a href="./FizzBuzz/src/main/cobol/FizzBuzz.cbl">FizzBuzz.cbl</a>  <span style="font-family:Helvetica,Arial;font-size:9pt;">(from <a href="https://github.com/mikebharris/COBOL-katas/tree/master/COBOL-FizzBuzz">Harris's solution</a>)</span>
 </pre>
 
@@ -107,7 +107,7 @@ Conclusion is that it's better to swap.  This makes sense as the probability in 
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/October 2024* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/November 2024* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

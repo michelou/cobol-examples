@@ -21,13 +21,13 @@ Example `MonthTable` has the following directory structure :
 <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" loc="external">tree</a> /a /f . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /v /b [A-Z]</b>
 |   <a href="./MonthTable/build.bat">build.bat</a>
 |   <a href="./MonthTable/STUDENTS.DAT">STUDENTS.DAT</a>
-+---docs
++---<b>docs</b>
 |       <a href="./MonthTable/docs/00download.txt">00download.txt</a>
 |       <a href="./MonthTable/docs/MonthTable.md">MonthTable.md</a>
 |       <a href="./MonthTable/docs/T-CobolExercise.gif">T-CobolExercise.gif</a>
-\---src
-    \---main
-        \---cobol
+\---<b>src</b>
+    \---<b>main</b>
+        \---<b>cobol</b>
                 <a href="./MonthTable/src/main/cobol/MonthTable.cbl">MonthTable.cbl</a>
 </pre>
 
@@ -101,9 +101,9 @@ Example `SeqWrite` has the following directory structure :
 <b>&gt; <a href="">tree</a> /a /f .| <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /v /b [A-Z]</b>
 |   <a href="./SeqWrite/build.bat">build.bat</a>
 |   <a href="./SeqWrite/build.sh">build.sh</a>
-\---src
-    \---main
-        \---cobol
+\---<b>src</b>
+    \---<b>main</b>
+        \---<b>cobol</b>
                 <a href="./SeqWrite/src/main/cobol/SeqWrite.cbl">SeqWrite.cbl</a>
 </pre>
 
@@ -120,7 +120,7 @@ NNNNNNNSSSSSSSSIIYYYYMMDDCCCCG
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/October 2024* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/November 2024* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

@@ -7,11 +7,11 @@
   </tr>
 </table>
 
-Our build scripts provide the following options to specify the COBOL compiler :
+Our build scripts support the following options to specify the COBOL compiler :
 
 | Option  | Compiler    | Version |
 |:--------|:------------|:--------|
-| `-cobj` | [COBOL 4J](../COBOL_4J.md) | 1.1.2 |
+| `-cobj` | [COBOL 4J](../COBOL_4J.md) | 1.1.3 |
 | `-gnu` *(default)*  | [GnuCOBOL](../GNUCOBOL.md) | 3.3-dev.0 |
 | `-mf`   | [Visual COBOL](../VISUAL_COBOL.md) | 9.0.0.49 |
 
@@ -25,9 +25,9 @@ Example `Circles` has the following directory structure :
 |   <a href="./Circles/build.bat">build.bat</a>
 |   <a href="./Circles/build.sh">build.sh</a>
 |   <a href="./Circles/Makefile">Makefile</a>
-\---src
-    \---main
-        \---cobol
+\---<b>src</b>
+    \---<b>main</b>
+        \---<b>cobol</b>
                 <a href="./Circles/src/main/cobol/CIRCLES.cbl">Circles.cbl</a>
 </pre>
 
@@ -239,7 +239,7 @@ return status:  0
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/October 2024* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/November 2024* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

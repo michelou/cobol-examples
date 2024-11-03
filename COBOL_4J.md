@@ -40,7 +40,7 @@ For instance we invoke the <a href="https://github.com/opensourcecobol/opensourc
 </pre>
 where the defined variables :
 <ul>
-<li><code>JAVA_HOME</code> equals <code>C:\opt\jdk-temurin-17.0.12_7</code> (for `java.exe` command).</li>
+<li><code>JAVA_HOME</code> equals <code>C:\opt\jdk-temurin-17.0.13_11</code> (for <code>java.exe</code> command).</li>
 <li><code>COBJ_HOME</code> equals <code>C:\opt\cobj</code> (our <a href="https://github.com/opensourcecobol/opensourcecobol4j">COBOL 4J</a> installation directory).</li>
 <li><code>_COBJ_CMD</code> equals <code>%COBJ_HOME%\bin\cobj.exe</code>.</li>
 </ul>
@@ -56,7 +56,7 @@ where the defined variables :
 <span id="footnote_02">[2]</span> **`libcobj.jar` *dependencies*** [↩](#anchor_02)
 
 <dl><dd>
-Version <b>1.1.2</b> of library <code>libcobj.jar</code> has the following dependencies (see also Gradle build file <a href="https://github.com/opensourcecobol/opensourcecobol4j/blob/develop/libcobj/app/build.gradle.kts#L29"><code>build.gradle.kts</code></a>) :
+Version <b>1.1.3</b> of library <code>libcobj.jar</code> has the following dependencies (see also Gradle build file <a href="https://github.com/opensourcecobol/opensourcecobol4j/blob/develop/libcobj/app/build.gradle.kts#L29"><code>build.gradle.kts</code></a>) :
 
 | Project | MVN&nbsp;repository | Version |
 |:--------|:--------------------|:--------|
@@ -75,7 +75,7 @@ Version <b>1.1.2</b> of library <code>libcobj.jar</code> has the following depen
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/October 2024* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/November 2024* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

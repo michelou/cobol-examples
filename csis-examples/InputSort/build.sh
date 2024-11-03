@@ -94,7 +94,7 @@ EOS
 }
 
 clean() {
-    if [[ -d "$TARGET_DIR" ]]; then
+    if [ -d "$TARGET_DIR" ]; then
         if [[ $DEBUG -eq 1 ]]; then
             debug "Delete directory \"$TARGET_DIR\""
         elif [[ $VERBOSE -eq 1 ]]; then
@@ -205,10 +205,6 @@ run() {
         cleanup 1
     fi
     export PATH="$saved_path"
-}
-
-run_tests() {
-    echo "tests"
 }
 
 ##############################################################################
