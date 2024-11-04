@@ -193,7 +193,7 @@ make[1]: Leaving directory '/j/opensourcecobol4j-1.1.3'
 <b>&gt; <a href="https://www.gnu.org/software/make/manual/make.html">make</a> install</b>
 </pre>
 
-> **Note**: The <code>make insntall</code> command requires that the following development tools are available through the <code>PATH</code> environment variable :
+> **Note**: The <code>make install</code> command requires that the following development tools are available through the <code>PATH</code> environment variable :
 > <pre style="font-size:80%;">
 > <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where" rel="external">where</a> autoconf bison flex</b>
 > c:\opt\msys64\usr\bin\autoconf
