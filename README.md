@@ -112,7 +112,7 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
    C:\opt\Git\usr\bin\sh.exe
    </pre>
 
-> :mag_right: Command [**`setenv help`**](./setenv.bat) displays the help messsage :
+> :mag_right: Command [**`setenv help`**](./setenv.bat) displays the help message :
 
 <!--=======================================================================-->
 
