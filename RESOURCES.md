@@ -15,9 +15,11 @@
 - [A journey into the past: Programming with GNU COBOL][article_harris] by Mike Harris, 2017.
 - [Don't hate COBOL until you've tried it][article_mankowski] by Walt Mankowski, August 2017.
 - [Creating Native Java Classes in COBOL](https://www.gennard.net/NativeJava/), April 1997.
+- [Structured programming in Cobol](https://dl.acm.org/doi/10.1145/359367.359368) by Allen van Gelder, [CACM Vol.20 No.1](https://cacm.acm.org/issue/january-1977/), January 1977.
 
 ## <span id="blogs">Blogs</span> [**&#x25B4;**](#top)
 
+- [Learning COBOL: A Journey for the Modern Programmer](https://monadical.com/posts/cobol.html#) by Juan Diego Caballero, April 2021.
 - [PERFORM in COBOL and Types of PERFORM in COBOL][blog_topictrick] by Topictrick.com, January 2021.
 - [Integrating Cobol with JavaScript](https://medium.com/graalvm/integrating-cobol-with-javascript-c2d1ffe00678) by Christoph Schobesberger, October 2020.
 - [Installing gnuCOBOL on Windows][blog_theman] by Dan TheMan, May 2020.
@@ -76,7 +78,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/November 2024* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/December 2024* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
