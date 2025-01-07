@@ -57,7 +57,7 @@ bin\
 csis-examples\{<a href="./csis-examples/README.md">README.md</a>, <a href="./csis-examples/MonthTable/">MonthTable</a>, etc.}
 docs\
 dovey-examples\{<a href="./dovey-examples/README.md">README.md</a>, <a href="./dovey-examples/Colors/">Colors</a>, etc.}
-examples\{<a href="./examples/README.md">README.md</a>, <a href="examples/helloworld/">helloworld</a>, etc.}
+examples\{<a href="./examples/README.md">README.md</a>, <a href="examples/HelloWorld/">HelloWorld</a>, etc.}
 harris-examples\{<a href="./harris-examples/README.md">README.md</a>, <a href="./harris-examples/100Doors/">100Doors</a>, <a href="./harris-examples/FizzBuzz/">FizzBuzz</a>, etc.}
 moseley-examples\{<a href="./moseley-examples/README.md">README.md</a>, <a href="./moseley-examples/Elapsed/">Elapsed</a>, etc.}
 <a href="COBOL_4J.md">COBOL_4J.md</a>
