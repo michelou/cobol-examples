@@ -67,7 +67,7 @@ args() {
             ;;
         esac
     done
-    debug "Options    : FORMAT=$FORMAT STANDARD=$STANDARD VERBOSE=$VERBOSE"
+    debug "Options    : FORMAT=$FORMAT STANDARD=$STANDARD TOOLSET=$TOOLSET VERBOSE=$VERBOSE"
     debug "Subcommands: CLEAN=$CLEAN COMPILE=$COMPILE HELP=$HELP RUN=$RUN"
     debug "Variables  : COB_HOME=$COB_HOME"
     debug "Variables  : GIT_HOME=$GIT_HOME"
@@ -207,10 +207,6 @@ run() {
     export PATH="$saved_path"
 }
 
-run_tests() {
-    echo "tests"
-}
-
 ##############################################################################
 ## Environment setup
 
@@ -234,6 +230,7 @@ HELP=0
 RUN=0
 ## option -std:<name>, name=default, cobol2014
 STANDARD=cobol2014
+TOOLSET=gnu
 VERBOSE=0
 
 cygwin=0

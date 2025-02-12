@@ -52,7 +52,7 @@ set "_SOURCE_DIR=%_ROOT_DIR%src"
 set "_SOURCE_MAIN_DIR=%_SOURCE_DIR%\main\cobol"
 set "_TARGET_DIR=%_ROOT_DIR%target"
 
-for %%i in ("%~dp0\.") do set "_MAIN_NAME=%%~ni"
+for /f "delims=" %%i in ("%~dp0\.") do set "_MAIN_NAME=%%~ni"
 set "_EXE_FILE=%_TARGET_DIR%\%_MAIN_NAME%.exe"
 
 if not exist "%COB_HOME%\bin\cobc.exe" (

@@ -102,6 +102,39 @@ Hello World!
 
 <!--=======================================================================-->
 
+## <span id="cobcalc">`COBCALC` Example</span> [**&#x25B4;**](#top)
+
+Example `COBCALC` comes from IBM online documentation [IBM Debug for z/OS](https://www.ibm.com/docs/en/debug-for-zos/17.0?topic=mode-example-sample-cobol-program-debugging); it has the following directory structure :
+
+<pre style="font-size:80%;">
+<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" rel="external">tree</a> /f /a . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /v /b [A-Z]</b>
+|   <a href="./COBCALC/00download.txt">00download.txt</a>
+|   <a href="./COBCALC/build.bat">build.bat</a>
+|   <a href="./COBCALC/build.sh">build.sh</a>
+|   <a href="./COBCALC/Makefile">Makefile</a>
+\---<b>src</b>
+    \---<b>main</b>
+        \---<b>cobol</b>
+                <a href="./COBCALC/src/main/cobol/COBCALC.cbl">COBCALC.cbl</a>
+                <a href="./COBCALC/src/main/cobol/COBLOAN.cbl">COBLOAN.cbl</a>
+                <a href="./COBCALC/src/main/cobol/COBVALU.cbl">COBVALU.cbl</a>
+</pre>
+
+Command [`build.bat`](./COBCALC/build.bat)`clean run` generates and executes the COBOL program `target\COBCALC.exe` :
+
+<pre style="font-size:80%;">
+<b>&gt; <a href="./COBCALC/build.bat">build</a> -verbose clean run</b>
+Compile 3 COBOL source files into directory "target" (GnuCOBOL)
+Execute program "target\COBCALC.exe"
+CALC Begins.
+COBLOAN: Repayment amount for a 24 month loan of 30000 at .09 interest is:           $1,370.54
+COBVALU: Present value for rate of .12 given amounts 50, 69, 83, 75, 44 is:              $0.00
+COBVALU: Present value for rate of .12 given amounts 50, 69, 83, 75, 44 is:              $0.00
+CALC Ends.
+</pre>
+
+<!--=======================================================================-->
+
 ## <span id="sort">`Sort` Example</span> [**&#x25B4;**](#top)
 
 Example `Sort` comes from the webpage [Mainframe tips](https://mainframe-tips-and-tricks.blogspot.com/2021/08/sort-table-or-array-using-cobol-sort.html); it has the following directory structure :
@@ -118,7 +151,7 @@ Example `Sort` comes from the webpage [Mainframe tips](https://mainframe-tips-an
                 <a href="./Sort/src/main/cobol/Sort.cbl">Sort.cbl</a>
 </pre>
 
-Command [`build.bat`](./Sort/build.bat)`-verbose clean run` generates and executes the COBOL program `target\Sort.exe` :
+Command [`build.bat`](./Sort/build.bat)`clean run` generates and executes the COBOL program `target\Sort.exe` :
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="./Sort/build.bat">build</a> -verbose clean run</b>
@@ -239,7 +272,7 @@ return status:  0
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/January 2025* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/February 2025* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
