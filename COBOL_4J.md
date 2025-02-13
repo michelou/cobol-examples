@@ -40,7 +40,7 @@ For instance we invoke the <a href="https://github.com/opensourcecobol/opensourc
 </pre>
 where the defined variables :
 <ul>
-<li><code>JAVA_HOME</code> equals <code>C:\opt\jdk-temurin-17.0.13_11</code> (for <code>java.exe</code> command).</li>
+<li><code>JAVA_HOME</code> equals <code>C:\opt\jdk-temurin-17.0.14_7</code> (for <code>java.exe</code> command).</li>
 <li><code>COBJ_HOME</code> equals <code>C:\opt\cobj</code> (our <a href="https://github.com/opensourcecobol/opensourcecobol4j">COBOL 4J</a> installation directory).</li>
 <li><code>_COBJ_CMD</code> equals <code>%COBJ_HOME%\bin\cobj.exe</code>.</li>
 </ul>
@@ -56,13 +56,13 @@ where the defined variables :
 <span id="footnote_02">[2]</span> **`libcobj.jar` *dependencies*** [↩](#anchor_02)
 
 <dl><dd>
-Version <a href="https://github.com/opensourcecobol/opensourcecobol4j/releases/tag/v1.1.5"><b>1.1.5</b></a> of library <code>libcobj.jar</code> has the following dependencies (see also Gradle build file <a href="https://github.com/opensourcecobol/opensourcecobol4j/blob/develop/libcobj/app/build.gradle.kts#L29"><code>build.gradle.kts</code></a>) :
+Version <a href="https://github.com/opensourcecobol/opensourcecobol4j/releases/tag/v1.1.6"><b>1.1.6</b></a> of library <code>libcobj.jar</code> has the following dependencies (see also Gradle build file <a href="https://github.com/opensourcecobol/opensourcecobol4j/blob/develop/libcobj/app/build.gradle.kts#L29"><code>build.gradle.kts</code></a>) :
 
 | Project | MVN&nbsp;repository | Version |
 |:--------|:--------------------|:--------|
 | [Guava](https://github.com/google/guava#guava-google-core-libraries-for-java) | [com.google.common](https://mvnrepository.com/artifact/com.google.guava/guava) | [33.4.0-jre](https://mvnrepository.com/artifact/com.google.guava/guava/33.4.0-jre) |
 | [Guava](https://github.com/google/guava#guava-google-core-libraries-for-java) | [com.google.thirdparty](https://mvnrepository.com/artifact/com.google.guava/guava) | [33.4.0-jre](https://mvnrepository.com/artifact/com.google.guava/guava/33.4.0-jre) |
-| [SQLite JDBC](https://github.com/xerial/sqlite-jdbc#sqlite-jdbc-driver) | [org.sqlite](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc) | [3.47.1.0](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc/3.47.1.0) |
+| [SQLite JDBC](https://github.com/xerial/sqlite-jdbc#sqlite-jdbc-driver) | [org.sqlite](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc) | [3.48.0.0](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc/3.48.0.0) |
 | [Apache Commons CLI](https://commons.apache.org/proper/commons-cli/) | [commons-cli](https://mvnrepository.com/artifact/commons-cli/commons-cli) | [1.9.0](https://mvnrepository.com/artifact/commons-cli/commons-cli/1.9.0) |
 | [Check Framework](https://checkerframework.org/) | [org.checkerframework](https://mvnrepository.com/artifact/org.checkerframework/checker-qual) <sup><b>a)</b></sup> | [3.43.0](https://mvnrepository.com/artifact/org.checkerframework/checker-qual/3.43.0) |
 | [J2ObjC Annotations](https://mvnrepository.com/artifact/com.google.j2objc/j2objc-annotations) | [j2objc-annotations](https://mvnrepository.com/artifact/com.google.j2objc/j2objc-annotations) <sup><b>a)</b></sup> | [3.0.0](https://mvnrepository.com/artifact/com.google.j2objc/j2objc-annotations/3.0.0) |
