@@ -18,7 +18,7 @@
 
 This project depends on the following external software for the **Microsoft Windows** platform:
 
-- [Git 2.47][git_releases] ([*release notes*][git_relnotes])
+- [Git 2.48][git_releases] ([*release notes*][git_relnotes])
 - [GnuCOBOL 3.2][gnucobol_binaries] ([*release notes*][gnucobol_relnotes], [*news file*][gnucobol_news])
 - [MSYS2 2024][msys2_downloads] <sup id="anchor_01">[1](#footnote_01)</sup> ([*changelog*][msys2_changelog])
 
@@ -101,8 +101,8 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
    <pre style="font-size:80%;">
    <b>&gt; <a href="./setenv.bat">setenv</a></b>
    Tool versions:
-   cobc 3.3.0, ccbl 9.0.0.49, cobj 1.1.6, java 17.0.13, make 4.4.1,
-   git 2.47.1, diff 3.10, bash 5.2.37(1)
+   cobc 3.3.0, ccbl 9.0.0.49, cobj 1.1.6, java 17.0.14, make 4.4.1,
+   git 2.48.1, diff 3.10, bash 5.2.37(1)
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git make sh</b>
    C:\opt\Git\bin\git.exe
@@ -135,8 +135,8 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <a href="https://repo.msys2.org/distrib/x86_64/">msys2-x86_64-20240727.exe</a>                         <i> ( 83 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.14_7.zip</a>   <i>(188 MB)</i>
 <a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.1.6.zip</a>                        <i>(  8 MB)</i>
-<a href="https://git-scm.com/download/win">PortableGit-2.47.1-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
-<a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.97.1.zip</a>                        <i>(131 MB)</i>
+<a href="https://git-scm.com/download/win">PortableGit-2.48.1-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
+<a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.97.2.zip</a>                        <i>(131 MB)</i>
 <a href="https://">vcvs2022_90.exe</a> (for Visual Studio 2022)           <i>(820 MB)</i>
 </pre>
 <p style="background-color:#eeeeee;">
@@ -280,7 +280,7 @@ Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="
 [flix_examples]: https://github.com/michelou/flix-examples#top
 [git_cli]: https://git-scm.com/docs/git
 [git_releases]: https://git-scm.com/download/win
-[git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.47.1.txt
+[git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.48.1.txt
 [github_markdown]: https://github.github.com/gfm/
 [gnucobol]: https://gnucobol.sourceforge.io/
 [gnucobol_binaries]: https://get-superbol.com/software/gnucobol-windows-installer/aio-release/
