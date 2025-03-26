@@ -1,0 +1,55 @@
+IDENTIFICATION DIVISION.
+PROGRAM-ID. SortFile.
+
+ENVIRONMENT DIVISION.
+INPUT-OUTPUT SECTION.
+FILE-CONTROL.
+    SELECT IN-FILE
+        ASSIGN TO "C:\TEMP\UNSORTED.TXT"
+        ORGANIZATION IS LINE SEQUENTIAL.
+    SELECT OUT-FILE
+        ASSIGN TO "C:\TEMP\SORTED1A.TXT"
+        ORGANIZATION IS LINE SEQUENTIAL.
+    SELECT SORT-FILE
+        ASSIGN TO "C:\TEMP\WORK.TMP".
+
+DATA DIVISION.
+FILE SECTION.
+FD IN-FILE.
+*> DATA RECORD IS IN-RECORD.
+      01 IN-RECORD.
+         02 IN-ID                  PIC 9(5).
+         02 IN-LAST-NAME           PIC X(15).
+         02 IN-FIRST-NAME          PIC X(10).
+         02 IN-CITY                PIC X(12).
+         02 IN-STATE               PIC X(2).
+
+FD OUT-FILE.
+*> DATA RECORD IS OUT-RECORD.
+      01 OUT-RECORD.
+         02 OUT-ID                 PIC 9(5).
+         02 OUT-LAST-NAME          PIC X(15).
+         02 OUT-FIRST-NAME         PIC X(10).
+         02 OUT-CITY               PIC X(12).
+         02 OUT-STATE              PIC X(2).
+
+SD SORT-FILE.
+*> DATA RECORD IS SORT-RECORD.
+      01 SORT-RECORD.
+         02 SORT-ID                PIC 9(5).
+         02 SORT-LAST-NAME         PIC X(15).
+         02 SORT-FIRST-NAME        PIC X(10).
+         02 SORT-CITY              PIC X(12).
+         02 SORT-STATE             PIC X(2).
+
+WORKING-STORAGE SECTION.
+
+PROCEDURE DIVISION.
+    MAINLINE.
+
+    SORT SORT-FILE
+        ON ASCENDING KEY SORT-STATE
+        ON ASCENDING KEY SORT-LAST-NAME
+        USING IN-FILE
+        GIVING OUT-FILE.
+    STOP RUN.
