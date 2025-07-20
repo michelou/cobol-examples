@@ -55,7 +55,7 @@ Configuration ot the <a href="https://gnucobol.sourceforge.io/" rel="external">G
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/March 2025* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/July 2025* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
