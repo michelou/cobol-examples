@@ -18,7 +18,7 @@
 
 This project depends on the following external software for the **Microsoft Windows** platform:
 
-- [Git 2.50][git_releases] ([*release notes*][git_relnotes])
+- [Git 2.51][git_releases] ([*release notes*][git_relnotes])
 - [GnuCOBOL 3.2][gnucobol_binaries] ([*release notes*][gnucobol_relnotes], [*news file*][gnucobol_news])
 - [MSYS2 2024][msys2_downloads] <sup id="anchor_01">[1](#footnote_01)</sup> ([*changelog*][msys2_changelog])
 
@@ -28,19 +28,19 @@ Optionally one may also install the following software:
 - [opensource COBOL 4J 1.1][cobj_downloads] ([*release notes*][cobj_relnotes])
 - [Temurin OpenJDK 17 LTS][temurin_openjdk17] ([*release notes*][temurin_openjdk17_relnotes])
 - [Visual COBOL 9.0][visual_cobol_downloads] ([*release notes*][visual_cobol_relnotes])
-- [Visual Studio Code 1.102][vscode_downloads] ([*release notes*][vscode_relnotes])
+- [Visual Studio Code 1.104][vscode_downloads] ([*release notes*][vscode_relnotes])
 
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [**`/opt/`**][unix_opt] directory on Unix).
 
-For instance our development environment looks as follows (*July 2025*) <sup id="anchor_02">[2](#footnote_02)</sup>:
+For instance our development environment looks as follows (*October 2025*) <sup id="anchor_02">[2](#footnote_02)</sup>:
 
 <pre style="font-size:80%;">
 C:\opt\cobj\<sup id="anchor_03"><a href="#footnote_03">3</a></sup>                                     <i>(  18 MB)</i>
 C:\opt\ConEmu\                                    <i>(  26 MB)</i>
 C:\opt\Git\                                       <i>( 392 MB)</i>
 C:\opt\GnuCOBOL\                                  <i>( 548 MB)</i>
-C:\opt\jdk-temurin-17.0.15_6\                     <i>( 304 MB)</i>
+C:\opt\jdk-temurin-17.0.16_8\                     <i>( 304 MB)</i>
 C:\opt\msys64\                                    <i>(2.83 GB)</i>
 C:\opt\VSCode\                                    <i>( 381 MB)</i>
 C:\Program Files (x86)\Micro Focus\Visual COBOL\  <i>(1.26 GB)</i>
@@ -101,8 +101,8 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
    <pre style="font-size:80%;">
    <b>&gt; <a href="./setenv.bat">setenv</a></b>
    Tool versions:
-   cobc 3.3-dev.0, ccbl 9.0.0.49, cobj 1.1.10, java 17.0.15, make 4.4.1,
-   git 2.50.1, diff 3.11, bash 5.2.37(1)
+   cobc 3.3-dev.0, ccbl 9.0.0.49, cobj 1.1.10, java 17.0.16, make 4.4.1,
+   git 2.51.0, diff 3.12, bash 5.2.37(1)
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git make sh</b>
    C:\opt\Git\bin\git.exe
@@ -133,10 +133,10 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <a href="https://github.com/Maximus5/ConEmu/releases/tag/v23.07.24" rel="external">ConEmuPack.230724.7z</a>                               <i>(  5 MB)</i>
 <a href="https://superbol.eu/en/developers/windows-aio-3.2/">gnucobol-3.2-aio-20240624-user.msi</a>                 <i>( 92 MB)</i>
 <a href="https://repo.msys2.org/distrib/x86_64/">msys2-x86_64-20240727.exe</a>                         <i> ( 83 MB)</i>
-<a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.15_6.zip</a>   <i>(188 MB)</i>
+<a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.16_8.zip</a>   <i>(188 MB)</i>
 <a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.1.10.zip</a>                       <i>(  8 MB)</i>
-<a href="https://git-scm.com/download/win">PortableGit-2.50.1-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
-<a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.102.1.zip</a>                       <i>(131 MB)</i>
+<a href="https://git-scm.com/download/win">PortableGit-2.51.0-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
+<a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.104.3.zip</a>                       <i>(131 MB)</i>
 <a href="https://">vcvs2022_90.exe</a> (for Visual Studio 2022)           <i>(820 MB)</i>
 </pre>
 <p style="background-color:#eeeeee;">
@@ -148,7 +148,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <span id="footnote_03">[3]</span> ***COBOL 4J*** [↩](#anchor_03)
 
 <dl><dd>
-We built the COBOL 4J distribution from the source archive <code><a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.1.10.zip</a></code> and installed it into directory <code>C:\opt\cobj\</code>. The 3 build steps are described in the <a href="https://github.com/opensourcecobol/opensourcecobol4j#install-opensource-cobol-4j">COBOL 4J online documentation</a>:
+We built the COBOL 4J distribution from the source archive <code><a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.1.13.zip</a></code> and installed it into directory <code>C:\opt\cobj\</code>. The 3 build steps are described in the <a href="https://github.com/opensourcecobol/opensourcecobol4j#install-opensource-cobol-4j">COBOL 4J online documentation</a>:
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/set_1" rel="external">set</a> PATH=%MSYS_HOME%\usr\bin;%PATH%</b>
@@ -164,9 +164,9 @@ OpenCOBOL Configuration:
   LDFLAGS
   COB_LDFLAGS
   COB_LIBS             -L${exec_prefix}/lib -lcob -lm
-  COB_CONFIG_DIR       ${datarootdir}/opensource-cobol-4j-1.1.10/config
-  COB_COPY_DIR         ${datarootdir}/opensource-cobol-4j-1.1.10/copy
-  COB_LIBRARY_PATH     ${exec_prefix}/lib/opensource-cobol-4j-1.1.10
+  COB_CONFIG_DIR       ${datarootdir}/opensource-cobol-4j-1.1.13/config
+  COB_COPY_DIR         ${datarootdir}/opensource-cobol-4j-1.1.13/copy
+  COB_LIBRARY_PATH     ${exec_prefix}/lib/opensource-cobol-4j-1.1.13
   COB_MODULE_EXT
   COB_SHARED_OPT       -shared
   COB_PIC_FLAGS        -fPIC -DPIC
@@ -179,16 +179,16 @@ OpenCOBOL Configuration:
 <b>&gt; <a href="https://www.gnu.org/software/make/manual/make.html">make</a></b>
 [...]
 Making all in libcobj
-make[2]: Entering directory '/j/opensourcecobol4j-1.1.10/libcobj'
+make[2]: Entering directory '/j/opensourcecobol4j-1.1.13/libcobj'
 ./gradlew shadowJar
 Starting a Gradle Daemon (subsequent builds will be faster)
 
 BUILD SUCCESSFUL in 50s
 2 actionable tasks: 2 executed
-make[2]: Leaving directory '/j/opensourcecobol4j-1.1.10/libcobj'
-make[2]: Entering directory '/j/opensourcecobol4j-1.1.10'
-make[2]: Leaving directory '/j/opensourcecobol4j-1.1.10'
-make[1]: Leaving directory '/j/opensourcecobol4j-1.1.10'
+make[2]: Leaving directory '/j/opensourcecobol4j-1.1.13/libcobj'
+make[2]: Entering directory '/j/opensourcecobol4j-1.1.13'
+make[2]: Leaving directory '/j/opensourcecobol4j-1.1.13'
+make[1]: Leaving directory '/j/opensourcecobol4j-1.1.13'
 &nbsp;
 <b>&gt; <a href="https://www.gnu.org/software/make/manual/make.html">make</a> install</b>
 </pre>
@@ -258,7 +258,7 @@ Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/July 2025* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/October 2025* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
@@ -323,6 +323,7 @@ Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="
 17.0.12 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-July/035798.html
 17.0.13 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-October/038867.html
 17.0.15 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2025-January/040827.html
+17.0.16 -> 
 -->
 [temurin_openjdk17]: https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot
 [temurin_openjdk17_relnotes]: https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-April/032197.html

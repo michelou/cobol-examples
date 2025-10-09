@@ -120,7 +120,7 @@ NNNNNNNSSSSSSSSIIYYYYMMDDCCCCG
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/July 2025* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/October 2025* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
