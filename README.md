@@ -12,7 +12,7 @@
   </tr>
 </table>
 
-[Ada][ada_examples], [Akka][akka_examples], [C++][cpp_examples], [Dafny][dafny_examples], [Dart][dart_examples], [Deno][deno_examples], [Docker][docker_examples], [Erlang][erlang_examples], [Flix][flix_examples], [Go][golang_examples], [GraalVM][graalvm_examples], [Haskell][haskell_examples], [Kafka][kafka_examples], [Kotlin][kotlin_examples], [LLVM][llvm_examples], [Modula-2][m2_examples], [Node.js][nodejs_examples], [Rust][rust_examples], [Scala 3][scala3_examples], [Spark][spark_examples], [Spring][spring_examples], [Standard ML][sml_examples], [TruffleSqueak][trufflesqueak_examples], [WiX Toolset][wix_examples] and [Zig][zig_examples] are other topics we are continuously monitoring.
+[Ada][ada_examples], [Akka][akka_examples], [C++][cpp_examples], [Component Pascal][component_pascal_examples], [Dafny][dafny_examples], [Dart][dart_examples], [Deno][deno_examples], [Docker][docker_examples], [Erlang][erlang_examples], [Flix][flix_examples], [Go][golang_examples], [GraalVM][graalvm_examples], [Haskell][haskell_examples], [Kafka][kafka_examples], [Kotlin][kotlin_examples], [LLVM][llvm_examples], [Modula-2][m2_examples], [Node.js][nodejs_examples], [Rust][rust_examples], [Scala 3][scala3_examples], [Spark][spark_examples], [Spring][spring_examples], [Standard ML][sml_examples], [TruffleSqueak][trufflesqueak_examples], [WiX Toolset][wix_examples] and [Zig][zig_examples] are other topics we are continuously monitoring.
 
 ## <span id="proj_deps">Project dependencies</span>
 
@@ -28,7 +28,7 @@ Optionally one may also install the following software:
 - [opensource COBOL 4J 1.1][cobj_downloads] ([*release notes*][cobj_relnotes])
 - [Temurin OpenJDK 17 LTS][temurin_openjdk17] ([*release notes*][temurin_openjdk17_relnotes])
 - [Visual COBOL 9.0][visual_cobol_downloads] ([*release notes*][visual_cobol_relnotes])
-- [Visual Studio Code 1.104][vscode_downloads] ([*release notes*][vscode_relnotes])
+- [Visual Studio Code 1.105][vscode_downloads] ([*release notes*][vscode_relnotes])
 
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [**`/opt/`**][unix_opt] directory on Unix).
@@ -101,8 +101,8 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
    <pre style="font-size:80%;">
    <b>&gt; <a href="./setenv.bat">setenv</a></b>
    Tool versions:
-   cobc 3.3-dev.0, ccbl 9.0.0.49, cobj 1.1.10, java 17.0.16, make 4.4.1,
-   git 2.51.0, diff 3.12, bash 5.2.37(1)
+   cobc 3.3-dev.0, ccbl 9.0.0.49, cobj 1.1.13, java 17.0.16, make 4.4.1,
+   git 2.51.1, diff 3.12, bash 5.2.37(1)
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git make sh</b>
    C:\opt\Git\bin\git.exe
@@ -134,9 +134,9 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <a href="https://superbol.eu/en/developers/windows-aio-3.2/">gnucobol-3.2-aio-20240624-user.msi</a>                 <i>( 92 MB)</i>
 <a href="https://repo.msys2.org/distrib/x86_64/">msys2-x86_64-20240727.exe</a>                         <i> ( 83 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.16_8.zip</a>   <i>(188 MB)</i>
-<a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.1.10.zip</a>                       <i>(  8 MB)</i>
-<a href="https://git-scm.com/download/win">PortableGit-2.51.0-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
-<a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.104.3.zip</a>                       <i>(131 MB)</i>
+<a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.1.13.zip</a>                       <i>(  8 MB)</i>
+<a href="https://git-scm.com/download/win">PortableGit-2.51.1-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
+<a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.105.1.zip</a>                       <i>(131 MB)</i>
 <a href="https://">vcvs2022_90.exe</a> (for Visual Studio 2022)           <i>(820 MB)</i>
 </pre>
 <p style="background-color:#eeeeee;">
@@ -221,7 +221,7 @@ In our case the installation directory <code>C:\opt\cobj\\</code> looks as follo
 |   \---<b>opensourcecobol4j</b>
 |           libcobj.jar
 \---<b>share</b>
-    \---<b>opensource-cobol-4j-1.1.10</b>
+    \---<b>opensource-cobol-4j-1.1.13</b>
         +---<b>config</b>
         |       bs2000.conf
         |       cobol2002.conf
@@ -266,11 +266,12 @@ Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="
 [ada_examples]: https://github.com/michelou/ada-examples#top
 [akka_examples]: https://github.com/michelou/akka-examples#top
 [cobj_downloads]: https://github.com/opensourcecobol/opensourcecobol4j
-[cobj_relnotes]: https://github.com/opensourcecobol/opensourcecobol4j/releases/tag/v1.1.10
+[cobj_relnotes]: https://github.com/opensourcecobol/opensourcecobol4j/releases/tag/v1.1.13
 [cobol]: https://en.wikipedia.org/wiki/COBOL
 [cobol_4j]: https://github.com/opensourcecobol/opensourcecobol4j
 [conemu_downloads]: https://github.com/Maximus5/ConEmu/releases
 [conemu_relnotes]: https://conemu.github.io/blog/2023/07/24/Build-230724.html
+[component_pascal_examples]: https://github.com/michelou/cpp-examples#top
 [cpp_examples]: https://github.com/michelou/cpp-examples#top
 [dafny_examples]: https://github.com/michelou/dafny-examples#top
 [dart_examples]: https://github.com/michelou/dart-examples#top
@@ -280,7 +281,7 @@ Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="
 [flix_examples]: https://github.com/michelou/flix-examples#top
 [git_cli]: https://git-scm.com/docs/git
 [git_releases]: https://git-scm.com/download/win
-[git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.49.0.txt
+[git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.51.1.adoc
 [github_markdown]: https://github.github.com/gfm/
 [gnucobol]: https://gnucobol.sourceforge.io/
 [gnucobol_binaries]: https://superbol.eu/en/developers/windows-aio-3.2/

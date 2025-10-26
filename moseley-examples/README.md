@@ -16,9 +16,9 @@ This example has the following directory structure :
 <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" rel="external">tree</a> /a /f . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /b /v [A-Z]</b>
 |   <a href="./Elapsed/build.bat">build.bat</a>
 |   <a href="./Elapsed/build.sh">build.sh</a>
-\---src
-    \---main
-        \---cobol
+\---<b>src</b>
+    \---<b>main</b>
+        \---<b>cobol</b>
                 <a href="./Elapsed/src/main/cobol/ELAPSED.cbl">ELAPSED.cbl</a>
                 <a href="./Elapsed/src/main/cobol/Y2K.cpy">Y2K.cpy</a>
 </pre>
@@ -44,15 +44,15 @@ This example has the following directory structure :
 |   <a href="./Timeline/build.sh">build.sh</a>
 |   TIMELINE.dat
 |   timeline.rpt
-\---src
-    \---main
-        \---cobol
+\---<b>src</b>
+    \---<b>main</b>
+        \---<b>cobol</b>
                 <a href="./Timeline/src/main/cobol/TIMELINE.cbl">TIMELINE.cbl</a>
                 <a href="./Timeline/src/main/cobol/Y2K.cpy">Y2K.cpy</a>
-                <a href="">Y2KDFMT.cbl</a>
-                <a href="">Y2KDOWN.cbl</a>
-                <a href="">Y2KGTOA.cbl</a>
-                <a href="">Y2KLAGE.cbl</a>
+                <a href="./Timeline/src/main/cobol/Y2KDFMT.cbl">Y2KDFMT.cbl</a>
+                <a href="./Timeline/src/main/cobol/Y2KDOWN.cbl">Y2KDOWN.cbl</a>
+                <a href="./Timeline/src/main/cobol/Y2KGTOA.cbl">Y2KGTOA.cbl</a>
+                <a href="./Timeline/src/main/cobol/Y2KLAGE.cbl">Y2KLAGE.cbl</a>
 </pre>
 
 Command [`build`](./Timeline/build.bat)`-verbose clean run` generates and execution the COBOL program `target\Timeline.exe` :
