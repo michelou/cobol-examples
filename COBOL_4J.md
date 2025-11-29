@@ -40,7 +40,7 @@ For instance we invoke the <a href="https://github.com/opensourcecobol/opensourc
 </pre>
 where the defined variables :
 <ul>
-<li><code>JAVA_HOME</code> equals <code>C:\opt\jdk-temurin-17.0.14_7</code> (for <code>java.exe</code> command).</li>
+<li><code>JAVA_HOME</code> equals <code>C:\opt\jdk-temurin-17.0.17_10</code> (for <code>java.exe</code> command).</li>
 <li><code>COBJ_HOME</code> equals <code>C:\opt\cobj</code> (our <a href="https://github.com/opensourcecobol/opensourcecobol4j">COBOL 4J</a> installation directory).</li>
 <li><code>_COBJ_CMD</code> equals <code>%COBJ_HOME%\bin\cobj.exe</code>.</li>
 </ul>
@@ -75,7 +75,7 @@ Version <a href="https://github.com/opensourcecobol/opensourcecobol4j/releases/t
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/October 2025* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/November 2025* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

@@ -405,7 +405,8 @@ if defined __CCBL_CMD (
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using environment variable COBDIR 1>&2
 ) else (
     set "__PATH=%ProgramFiles(x86)%"
-    if exist "!__PATH!\Micro Focus\Visual COBOL" ( set "_COBDIR=!__PATH!\Micro Focus\Visual COBOL"
+    @rem if exist "!__PATH!\Micro Focus\Visual COBOL" ( set "_COBDIR=!__PATH!\Micro Focus\Visual COBOL"
+    if exist "!__PATH!\Rocket Software\Visual COBOL" ( set "_COBDIR=!__PATH!\Rocket Software\Visual COBOL"
     )
     if defined _COBDIR (
         if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Visual COBOL installation directory "!_COBDIR!" 1>&2

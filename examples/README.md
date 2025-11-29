@@ -11,7 +11,7 @@ Our build scripts support the following options to specify the COBOL compiler :
 
 | Option  | Compiler    | Version |
 |:--------|:------------|:--------|
-| `-cobj` | [COBOL 4J](../COBOL_4J.md) | [1.1.13](https://github.com/opensourcecobol/opensourcecobol4j/releases/tag/v1.1.13) |
+| `-cobj` | [COBOL 4J](../COBOL_4J.md) | [1.1.15](https://github.com/opensourcecobol/opensourcecobol4j/releases/tag/v1.1.13) |
 | `-gnu` *(default)*  | [GnuCOBOL](../GNUCOBOL.md) | 3.3-dev.0 |
 | `-mf`   | [Visual COBOL](../VISUAL_COBOL.md) | 9.0.0.49 |
 
@@ -272,7 +272,7 @@ return status:  0
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/October 2025* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/November 2025* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

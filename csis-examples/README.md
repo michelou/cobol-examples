@@ -67,9 +67,9 @@ Example `RefMod` has the following directory structure :
 <pre style="font-size:80%;">
 <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" rel="external">tree</a> /a /f . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /v /b [A-Z]</b>
 |   <a href="./RefMod/build.bat">build.bat</a>
-\---src
-    \---main
-        \---cobol
+\---<b>src</b>
+    \---<b>main</b>
+        \---<b>cobol</b>
                 <a href="./RefMod/src/main/cobol/RefMod.cbl">RefMod.cbl</a>
 </pre>
 
@@ -120,7 +120,7 @@ NNNNNNNSSSSSSSSIIYYYYMMDDCCCCG
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/October 2025* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/November 2025* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

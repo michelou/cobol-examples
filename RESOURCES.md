@@ -12,6 +12,7 @@
 
 - [What Is COBOL Programming Language? Definition, Examples, Uses, and Challenges][article_kanade] by Vijay Kanade, August 2022.
 - [Learning COBOL: A Journey for the Modern Programmer](https://monadical.com/posts/cobol.html#) by Juan Diego Caballero, April 2021.
+- [Best of 2018: The Beauty of the COBOL Programming Language]() by Bob Reselman, December 2018.
 - [A journey into the past: Programming with GNU COBOL][article_harris] by Mike Harris, 2017.
 - [Don't hate COBOL until you've tried it][article_mankowski] by Walt Mankowski, August 2017.
 - [Creating Native Java Classes in COBOL](https://www.gennard.net/NativeJava/), April 1997.
@@ -19,11 +20,14 @@
 
 ## <span id="blogs">Blogs</span> [**&#x25B4;**](#top)
 
+- [Documenting COBOL in 2025: A guide](https://overcast.blog/documenting-cobol-in-2025-a-guide-548dd970067f) by Gilad Navot, January 2025.
+- [Fixing and Optimizing the GnuCOBOL Preprocessor](https://ocamlpro.com/blog/2024_04_30_fixing_and_optimizing_gnucobol/) by Fabrice Le Fessant, April 2024.
 - [Learning COBOL: A Journey for the Modern Programmer](https://monadical.com/posts/cobol.html#) by Juan Diego Caballero, April 2021.
 - [PERFORM in COBOL and Types of PERFORM in COBOL][blog_topictrick] by Topictrick.com, January 2021.
 - [Integrating Cobol with JavaScript](https://medium.com/graalvm/integrating-cobol-with-javascript-c2d1ffe00678) by Christoph Schobesberger, October 2020.
 - [Installing gnuCOBOL on Windows][blog_theman] by Dan TheMan, May 2020.
 - [Brush up your COBOL: Why is a 60 year old language suddenly in demand?][blog_martin] by Charles Martin, April 2020.
+- [7 COBOL examples with explanations](https://medium.com/@yvanscher/7-cobol-examples-with-explanations-ae1784b4d576) by Yvan Scher, August 2018.
 
 ## <span id="books">Books</span> [**&#x25B4;**](#top)
 
@@ -48,6 +52,7 @@
 - [COBOL85 User Guide](https://bs2manuals.ts.fujitsu.com/psCOBOL85V23en) by FUJITSU, July 2014.
 - [IBM COBOL for Linux on x86 documentation][manual_ibm_cobol] by IBM, 2023.
 - [The COBOL Connection](http://www.simotime.com/indexcbl.htm) by SimTime Technologies.
+- [Micro Focus COBOL Error Messages](http://www.3kranger.com/HP3000/mpeix/doc3k/BB243390052.14905/1.htm).
 
 ## <span id="tools">Tools</span> [**&#x25B4;**](#top)
 
@@ -58,8 +63,9 @@
 - [Cobol OneCompiler](https://onecompiler.com/cobol) &ndash; Write, Run & Share Cobol code.
 - [Cobrix](https://github.com/AbsaOSS/cobrix) &ndash; pain free Spark/Cobol files integration.
 - [Visual Studio Code Extensions](https://marketplace.visualstudio.com/search?target=VSCode) :
-  - [Broadcom Code4z](https://marketplace.visualstudio.com/items?itemName=broadcomMFD.code4z-extension-pack) &ndash; syntax highlighting and content assist for COBOL programs.
+  - [Code4z Foundation](https://marketplace.visualstudio.com/items?itemName=broadcomMFD.code4z-extension-pack) &ndash; syntax highlighting and content assist for COBOL programs.
   - [Cobol Check Extension][tool_cobol_check] &ndash; fine-grained unit testing/checking for COBOL.
+  - [COBOL Language Support](https://marketplace.visualstudio.com/items?itemName=broadcomMFD.cobol-language-support), Broadcom.
   - [IBM Z Open Editor](https://marketplace.visualstudio.com/items?itemName=IBM.zopeneditor)
 
 ## <span id="tutorials">Tutorials</span> [**&#x25B4;**](#top)
@@ -78,7 +84,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/October 2025* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/November 2025* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

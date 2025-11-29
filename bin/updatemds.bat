@@ -10,14 +10,14 @@ set _DEBUG=0
 set _EXITCODE=0
 
 @rem files README.md, RESOURCES.md, etc.
-set _LAST_MODIFIED_OLD=michelou/)/September 2025
-set _LAST_MODIFIED_NEW=michelou/)/October 2025
+set _LAST_MODIFIED_OLD=michelou/)/October 2025
+set _LAST_MODIFIED_NEW=michelou/)/November 2025
 
-set _LAST_DOWNLOAD_OLD=(\*September 2025\*)
-set _LAST_DOWNLOAD_NEW=(*October 2025*)
+set _LAST_DOWNLOAD_OLD=(\*October 2025\*)
+set _LAST_DOWNLOAD_NEW=(*November 2025*)
 
 @rem to be transformed into -not -path "./<dirname>/*"
-set _EXCLUDE_TOPDIRS=bin docs opensourcecobol4j-1.1.6
+set _EXCLUDE_TOPDIRS=bin docs opensourcecobol4j-1.1.14 opensourcecobol4j-1.1.15
 set _EXCLUDE_SUBDIRS=_LOCAL
 
 call :env

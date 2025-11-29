@@ -34,7 +34,7 @@ build: $(TARGET)
 $(TARGET): $(SOURCES)
 	[ -d "$(TARGET_DIR)" ] || "$(MKDIR)" -p "$(TARGET_DIR)"
 	COB_CC="$(CC)" \
-	COB_CFLAGS="-I \"$(PREFIX)/include\" -I \"$(MSYS_HOME)/mingw64/include\" -pipe -Wno-unused -fsigned-char -Wno-pointer-sign" \
+	COB_CFLAGS="-I \"$(PREFIX)/include\" -pipe -Wno-unused -fsigned-char -Wno-pointer-sign" \
 	COB_LIBS="-L \"$(PREFIX)/lib\" -lcob" \
 	COB_CONFIG_DIR="$(PREFIX)/config" \
 	COB_COPY_DIR="$(PREFIX)/copy" \

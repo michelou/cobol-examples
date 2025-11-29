@@ -36,11 +36,11 @@ Execute program "target\Colors.exe"
 
 <img src="./images/Colors.png" />
 
-***
+---
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/October 2025* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/November 2025* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
 
-[cobol]: https://
+[cobol]: https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm
