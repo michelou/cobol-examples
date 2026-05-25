@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright (c) 2018-2025 Stéphane Micheloud
+# Copyright (c) 2018-2026 Stéphane Micheloud
 #
 # Licensed under the MIT License.
 #
@@ -47,9 +47,11 @@ args() {
     for arg in "$@"; do
         case "$arg" in
         ## options
+        -cobj)     TOOLSET=cobj ;;
         -debug)    DEBUG=1 ;;
         -fixed)    FORMAT=fixed ;;
         -free)     FORMAT=free ;;
+        -gnu)      TOOLSET=gnu ;;
         -help)     HELP=1 ;;
         -verbose)  VERBOSE=1 ;;
         -*)
@@ -80,6 +82,7 @@ help() {
 Usage: $BASENAME { <option> | <subcommand> }
 
   Options:
+    -cobj        select COBOL 4J tools
     -debug       print commands executed by this script
     -fixed       enable fixed-format code
     -free        enable free-format code (default)
@@ -111,7 +114,7 @@ compile() {
     local is_required=0
     is_required="$(action_required "$TARGET_FILE" "$SOURCE_MAIN_DIR/" "*.cbl")"
     if [[ $is_required -eq 1 ]]; then
-        compile_cob
+        compile_$TOOLSET
         [[ $? -eq 0 ]] || ( EXITCODE=1 && return 0 )
     fi
 }
@@ -136,7 +139,60 @@ action_required() {
     fi
 }
 
-compile_cob() {
+compile_cobj() {
+    [[ -d "$TARGET_DIR/classes" ]] || mkdir -p "$TARGET_DIR/classes"
+    [[ -d "$TARGET_DIR/src" ]] ||  mkdir -p "$TARGET_DIR/src"
+
+    local source_files=
+    local n=0
+    for f in $(find "$SOURCE_MAIN_DIR/" -type f -name "*.cbl" -o -name "*.cob" 2>/dev/null); do
+        source_files="$source_files \"$(mixed_path $f)\""
+        n=$((n + 1))
+    done
+    if [[ $n -eq 0 ]]; then
+        warning "No COBOL source file found"
+        return 1
+    fi
+    local s=; [[ $n -gt 1 ]] && s="s"
+    local n_files="$n COBOL source file$s"
+    local path_old=$PATH
+    local classpath_old=$CLASSPATH
+
+    local config_file="$(dirname $ROOT_DIR)/default.conf"
+    if [[ ! -f "$config_file" ]]; then
+        error "Configuration file \"default.conf\" not found"
+        cleanup 1
+    fi
+    PATH="$PATH:$JAVA_BIN_PATH"
+    if [[ -z "$CLASSPATH" ]]; then
+        export CLASSPATH="$COBJ_LIB_PATH/libcobj.jar"
+    else
+        export CLASSPATH="$CLASSPATH:$COBJ_LIB_PATH/libcobj.jar"
+    fi
+    if [[ $DEBUG -eq 1 ]]; then
+        ##for /f "delims=" %%i in ('where javac') do echo %_DEBUG_LABEL% Java compiler: "%%i" 1>&2
+        debug "CLASSPATH=$CLASSPATH"
+    fi
+    local cobj_opts="\"-conf=$(mixed_path $config_file)\" -o \"$(mixed_path $TARGET_DIR/classes)\" -j \"$(mixed_path $TARGET_DIR/src)\""
+    [[ $FORMAT = "free" ]] && cobj_opts="-free $cobj_opts"
+
+    if [[ $DEBUG -eq 1 ]]; then
+        debug "\"$COBJ_CMD\" $cobj_opts $source_files"
+    elif [[ $VERBOSE -eq 1 ]]; then
+        echo "Compile $n_files into directory \"${TARGET_DIR/$ROOT_DIR\//}\" (COBOL 4J)" 1>&2
+    fi
+    eval "\"$COBJ_CMD\" $cobj_opts $source_files"
+    if [[ $? -ne 0 ]]; then
+        PATH=$path_old
+        CLASSPATH=$classpath_old
+        error "Failed to compile $n_files into directory \"${TARGET_DIR/$ROOT_DIR\//}\" (COBOL 4J)"
+        cleanup 1
+    fi
+    PATH=$path_old
+    CLASSPATH=$classpath_old
+}
+
+compile_gnu() {
     export COB_CC="$CC_CMD"
     export COB_CFLAGS="-I \"$COB_HOME/include\" -pipe -Wno-unused -fsigned-char -Wno-pointer-sign"
     export COB_LIBS="-L \"$COB_HOME/lib\" -lcob"
@@ -166,7 +222,7 @@ compile_cob() {
     if [[ $DEBUG -eq 1 ]]; then
         debug "\"$COBC_CMD\" $cobc_opts $source_files"
     elif [[ $VERBOSE -eq 1 ]]; then
-        echo "Compile $n_files to directory \"${TARGET_DIR/$ROOT_DIR\//}\"" 1>&2
+        echo "Compile $n_files to directory \"${TARGET_DIR/$ROOT_DIR\//}\" (GnuCOBOL)" 1>&2
     fi
     eval "\"$COBC_CMD\" $cobc_opts $source_files"
     if [[ $? -ne 0 ]]; then
@@ -186,6 +242,26 @@ mixed_path() {
 }
 
 run() {
+    run_$TOOLSET
+}
+
+run_cobj() {
+    local java_opts="-cp \"$COBJ_LIB_PATH//libcobj.jar:$TARGET_DIR/classes\""
+    local main_name=$PROJECT_NAME
+
+    if [[ $DEBUG -eq 1 ]]; then
+        debug "\"$JAVA_CMD\" $java_opts \"$main_name%\""
+    elif [[ $VERBOSE%==1 ]]; then
+        echo "Execute Java program \"$main_name\""
+    fi
+    eval "\"$JAVA_CMD\" $java_opts \"$main_name\""
+    if [[ $? -ne 0 ]]; then
+        error "Failed to execute Java program \"$main_name\""
+        cleanup 1
+    fi
+}
+
+run_gnu() {
     if [[ ! -f "$TARGET_FILE" ]]; then
         error "Executable \"${TARGET_FILE/$ROOT_DIR\//}\" not found"
         cleanup 1
@@ -249,15 +325,21 @@ if [[ $(($cygwin + $mingw + $msys)) -gt 0 ]]; then
     CYGPATH_CMD="$(which cygpath 2>/dev/null)"
     PSEP=";"
     [[ -n "$COB_HOME" ]] && COB_HOME="$(mixed_path $COB_HOME)"
+    [[ -n "$COBJ_HOME" ]] && COBJ_HOME="$(mixed_path $COBJ_HOME)"
     [[ -n "$GIT_HOME" ]] && GIT_HOME="$(mixed_path $GIT_HOME)"
+    [[ -n "$JAVA_HOME" ]] && JAVA_HOME="$(mixed_path $JAVA_HOME)"
     CC_CMD="$COB_HOME/mingw64/bin/gcc.exe"
     DIFF_CMD="$GIT_HOME/usr/bin/diff.exe"
     COB_BIN_PATH="$($CYGPATH_CMD -u $COB_HOME)/bin"
+    COBJ_LIB_PATH="$($CYGPATH_CMD -u $COBJ_HOME)/lib/opensourcecobol4j"
+    JAVA_BIN_PATH="$($CYGPATH_CMD -u $JAVA_HOME)/bin"
     TARGET_EXT=.exe
 else
     CC_CMD="$(which gcc)"
     DIFF_CMD="$(which diff)"
     COB_BIN_PATH="$COB_HOME/bin"
+    COBJ_LIB_PATH="$COBJ_HOME/lib/opensourcecobol4j"
+    JAVA_BIN_PATH="$JAVA_HOME/bin"
     TARGET_EXT=
 fi
 if [[ ! -x "$COB_HOME/bin/cobc" ]]; then
@@ -265,6 +347,19 @@ if [[ ! -x "$COB_HOME/bin/cobc" ]]; then
     cleanup 1
 fi
 COBC_CMD="$COB_HOME/bin/cobc"
+
+if [[ ! -x "$COBJ_HOME/bin/cobj" ]]; then
+    error "COBOL 4J installation not found"
+    cleanup 1
+fi
+COBJ_CMD="$COBJ_HOME/bin/cobj"
+
+## $JAVA_HOME is used by COBOL 4J
+if [[ ! -x "$JAVA_HOME/bin/java" ]]; then
+    error "Java SDK installation not found"
+    cleanup 1
+fi
+JAVA_CMD="$JAVA_HOME/bin/java"
 
 PROJECT_NAME="$(basename $ROOT_DIR)"
 PROJECT_URL="github.com/$USER/cobol-examples"

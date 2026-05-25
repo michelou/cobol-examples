@@ -72,7 +72,8 @@
 
 - [COBOL Tutorial](https://www.mainframestechhelp.com/tutorials/cobol/) by [Mainframestechhelp](https://www.mainframestechhelp.com/).
 - [Get started with COBOL](https://developer.ibm.com/languages/cobol/) by [IBM Developer](https://developer.ibm.com/).
-- [Mainframe Tips, Tricks And Tutorials](https://mainframe-tips-and-tricks.blogspot.com/search/label/COBOL)
+- [Mainframe Tips, Tricks And Tutorials](https://mainframe-tips-and-tricks.blogspot.com/search/label/COBOL).
+- [GnuCOBOL Programmer’s Guide](https://gnucobol.sourceforge.io/HTML/gnucobpg.html), July 2020.
 
 <!--
 ## <span id="videos">Videos</span> [**&#x25B4;**](#top)
@@ -84,7 +85,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/November 2025* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/May 2026* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

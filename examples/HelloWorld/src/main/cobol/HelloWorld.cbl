@@ -3,7 +3,7 @@
 *> ******************************************************************
 
 IDENTIFICATION DIVISION.
-PROGRAM-ID. HelloWorld.
+PROGRAM-ID. "HelloWorld".
 
 ENVIRONMENT DIVISION.
 PROCEDURE DIVISION.

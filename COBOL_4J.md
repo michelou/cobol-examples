@@ -56,14 +56,14 @@ where the defined variables :
 <span id="footnote_02">[2]</span> **`libcobj.jar` *dependencies*** [↩](#anchor_02)
 
 <dl><dd>
-Version <a href="https://github.com/opensourcecobol/opensourcecobol4j/releases/tag/v1.1.6"><b>1.1.6</b></a> of library <code>libcobj.jar</code> has the following dependencies (see also Gradle build file <a href="https://github.com/opensourcecobol/opensourcecobol4j/blob/develop/libcobj/app/build.gradle.kts#L29"><code>build.gradle.kts</code></a>) :
+Version <a href="https://github.com/opensourcecobol/opensourcecobol4j/releases/tag/v1.1.20"><b>1.1.20</b></a> of library <code>libcobj.jar</code> has the following dependencies (see also Gradle build file <a href="https://github.com/opensourcecobol/opensourcecobol4j/blob/develop/libcobj/app/build.gradle.kts#L34"><code>build.gradle.kts</code></a>) :
 
 | Project | MVN&nbsp;repository | Version |
 |:--------|:--------------------|:--------|
-| [Guava](https://github.com/google/guava#guava-google-core-libraries-for-java) | [com.google.common](https://mvnrepository.com/artifact/com.google.guava/guava) | [33.4.0-jre](https://mvnrepository.com/artifact/com.google.guava/guava/33.4.0-jre) |
-| [Guava](https://github.com/google/guava#guava-google-core-libraries-for-java) | [com.google.thirdparty](https://mvnrepository.com/artifact/com.google.guava/guava) | [33.4.0-jre](https://mvnrepository.com/artifact/com.google.guava/guava/33.4.0-jre) |
-| [SQLite JDBC](https://github.com/xerial/sqlite-jdbc#sqlite-jdbc-driver) | [org.sqlite](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc) | [3.48.0.0](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc/3.48.0.0) |
-| [Apache Commons CLI](https://commons.apache.org/proper/commons-cli/) | [commons-cli](https://mvnrepository.com/artifact/commons-cli/commons-cli) | [1.9.0](https://mvnrepository.com/artifact/commons-cli/commons-cli/1.9.0) |
+| [Guava](https://github.com/google/guava#guava-google-core-libraries-for-java) | [com.google.common](https://mvnrepository.com/artifact/com.google.guava/guava) | [33.5.0-jre](https://mvnrepository.com/artifact/com.google.guava/guava/33.5.0-jre) |
+| [Guava](https://github.com/google/guava#guava-google-core-libraries-for-java) | [com.google.thirdparty](https://mvnrepository.com/artifact/com.google.guava/guava) | [33.5.0-jre](https://mvnrepository.com/artifact/com.google.guava/guava/33.5.0-jre) |
+| [SQLite JDBC](https://github.com/xerial/sqlite-jdbc#sqlite-jdbc-driver) | [org.sqlite](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc) | [3.51.0.0](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc/3.51.0.0) |
+| [Apache Commons CLI](https://commons.apache.org/proper/commons-cli/) | [commons-cli](https://mvnrepository.com/artifact/commons-cli/commons-cli) | [1.10.0](https://mvnrepository.com/artifact/commons-cli/commons-cli/1.10.0) |
 | [Check Framework](https://checkerframework.org/) | [org.checkerframework](https://mvnrepository.com/artifact/org.checkerframework/checker-qual) <sup><b>a)</b></sup> | [3.43.0](https://mvnrepository.com/artifact/org.checkerframework/checker-qual/3.43.0) |
 | [J2ObjC Annotations](https://mvnrepository.com/artifact/com.google.j2objc/j2objc-annotations) | [j2objc-annotations](https://mvnrepository.com/artifact/com.google.j2objc/j2objc-annotations) <sup><b>a)</b></sup> | [3.0.0](https://mvnrepository.com/artifact/com.google.j2objc/j2objc-annotations/3.0.0) |
 | [Error Prone Annotations](https://github.com/google/error-prone#error-prone) | [com.google.errorprone](https://mvnrepository.com/artifact/com.google.errorprone/error_prone_annotations) <sup><b>a)</b></sup> | [2.36.0](https://mvnrepository.com/artifact/com.google.errorprone/error_prone_annotations/2.36.0) |
@@ -75,7 +75,7 @@ Version <a href="https://github.com/opensourcecobol/opensourcecobol4j/releases/t
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/November 2025* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/May 2026* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

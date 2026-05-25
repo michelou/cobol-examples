@@ -11,11 +11,46 @@ Our build scripts support the following options to specify the COBOL compiler :
 
 | Option  | Compiler    | Version |
 |:--------|:------------|:--------|
-| `-cobj` | [COBOL 4J](../COBOL_4J.md) | [1.1.15](https://github.com/opensourcecobol/opensourcecobol4j/releases/tag/v1.1.13) |
+| `-cobj` | [COBOL 4J](../COBOL_4J.md) | [1.1.20](https://github.com/opensourcecobol/opensourcecobol4j/releases/tag/v1.1.20) |
 | `-gnu` *(default)*  | [GnuCOBOL](../GNUCOBOL.md) | 3.3-dev.0 |
 | `-mf`   | [Visual COBOL](../VISUAL_COBOL.md) | 9.0.0.49 |
 
-## <span id="circles">`Circles` Example</span>
+## <span id="arrays">`Arrays` Example</span>
+
+For further details you're invited to read the blog post ["Coding Cobol: Reading in an array of things"](https://craftofcoding.wordpress.com/2022/03/24/coding-cobol-reading-in-an-array-of-things/), posted on 24.03.2022.
+
+Example `Arrays` has the following directory structure :
+
+<pre style="font-size:80%;">
+<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" rel="external">tree</a> /a /f . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /b /v [A-Z]</b>
+|   <a href="./Arrays/00download.txt">00download.txt</a>
+|   <a href="./Arrays/build.bat">build.bat</a>
+|   <a href="./Arrays/build.sh">build.sh</a>
+|   <a href="./Arrays/data.txt">data.txt</a>
+|   <a href="./HelloWorld/Makefile">Makefile</a>
+\---<b>src</b>
+    \---<b>main</b>
+        \---<b>cobol</b>
+                <a href="./Arrays/src/main/cobol/Arrays.cbl">Arrays.cbl</a>
+</pre>
+
+Command [`build.bat`](./Arrays/build.bat)` run` generates and executes the COBOL program `target\Arrays.exe` (which expects the user to provide a data file name, eg. [`data.txt`](./Arrays/data.txt)) :
+
+<pre style="font-size:80%;">
+<b>&gt; <a href="./Arrays/build.bat">build</a> -verbose clean run</b>
+Compile 1 COBOL source file into directory "target" (GnuCOBOL)
+Execute program "target\Arrays.exe"
+Enter the filename: <a href="./Arrays/data.txt">data.txt</a>
+Planet: 01 Endor
+Planet: 02 Jakku
+Planet: 03 Naboo
+Planet: 04 Jedha
+Planet: 05 Yavin
+</pre>
+
+<!--==================================================-->
+
+## <span id="circles">`Circles` Example</span> [**&#x25B4;**](#top)
 
 Example `Circles` has the following directory structure :
 
@@ -31,7 +66,7 @@ Example `Circles` has the following directory structure :
                 <a href="./Circles/src/main/cobol/CIRCLES.cbl">Circles.cbl</a>
 </pre>
 
-Command [`build.bat`](./Circles/build.bat)` run` generates and executes the program `target\Circles.exe` (use option `-debug` <sup id="anchor_01">[1](#footnote_01)</sup> to print details of the build process) :
+Command [`build.bat`](./Circles/build.bat)` run` generates and executes the COBOL program `target\Circles.exe` (use option `-debug` <sup id="anchor_01">[1](#footnote_01)</sup> to print details of the build process) :
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="./Circles/build.bat">build</a> -verbose clean run</b>
@@ -53,6 +88,8 @@ Example `HelloWorld` has the following directory structure :
 <pre style="font-size:80%;">
 <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" rel="external">tree</a> /a /f . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /b /v [A-Z]</b>
 |   <a href="./HelloWorld/build.bat">build.bat</a>
+|   <a href="./HelloWorld/build.sh">build.sh</a>
+|   <a href="./HelloWorld/Makefile">Makefile</a>
 \---<b>src</b>
     \---<b>main</b>
         +---<b>cobol</b>
@@ -65,7 +102,7 @@ Example `HelloWorld` has the following directory structure :
 [cobc.exe][cobc_cmd]
 -->
 
-Command [`build.bat`](./HelloWorld/build.bat)`run` generates and executes the program `target\HelloWorld.exe` (use option `-debug` <sup id="anchor_01">[1](#footnote_01)</sup> to print details of the build process) :
+Command [`build.bat`](./HelloWorld/build.bat)`run` generates and executes the COBOL program `target\HelloWorld.exe` (use option `-debug` <sup id="anchor_01">[1](#footnote_01)</sup> to print details of the build process) :
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="./HelloWorld/build.bat">build</a> -verbose clean run</b>
@@ -91,13 +128,32 @@ Hello World!
 > [build]   env: COB_CC            : C:\opt\GnuCOBOL\\mingw64\bin\gcc.exe
 > [build]   env: COB_CFLAGS        : -I "C:\opt\GnuCOBOL\\include" -pipe
 > [build]   env: COB_LIBS          : -L "C:\opt\GnuCOBOL\\lib" -lcob
-> [build]   env: COB_CONFIG_DIR    : C:\opt\GnuCOBOL\\config
-> [build]   env: COB_COPY_DIR      : C:\opt\GnuCOBOL\\copy
+> [build]   env: COB_CONFIG_DIR    : C:\opt\GnuCOBOL\config
+> [build]   env: COB_COPY_DIR      : C:\opt\GnuCOBOL\copy
 > [build] "C:\opt\GnuCOBOL\\bin\cobc.exe" --debug --verbose -std=cobol2014 -x -o "J:\examples\HelloWorld\target\HelloWorld.exe"  "J:\examples\HelloWorld\src\main\cobol-fixed\HelloWorld.cbl"
 > [...]
 > [build] Execute program "target\HelloWorld.exe"
 > Hello World!
 > [build] _EXITCODE=0
+> </pre>
+
+Command `sh`[`./build.sh`](./HelloWorld/build.sh)`clean run` generates and executes the COBOL program `target/HelloWorld.exe`:
+
+<pre style="font-size:80%;">
+<b>&gt; sh <a href="./HelloWorld/build.sh">./build.sh</a> -verbose clean run</b>
+Delete directory "target"
+Compile 1 COBOL source file to directory "target" (GnuCOBOL)
+Execute "target/HelloWorld.exe"
+Hello World!
+</pre>
+
+> **Note**: With option `-cobj` we select of COBOL 4J tools :
+> <pre style="font-size:80%;;">
+> <b>&gt; sh <a href="./HelloWorld/build.sh">./build.sh</a> -verbose -cobj clean run</b>
+> Delete directory "target"
+> Compile 1 COBOL source file into directory "target" (COBOL 4J)
+> Execute Java program "HelloWorld"
+> Hello World!
 > </pre>
 
 <!--=======================================================================-->
@@ -272,7 +328,7 @@ return status:  0
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/November 2025* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/May 2026* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

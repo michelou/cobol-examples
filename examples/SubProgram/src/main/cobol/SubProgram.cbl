@@ -1,17 +1,20 @@
 IDENTIFICATION DIVISION.
-PROGRAM-ID. TestSubProgram.
+PROGRAM-ID. "TestSubProgram".
+
 ENVIRONMENT DIVISION.
 CONFIGURATION SECTION.
-Repository.
+*> See https://www.ibm.com/docs/en/cobol-zos/6.3.0?topic=section-repository-paragraph
+REPOSITORY.
     FUNCTION functionABC2.
+
 DATA DIVISION.
 Working-Storage SECTION.
-    01 ctr1         PIC 999 value 0.
+    01 ctr1         PIC 999 VALUE 0.
     77 returnvalue  USAGE BINARY-LONG SIGNED.
     77 someValue    USAGE BINARY-LONG SIGNED.
 LINKAGE SECTION.
 PROCEDURE DIVISION.
-Begin.
+BEGIN.
     DISPLAY "Hello World!"
     MOVE 100 to ctr1.
     CALL 'functionABC' USING ctr1 returnvalue.  
@@ -25,7 +28,7 @@ END PROGRAM TestSubProgram.
 IDENTIFICATION DIVISION.
 PROGRAM-ID. functionABC.
 DATA DIVISION.
-working-storage SECTION.
+WORKING-STORAGE SECTION.
     77 localvar     PIC 999.
 LINKAGE SECTION.
     01 param1       PIC 999.
@@ -40,7 +43,7 @@ END PROGRAM functionABC.
 IDENTIFICATION DIVISION.
 FUNCTION-ID. functionABC2.
 DATA DIVISION.
-WORKING-storage SECTION.
+WORKING-STORAGE SECTION.
 LINKAGE SECTION.
     77 param1       USAGE BINARY-LONG SIGNED.
     77 result       USAGE BINARY-LONG SIGNED.
