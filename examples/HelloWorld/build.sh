@@ -72,7 +72,9 @@ args() {
     debug "Options    : FORMAT=$FORMAT STANDARD=$STANDARD TOOLSET=$TOOLSET VERBOSE=$VERBOSE"
     debug "Subcommands: CLEAN=$CLEAN COMPILE=$COMPILE HELP=$HELP RUN=$RUN"
     debug "Variables  : COB_HOME=$COB_HOME"
+    debug "Variables  : COBJ_HOME=$COBJ_HOME"
     debug "Variables  : GIT_HOME=$GIT_HOME"
+    debug "Variables  : JAVA_HOME=$JAVA_HOME"
     # See http://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/
     [[ $TIMER -eq 1 ]] && TIMER_START=$(date +"%s")
 }
