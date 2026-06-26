@@ -6,7 +6,7 @@
     <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external"><img style="border:0;width:100px;" src="../docs/images/cobol.png" width="100" alt="COBOL language"/></a>
   </td>
   <td style="border:0;padding:0;vertical-align:text-top;">
-    Directory <strong><code>csis-examples\</code></strong> contains <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external" title="COBOL">COBOL</a> code examples coming from the <a href="https://www.csis.ul.ie/cobol/examples/">CSIS</a> department of the <a href="https://www.ul.ie/">University of Limerick</a>.
+    Directory <strong><code>csis-examples\</code></strong> contains <a href="https://www.mainframestechhelp.com/tutorials/cobol/introduction.htm" rel="external" title="COBOL">COBOL</a> code examples coming from the <a href="https://www.csis.ul.ie/cobol/examples/" rel="external" title="https://www.csis.ul.ie/cobol/examples/">CSIS</a> department of the <a href="https://www.ul.ie/" rel="external" title="https://www.ul.ie/">University of Limerick</a>.
   </td>
   </tr>
 </table>
@@ -18,7 +18,7 @@ The description of example `MonthTable` is presented in document [`docs\MonthTab
 Example `MonthTable` has the following directory structure :
 
 <pre style="font-size:80%;">
-<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" loc="external">tree</a> /a /f . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /v /b [A-Z]</b>
+<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" loc="external">tree</a> /a /f . | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external" title="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr">findstr</a> /v /b [A-Z]</b>
 |   <a href="./MonthTable/build.bat">build.bat</a>
 |   <a href="./MonthTable/STUDENTS.DAT">STUDENTS.DAT</a>
 +---<b>docs</b>
@@ -31,10 +31,10 @@ Example `MonthTable` has the following directory structure :
                 <a href="./MonthTable/src/main/cobol/MonthTable.cbl">MonthTable.cbl</a>
 </pre>
 
-Command [`build`](./MonthTable/build.bat)`-verbose clean run` generates and executes the [COBOL] program `target\MonthTable.exe` :
+Command [`build`](./MonthTable/build.bat "./MonthTable/build.bat")`-verbose clean run` generates and executes the [COBOL] program `target\MonthTable.exe` :
 
 <pre style="font-size:80%;">
-<b>&gt; <a href="./MonthTable/build.bat">build</a> -verbose clean run</b>
+<b>&gt; <a href="./MonthTable/build.bat" title="./MonthTable/build.bat">build</a> -verbose clean run</b>
 Compile 1 COBOL source file into directory "target"
 Execute program "target\MonthTable.exe"
  Month    StudCount
@@ -73,7 +73,7 @@ Example `RefMod` has the following directory structure :
                 <a href="./RefMod/src/main/cobol/RefMod.cbl">RefMod.cbl</a>
 </pre>
 
-Command [`build`](./RefMod/build.bat)`-verbose clean run` generates and executes the [COBOL] program `target\RefMod.exe` :
+Command [`build`](./RefMod/build.bat "./RefMod/build.bat")`-verbose clean run` generates and executes the [COBOL] program `target\RefMod.exe` :
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="./RefMod/build.bat">build</a> -verbose clean clean</b>
@@ -98,7 +98,7 @@ The character is e
 Example `SeqWrite` has the following directory structure :
 
 <pre style="font-size:80%;">
-<b>&gt; <a href="">tree</a> /a /f .| <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /v /b [A-Z]</b>
+<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" rel="external" title="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree">tree</a> /a /f .| <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external" title="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr">findstr</a> /v /b [A-Z]</b>
 |   <a href="./SeqWrite/build.bat">build.bat</a>
 |   <a href="./SeqWrite/build.sh">build.sh</a>
 \---<b>src</b>
@@ -110,7 +110,7 @@ Example `SeqWrite` has the following directory structure :
 Command [`build`](./SeqWrite/build.bat)`-verbose clean run` generates and executes the [COBOL] program `target\SeqWrite.exe` :
 
 <pre style="font-size:80%;">
-<b>&gt; <a href="./SeqWrite/build.bat">build</a> -verbose clean run</b>
+<b>&gt; <a href="./SeqWrite/build.bat" title="./SeqWrite/build.bat">build</a> -verbose clean run</b>
 Compile 1 COBOL source file into directory "target"
 Execute program "target\SeqWrite.exe"
 Enter student details using template below.  Enter no data to end.
@@ -125,4 +125,4 @@ NNNNNNNSSSSSSSSIIYYYYMMDDCCCCG
 
 <!-- link refs -->
 
-[cobol]: https://en.wikipedia.org/wiki/COBOL
+[cobol]: https://en.wikipedia.org/wiki/COBOL "https://en.wikipedia.org/wiki/COBOL"

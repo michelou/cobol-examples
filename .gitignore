@@ -1,12 +1,43 @@
+*~
+*.aux
+*.bak
+*.cache
+*.cfg
+*.class
+*.config
 *.exe
-
+*.hi
+*.ho
 *.log
+*.o
 *.obj
+*.pdb
+*.stderr
+*.stdout
+.DS_Store
 
+# Directories
+.bloop/
+.bsp/
+.gradle/
+.idea/
+.metals/
+.project/
+.settings/
 .vscode/
+.vscode-template/
+build/
 target/
 
-opensourcecobol4j*/
-*_LOCAL/
+# Claude specific
+CLAUDE.md
+CLAUDE*local.md
+.claude/
+
+# Project specific
+*_LOCAL.ini
+*_LOCAL.json
 *_LOCAL.md
 *_LOCAL.txt
+*_LOCAL/
+opensourcecobol4j*/

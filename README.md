@@ -12,7 +12,7 @@
   </tr>
 </table>
 
-[Ada][ada_examples], [Akka][akka_examples], [C++][cpp_examples], [Component Pascal][component_pascal_examples], [Dafny][dafny_examples], [Dart][dart_examples], [Deno][deno_examples], [Docker][docker_examples], [Erlang][erlang_examples], [Flix][flix_examples], [Go][golang_examples], [GraalVM][graalvm_examples], [Haskell][haskell_examples], [Kafka][kafka_examples], [Kotlin][kotlin_examples], [LLVM][llvm_examples], [Modula-2][m2_examples], [MySQL][mysql_examples], [Node.js][nodejs_examples], [PowerShell][powershell_examples], [Rust][rust_examples], [Scala 3][scala3_examples], [Spark][spark_examples], [Spring][spring_examples], [Standard ML][sml_examples], [TruffleSqueak][trufflesqueak_examples], [WiX Toolset][wix_examples] and [Zig][zig_examples] are other topics we are continuously monitoring.
+[Ada][ada_examples], [Akka][akka_examples], [C++][cpp_examples], [Common&nbsp;Lisp][cl_examples], [Component Pascal][component_pascal_examples], [Dafny][dafny_examples], [Dart][dart_examples], [Deno][deno_examples], [Docker][docker_examples], [Erlang][erlang_examples], [Flix][flix_examples], [Go][golang_examples], [GraalVM][graalvm_examples], [Haskell][haskell_examples], [Kafka][kafka_examples], [Kotlin][kotlin_examples], [LLVM][llvm_examples], [Modula-2][m2_examples], [MySQL][mysql_examples], [Node.js][nodejs_examples], [PowerShell][powershell_examples], [Rust][rust_examples], [Scala 3][scala3_examples], [Spark][spark_examples], [Spring][spring_examples], [Standard ML][sml_examples], [TruffleSqueak][trufflesqueak_examples], [WiX Toolset][wix_examples] and [Zig][zig_examples] are other topics we are continuously monitoring.
 
 ## <span id="proj_deps">Project dependencies</span>
 
@@ -28,7 +28,7 @@ Optionally one may also install the following software:
 - [opensource COBOL 4J 1.1][cobj_downloads] ([*release notes*][cobj_relnotes])
 - [Temurin OpenJDK 17 LTS][temurin_openjdk17] ([*release notes*][temurin_openjdk17_relnotes])
 - [Visual COBOL 11.0][visual_cobol_downloads] ([*release notes*][visual_cobol_relnotes])
-- [Visual Studio Code 1.123][vscode_downloads] ([*release notes*][vscode_relnotes])
+- [Visual Studio Code 1.126][vscode_downloads] ([*release notes*][vscode_relnotes])
 
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [**`/opt/`**][unix_opt] directory on Unix).
@@ -139,7 +139,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.19_10.zip</a>  <i>(188 MB)</i>
 <a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.1.20.zip</a>                       <i>(  8 MB)</i>
 <a href="https://git-scm.com/download/win">PortableGit-2.54.0-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
-<a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.123.0.zip</a>                       <i>(131 MB)</i>
+<a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.126.0.zip</a>                       <i>(131 MB)</i>
 <a href="">vcvs2022_110.exe</a>                                   <i>(781 MB)</i>
 </pre>
 <!--
@@ -154,10 +154,10 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <span id="footnote_03">[3]</span> ***COBOL 4J*** [↩](#anchor_03)
 
 <dl><dd>
-We built the COBOL 4J distribution from the source archive <code><a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external">opensourcecobol4j-1.1.20.zip</a></code> and installed it into directory <code>C:\opt\cobj\</code>. The 3 build steps are described in the <a href="https://github.com/opensourcecobol/opensourcecobol4j#install-opensource-cobol-4j">COBOL 4J online documentation</a>:
+We built the COBOL 4J distribution from the source archive <code><a href="https://github.com/opensourcecobol/opensourcecobol4j/releases" rel="external" title="https://github.com/opensourcecobol/opensourcecobol4j/releases">opensourcecobol4j-1.1.20.zip</a></code> and installed it into directory <code>C:\opt\cobj\</code>. The 3 build steps are described in the <a href="https://github.com/opensourcecobol/opensourcecobol4j#install-opensource-cobol-4j" rel="external" title="https://github.com/opensourcecobol/opensourcecobol4j#install-opensource-cobol-4j">COBOL 4J online documentation</a>:
 
 <pre style="font-size:80%;">
-<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/set_1" rel="external">set</a> PATH=%MSYS_HOME%\usr\bin;%PATH%</b>
+<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/set_1" rel="external" title="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/set_1">set</a> PATH=%MSYS_HOME%\usr\bin;%PATH%</b>
 <b>&gt; <a href="https://man7.org/linux/man-pages/man1/sh.1p.html" rel="external">sh</a> ./configure --prefix=/c/opt/cobj</b>
 [...]
 OpenCOBOL Configuration:
@@ -182,7 +182,7 @@ OpenCOBOL Configuration:
   Use gettext for international messages:      no
   Use fcntl for file locking:                  yes
   &nbsp;
-<b>&gt; <a href="https://www.gnu.org/software/make/manual/make.html" rel="external">make</a></b>
+<b>&gt; <a href="https://www.gnu.org/software/make/manual/make.html" rel="external" title="https://www.gnu.org/software/make/manual/make.html">make</a></b>
 [...]
 Making all in libcobj
 make[2]: Entering directory '/j/opensourcecobol4j-1.1.20/libcobj'
@@ -196,7 +196,7 @@ make[2]: Entering directory '/j/opensourcecobol4j-1.1.20'
 make[2]: Leaving directory '/j/opensourcecobol4j-1.1.20'
 make[1]: Leaving directory '/j/opensourcecobol4j-1.1.20'
 &nbsp;
-<b>&gt; <a href="https://www.gnu.org/software/make/manual/make.html">make</a> install</b>
+<b>&gt; <a href="https://www.gnu.org/software/make/manual/make.html" rel="external" title="https://www.gnu.org/software/make/manual/make.html">make</a> install</b>
 </pre>
 
 > **Note**: The <code>make install</code> command requires that the following development tools are available through the <code>PATH</code> environment variable :
@@ -208,13 +208,13 @@ make[1]: Leaving directory '/j/opensourcecobol4j-1.1.20'
 > </pre>
 > If that is yet not the case we execute the following command :
 > <pre style="font-size:80%;">
-> <b>&gt; c:\opt\msys64\usr\bin\<a href="https://www.msys2.org/docs/pacman/">pacman.exe</a> -Suy flex</b>
+> <b>&gt; c:\opt\msys64\usr\bin\<a href="https://www.msys2.org/docs/pacman/" rel="external" title="https://www.msys2.org/docs/pacman/">pacman.exe</a> -Suy flex</b>
 > </pre>
 
 In our case the installation directory <code>C:\opt\cobj\\</code> looks as follows :
 
 <pre style="font-size:80%;">
-<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" rel="external">tree</a> /a /f c:\opt\cobj | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /v /b [A-Z]</b>
+<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree" rel="external" title="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree">tree</a> /a /f c:\opt\cobj | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> /v /b [A-Z]</b>
 +---<b>bin</b>
 |       cob-config
 |       cobj-api
@@ -271,6 +271,7 @@ Concretely, in our GitHub projects which depend on Visual Studio (e.g. <a href="
 
 [ada_examples]: https://github.com/michelou/ada-examples#top
 [akka_examples]: https://github.com/michelou/akka-examples#top
+[cl_examples]: https://github.com/michelou/cl-examples#top
 [cobj_downloads]: https://github.com/opensourcecobol/opensourcecobol4j#opensource-cobol-4j
 [cobj_relnotes]: https://github.com/opensourcecobol/opensourcecobol4j/releases/tag/v1.1.20
 [cobol]: https://en.wikipedia.org/wiki/COBOL

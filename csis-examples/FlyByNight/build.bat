@@ -22,16 +22,8 @@ if %_HELP%==1 (
     call :help
     exit /b !_EXITCODE!
 )
-if %_CLEAN%==1 (
-    call :clean
-    if not !_EXITCODE!==0 goto end
-)
-if %_COMPILE%==1 (
-    call :compile
-    if not !_EXITCODE!==0 goto end
-)
-if %_RUN%==1 (
-    call :run
+for %%c in (%_COMMANDS%) do (
+    call :%%c
     if not !_EXITCODE!==0 goto end
 )
 goto end
@@ -49,7 +41,7 @@ set _ERROR_LABEL=%_STRONG_FG_RED%Error%_RESET%:
 set _WARNING_LABEL=%_STRONG_FG_YELLOW%Warning%_RESET%:
 
 set "_SOURCE_DIR=%_ROOT_DIR%src"
-set "_SOURCE_MAIN_DIR=%_SOURCE_DIR%\main\cobol"
+set "_SOURCE_COBOL_DIR=%_SOURCE_DIR%\main\cobol"
 set "_TARGET_DIR=%_ROOT_DIR%target"
 
 for /f "delims=" %%i in ("%~dp0\.") do set "_MAIN_NAME=%%~ni"
@@ -145,15 +137,11 @@ set _RESET=[0m
 goto :eof
 
 @rem input parameter: %*
-@rem output parameters: _CLEAN, _COMPILE, _DEBUG, _RUN, _VERBOSE
+@rem output parameters: _COMMANDS, _DEBUG, _STANDARD, _VERBOSE
 :args
-set _CLEAN=0
-set _COMPILE=0
-set _DOC=0
+set _COMMANDS=
 set _FORMAT=free
 set _HELP=0
-set _LINT=0
-set _RUN=0
 @rem option -std:<name>, name=default, cobol2014, cobol2002, cobol85, xopen, ibm-strict,
 @rem                          ibm, mvs-strict, mvs, mf-strict, mf, bs2000-strict, bs2000
 set _STANDARD=default
@@ -183,10 +171,10 @@ if "%__ARG:~0,1%"=="-" (
     )
 ) else (
     @rem subcommand
-    if "%__ARG%"=="clean" ( set _CLEAN=1
-    ) else if "%__ARG%"=="compile" ( set _COMPILE=1
+    if "%__ARG%"=="clean" ( set _COMMANDS=!_COMMANDS! clean
+    ) else if "%__ARG%"=="compile" ( set _COMMANDS=!_COMMANDS! compile
     ) else if "%__ARG%"=="help" ( set _HELP=1
-    ) else if "%__ARG%"=="run" ( set _COMPILE=1& set _RUN=1
+    ) else if "%__ARG%"=="run" ( set _COMMANDS=!_COMMANDS! compile run
     ) else (
         echo %_ERROR_LABEL% Unknown subcommand "%__ARG%" 1>&2
         set _EXITCODE=1
@@ -209,13 +197,13 @@ if %_TOOLSET%==cobj if not defined _COBJ_CMD (
     set _TOOLSET=gnu
 )
 if %_FORMAT%==fixed (
-    if exist "%_SOURCE_MAIN_DIR%-fixed" ( set "_SOURCE_MAIN_DIR=%_SOURCE_MAIN_DIR%-fixed"
+    if exist "%_SOURCE_COBOL_DIR%-fixed" ( set "_SOURCE_COBOL_DIR=%_SOURCE_COBOL_DIR%-fixed"
     ) else ( set _FORMAT=fixed2
     )
 )
 if %_DEBUG%==1 (
     echo %_DEBUG_LABEL% Options    : _FORMAT=%_FORMAT% _STANDARD=%_STANDARD% _TOOLSET=%_TOOLSET% _VERBOSE=%_VERBOSE% 1>&2
-    echo %_DEBUG_LABEL% Subcommands: _CLEAN=%_CLEAN% _COMPILE=%_COMPILE% _RUN=%_RUN% 1>&2
+    echo %_DEBUG_LABEL% Subcommands: %_COMMANDS% 1>&2
     echo %_DEBUG_LABEL% Variables  : "COB_HOME=%COB_HOME%" 1>&2
     if defined _CCBL_CMD echo %_DEBUG_LABEL% Variables  : "COBDIR=%COBDIR%" 1>&2
     if defined _COBJ_CMD echo %_DEBUG_LABEL% Variables  : "COBJ_HOME=%COBJ_HOME%" 1>&2
@@ -275,7 +263,7 @@ goto :eof
 :compile
 if not exist "%_TARGET_DIR%" mkdir "%_TARGET_DIR%"
 
-call :action_required "%_EXE_FILE%" "%_SOURCE_MAIN_DIR%\*.cbl"
+call :action_required "%_EXE_FILE%" "%_SOURCE_COBOL_DIR%\*.cbl"
 if %_ACTION_REQUIRED%==0 goto :eof
 
 call :compile_%_TOOLSET%
@@ -287,7 +275,7 @@ if not exist "%_TARGET_DIR%\src" mkdir "%_TARGET_DIR%\src"
 
 set __SOURCE_FILES=
 set __N=0
-for /f "delims=" %%f in ('dir /s /b "%_SOURCE_MAIN_DIR%\*.cbl" "%_SOURCE_MAIN_DIR%\*.cob" 2^>NUL') do (
+for /f "delims=" %%f in ('dir /s /b "%_SOURCE_COBOL_DIR%\*.cbl" "%_SOURCE_COBOL_DIR%\*.cob" 2^>NUL') do (
     set __SOURCE_FILES=!__SOURCE_FILES! "%%f"
     set /a __N+=1
 )
@@ -340,18 +328,18 @@ if %_FORMAT%==fixed2 (
         goto :eof
     )
     if not exist "%_TARGET_DIR%\cobol" mkdir "%_TARGET_DIR%\cobol"
-    for /f "delims=" %%f in ('dir /b /s "%_SOURCE_MAIN_DIR%\*.cbl" "%_SOURCE_MAIN_DIR%\*.cob"') do (
+    for /f "delims=" %%f in ('dir /b /s "%_SOURCE_COBOL_DIR%\*.cbl" "%_SOURCE_COBOL_DIR%\*.cob"') do (
         (
             echo BEGIN { n=1 }
             echo { printf^("%%05d  %%s\n",n,$0^); n+=1 }
         ) > "%_TARGET_DIR%\%%~nf.awk"
         call "%GIT_HOME%\usr\bin\awk.exe" -f "%_TARGET_DIR%\%%~nf.awk" "%%f" > "%_TARGET_DIR%\cobol\%%~nxf"
     )
-    set "_SOURCE_MAIN_DIR=%_TARGET_DIR%\cobol"
+    set "_SOURCE_COBOL_DIR=%_TARGET_DIR%\cobol"
 )
 set __SOURCE_FILES=
 set __N=0
-for /f "delims=" %%f in ('dir /s /b "%_SOURCE_MAIN_DIR%\*.cbl" "%_SOURCE_MAIN_DIR%\*.cob" 2^>NUL') do (
+for /f "delims=" %%f in ('dir /s /b "%_SOURCE_COBOL_DIR%\*.cbl" "%_SOURCE_COBOL_DIR%\*.cob" 2^>NUL') do (
     set __SOURCE_FILES=!__SOURCE_FILES! "%%f"
     set /a __N+=1
 )
@@ -395,7 +383,7 @@ goto :eof
 :compile_mf
 set __SOURCE_FILES=
 set __N=0
-for /f "delims=" %%f in ('dir /s /b "%_SOURCE_MAIN_DIR%\*.cbl" "%_SOURCE_MAIN_DIR%\*.cob" 2^>NUL') do (
+for /f "delims=" %%f in ('dir /s /b "%_SOURCE_COBOL_DIR%\*.cbl" "%_SOURCE_COBOL_DIR%\*.cob" 2^>NUL') do (
     set __SOURCE_FILES=!__SOURCE_FILES! "%%f"
     set /a __N+=1
 )
@@ -540,13 +528,13 @@ if not exist "%_EXE_FILE%" (
 set "__PATH=%PATH%"
 set "PATH=%COB_HOME%\bin;%PATH%"
 
-if %_DEBUG%==1 ( echo %_DEBUG_LABEL% Execute program "!_EXE_FILE:%_ROOT_DIR%=!" 1>&2
-) else if %_VERBOSE%==1 ( echo Execute program "!_EXE_FILE:%_ROOT_DIR%=!" 1>&2
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% Execute COBOL program "!_EXE_FILE:%_ROOT_DIR%=!" 1>&2
+) else if %_VERBOSE%==1 ( echo Execute COBOL program "!_EXE_FILE:%_ROOT_DIR%=!" 1>&2
 )
 call "%_EXE_FILE%"
 if not %ERRORLEVEL%==0 (
     set "PATH=%__PATH%"
-    echo %_DEBUG_LABEL% Failed to execute program "!_EXE_FILE:%_ROOT_DIR%=!" 1>&2
+    echo %_DEBUG_LABEL% Failed to execute COBOL program "!_EXE_FILE:%_ROOT_DIR%=!" 1>&2
     set _EXITCODE=1
     goto :eof
 )

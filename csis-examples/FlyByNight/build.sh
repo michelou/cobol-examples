@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright (c) 2018-2025 Stéphane Micheloud
+# Copyright (c) 2018-2026 Stéphane Micheloud
 #
 # Licensed under the MIT License.
 #
@@ -57,10 +57,10 @@ args() {
             EXITCODE=1 && return 0
             ;;
         ## subcommands
-        clean)     CLEAN=1 ;;
-        compile)   COMPILE=1 ;;
+        clean)     COMMANDS+=' clean' ;;
+        compile)   COMMANDS+=' compile' ;;
         help)      HELP=1 ;;
-        run)       COMPILE=1 && RUN=1 ;;
+        run)       COMMANDS+=' compile run' ;;
         *)
             error "Unknown subcommand $arg"
             EXITCODE=1 && return 0
@@ -68,7 +68,7 @@ args() {
         esac
     done
     debug "Options    : FORMAT=$FORMAT STANDARD=$STANDARD VERBOSE=$VERBOSE"
-    debug "Subcommands: CLEAN=$CLEAN COMPILE=$COMPILE HELP=$HELP RUN=$RUN"
+    debug "Subcommands: $COMMANDS"
     debug "Variables  : COB_HOME=$COB_HOME"
     debug "Variables  : GIT_HOME=$GIT_HOME"
     # See http://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/
@@ -94,7 +94,7 @@ EOS
 }
 
 clean() {
-    if [ -d "$TARGET_DIR" ]; then
+    if [[ -d "$TARGET_DIR" ]]; then
         if [[ $DEBUG -eq 1 ]]; then
             debug "Delete directory \"$TARGET_DIR\""
         elif [[ $VERBOSE -eq 1 ]]; then
@@ -109,7 +109,7 @@ compile() {
     [[ -d "$TARGET_DIR" ]] || mkdir -p "$TARGET_DIR"
 
     local is_required=0
-    is_required="$(action_required "$TARGET_FILE" "$SOURCE_MAIN_DIR/" "*.cbl")"
+    is_required="$(action_required "$TARGET_FILE" "$SOURCE_COBOL_DIR/" "*.cbl")"
     if [[ $is_required -eq 1 ]]; then
         compile_cob
         [[ $? -eq 0 ]] || ( EXITCODE=1 && return 0 )
@@ -153,7 +153,7 @@ compile_cob() {
 
     local source_files=
     local n=0
-    for f in $(find "$SOURCE_MAIN_DIR/" -type f -name "*.cbl" -o -name "*.cob" 2>/dev/null); do
+    for f in $(find "$SOURCE_COBOL_DIR/" -type f -name "*.cbl" -o -name "*.cob" 2>/dev/null); do
         source_files="$source_files \"$f\""
         n=$((n + 1))
     done
@@ -190,6 +190,9 @@ run() {
         error "Executable \"${TARGET_FILE/$ROOT_DIR\//}\" not found"
         cleanup 1
     fi
+    local saved_path="$PATH"
+    export PATH="$COB_BIN_PATH:$PATH"
+
     if [[ $DEBUG -eq 1 ]]; then
         debug "$TARGET_FILE"
     elif [[ $VERBOSE -eq 1 ]]; then
@@ -197,9 +200,11 @@ run() {
     fi
     eval "$TARGET_FILE"
     if [[ $? -ne 0 ]]; then
+        export PATH="$saved_path"
         error "Failed to execute \"${TARGET_FILE/$ROOT_DIR\//}\"" 1>&2
         cleanup 1
     fi
+    export PATH="$saved_path"
 }
 
 run_tests() {
@@ -216,17 +221,16 @@ EXITCODE=0
 ROOT_DIR="$(getHome)"
 
 SOURCE_DIR="$ROOT_DIR/src"
-SOURCE_MAIN_DIR="$SOURCE_DIR/main/cobol"
+SOURCE_COBOL_DIR="$SOURCE_DIR/main/cobol"
 TARGET_DIR="$ROOT_DIR/target"
 
 ## We refrain from using `true` and `false` which are Bash commands
 ## (see https://man7.org/linux/man-pages/man1/false.1.html)
-CLEAN=0
-COMPILE=0
+COMMANDS=
 DEBUG=0
 FORMAT=free
 HELP=0
-RUN=0
+## option -std:<name>, name=default, cobol2014
 STANDARD=default
 VERBOSE=0
 
@@ -249,10 +253,12 @@ if [[ $(($cygwin + $mingw + $msys)) -gt 0 ]]; then
     [[ -n "$GIT_HOME" ]] && GIT_HOME="$(mixed_path $GIT_HOME)"
     CC_CMD="$COB_HOME/mingw64/bin/gcc.exe"
     DIFF_CMD="$GIT_HOME/usr/bin/diff.exe"
+    COB_BIN_PATH="$($CYGPATH_CMD -u $COB_HOME)/bin"
     TARGET_EXT=.exe
 else
     CC_CMD="$(which gcc)"
     DIFF_CMD="$(which diff)"
+    COB_BIN_PATH="$COB_HOME/bin"
     TARGET_EXT=
 fi
 if [[ ! -x "$COB_HOME/bin/cobc" ]]; then
@@ -271,8 +277,8 @@ args "$@"
 [[ $EXITCODE -eq 0 ]] || cleanup 1
 
 if [[ $FORMAT = fixed ]]; then
-    if [[ -d "${SOURCE_MAIN_DIR}-fixed" ]]; then
-        SOURCE_MAIN_DIR="${SOURCE_MAIN_DIR}-fixed"
+    if [[ -d "${SOURCE_COBOL_DIR}-fixed" ]]; then
+        SOURCE_COBOL_DIR="${SOURCE_COBOL_DIR}-fixed"
     else
         FORMAT=fixed2
     fi
@@ -283,13 +289,8 @@ fi
 
 [[ $HELP -eq 1 ]] && help && cleanup
 
-if [[ $CLEAN -eq 1 ]]; then
-    clean || cleanup 1
-fi
-if [[ $COMPILE -eq 1 ]]; then
-    compile || cleanup 1
-fi
-if [[ $RUN -eq 1 ]]; then
-    run || cleanup 1
-fi
+for cmd in $COMMANDS; do
+   $cmd
+   [[ $EXITCODE -eq 0 ]] || cleanup 1
+done
 cleanup
